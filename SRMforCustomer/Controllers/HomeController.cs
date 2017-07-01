@@ -26,5 +26,17 @@ namespace SRMforCustomer.Controllers
 
             return View();
         }
+
+        public ActionResult Tests() {
+
+            
+
+            ViewBag.Message = "test ViewBag";
+            return View();
+        }
+        public string justdoit()
+        {
+            return "Just Do It";
+        }
     }
 }
