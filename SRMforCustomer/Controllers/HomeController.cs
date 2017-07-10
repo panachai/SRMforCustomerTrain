@@ -4,38 +4,32 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SRMforCustomer.Controllers
-{
-    public class HomeController : Controller
-    {
-        public ActionResult Index()
-        {
+namespace SRMforCustomer.Controllers {
+    public class HomeController : Controller {
+        public ActionResult Index() {
             return View();
         }
 
-        public ActionResult About()
-        {
+        public ActionResult About() {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+        public ActionResult Contact() {
+            //ViewBag.Message = "Your contact page.";
 
             return View();
         }
 
         public ActionResult Tests() {
 
-            
+
 
             ViewBag.Message = "test ViewBag";
             return View();
         }
-        public string justdoit()
-        {
+        public string justdoit() {
             return "Just Do It";
         }
     }
