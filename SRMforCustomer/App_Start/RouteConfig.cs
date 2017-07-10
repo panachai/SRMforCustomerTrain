@@ -10,10 +10,11 @@ namespace SRMforCustomer {
         public static void RegisterRoutes(RouteCollection routes) {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "Searchticket",
-                "SearchTicket/SearchTicket/{ticketID}",
-                new { Controller = "SearchTicket", action = "Index" });
+            routes.MapMvcAttributeRoutes();
+            //routes.MapRoute(
+            //    "Searchticket",
+            //    "SearchTicket/SearchTicket/{ticketID}",
+            //    new { Controller = "SearchTicket", action = "Index" });
 
             routes.MapRoute(
                 name: "Default",
