@@ -6,22 +6,35 @@ using System.Web.Mvc;
 using SRMforCustomer.Models;
 
 namespace SRMforCustomer.Controllers {
+    //[RoutePrefix("Ticket")]
     public class SearchTicketController : Controller {
         // GET: SearchTicket
-        public ActionResult SearchTicket() {
-            var requestsModel = new RequestsModel() { ReTopicName = "testSRMtopic" };
-            //ViewData["requestsModel"] = requestsModel;
-            
+        //[Route("Search")]
 
+        public ActionResult SearchTicket(RequestsModel model, List<string> searchs, HttpPostedFileBase image) {
+            if (image != null) {
+                var imageFile = TKSLibrary.IOHelper.ReadToEnd(image.InputStream);
+
+            }
+
+            var requestsModel = new List<RequestsModel>() {
+                new RequestsModel(){
+                    ReTopicName = "testSRMtopic"
+                },
+                new RequestsModel(){
+                    ReTopicName = "testSRMtopic2"
+                }
+            };
+            
             return View(requestsModel);
         }
 
-        [Route("SearchTicket/{ticketID}")]
-        public ActionResult Index(int? ticketID) { //set Search to ?ticketID=_ or SearchTicket/{ticketID} with MapRoute
-            if (!ticketID.HasValue)
-                ticketID = 0;
+        //[Route("{id}")]
+        public ActionResult Index(int id) { //set Search to ?ticketID=_ or SearchTicket/{ticketID} with MapRoute
+            //if (!id.HasValue)
+            //    id = 0;
 
-            return Content(String.Format("TicketID2 = {0}", ticketID));
+            return Content(String.Format("TicketID2 = {0}", id));
         }
     }
 }

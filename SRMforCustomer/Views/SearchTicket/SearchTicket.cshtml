@@ -1,8 +1,32 @@
-﻿@model SRMforCustomer.Models.RequestsModel
+﻿@model List<SRMforCustomer.Models.RequestsModel>
+
 @{
     ViewBag.Title = "SearchTicket";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.ReTopicName</h2>
+@{
+    var className = Model.Count > 0 ? "popular" : null;
+}
+@foreach (var req in Model) {
+    <h2 class="@className">@req.ReTopicName</h2>
+}
 
+
+@*ใช้เขียน form ที่เป็น List*@
+@using (Html.BeginForm("SearchTicket", "SearchTicket",FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.TextBox("image", null, new { type = "file" })
+    @Html.TextBox("ReTopicName")
+    @Html.TextBox("searchs[0]")
+    @Html.TextBox("searchs[1]")
+    @Html.TextBox("searchs[2]")
+    @Html.TextBox("searchs[3]")
+    @Html.TextBox("searchs[4]")
+    <button>Submit</button>
+}
+
+
+@*@using (Html.BeginForm("SearchTicket", "SearchTicket", FormMethod.Post, new { id = "frmTicket" })) {
+    @Html.TextBox("name-id", null, new {  })
+    @Html.TextBoxFor(f => f.ccccc)
+}*@
