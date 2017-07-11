@@ -1,7 +1,7 @@
 ﻿@model List<SRMforCustomer.Models.RequestsModel>
 
 @{
-    ViewBag.Title = "SearchTicket";
+    ViewBag.Title = "TrainLiew Na Ja";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,7 +14,7 @@
 
 
 @*ใช้เขียน form ที่เป็น List*@
-@using (Html.BeginForm("SearchTicket", "SearchTicket",FormMethod.Post, new { enctype = "multipart/form-data" })) {
+@using (Html.BeginForm("TrainLiew", "TrainLiew", FormMethod.Post, new { enctype = "multipart/form-data" })) {
     @Html.TextBox("image", null, new { type = "file" })
     @Html.TextBox("ReTopicName")
     @Html.TextBox("searchs[0]")

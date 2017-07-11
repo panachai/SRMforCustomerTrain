@@ -7,11 +7,11 @@ using SRMforCustomer.Models;
 
 namespace SRMforCustomer.Controllers {
     //[RoutePrefix("Ticket")]
-    public class SearchTicketController : Controller {
+    public class TrainLiewController : Controller {
         // GET: SearchTicket
         //[Route("Search")]
 
-        public ActionResult SearchTicket(RequestsModel model, List<string> searchs, HttpPostedFileBase image) {
+        public ActionResult TrainLiew(RequestsModel model, List<string> searchs, HttpPostedFileBase image) {
             if (image != null) {
                 var imageFile = TKSLibrary.IOHelper.ReadToEnd(image.InputStream);
 
