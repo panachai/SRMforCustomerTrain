@@ -13,7 +13,7 @@ namespace SRMforCustomer.Controllers {
 
         public ActionResult TrainLiew(RequestsModel model, List<string> searchs, HttpPostedFileBase image) {
             if (image != null) {
-                var imageFile = TKSLibrary.IOHelper.ReadToEnd(image.InputStream);
+                //var imageFile = TKSLibrary.IOHelper.ReadToEnd(image.InputStream);
 
             }
 
