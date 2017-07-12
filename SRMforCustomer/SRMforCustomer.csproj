@@ -199,6 +199,7 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\TrainLiew\AjaxTest.cshtml" />
     <Content Include="Views\TrainLiew\PartialViewAjax.cshtml" />
+    <Content Include="Views\Search\ResultSearchPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
