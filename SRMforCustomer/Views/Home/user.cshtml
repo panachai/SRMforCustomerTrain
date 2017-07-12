@@ -1,0 +1,166 @@
+﻿@{
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+    </title>
+    <style>
+   canvas  * {
+  padding: 0;
+  margin: 0;
+}
+
+canvas {
+  display: block;
+  background: black;
+}
+        
+ /*--------------------------------------*/
+        .input_padding {
+        padding-top:50px;
+        }
+        .valueinfo {
+        text-align:left;
+        color:rgba(0, 0, 0, 0.7);
+        }
+        input {
+        
+        height: 30px;
+        width:100%;
+        }
+                                
+        html {
+            height:100%;
+        }
+        .input_content {
+        padding-top:50px;
+        text-align:center;
+        padding-left:170px;
+        padding-right:170px;
+        }
+        @@media screen and (max-width: 767px) {
+        .input_content {
+        padding-left:unset;
+        padding-right:unset;
+        }
+            .row > .col-sm-6 {
+            padding-top:15px;
+            }
+            .input_padding {
+            padding-top:unset;
+            }
+            .input_content {
+            padding-top:50px;
+        
+            }
+        }
+        </style>
+</head>
+
+<body>
+    <canvas id="c" style="width: 100%;"></canvas>
+    <div class="head_title">
+        Requset
+        </div>
+    <div class="row input_content">
+        <form>
+           <div class="row">
+               <div class="col-sm-6">
+                   <div class="valueinfo">ชื่อ-นามสกุล</div>
+            <input type="text" id="name" class="input">
+               </div>
+               <div class="col-sm-6">
+                   <div class="valueinfo">ประเภทการร้องขอ</div>
+                   <input list="browsers" name="browser" placeholder=" เลือกประเภทการร้องขอ" class="input">
+                   <datalist id="browsers">
+                       <option value="Internet Explorer">
+                       <option value="Firefox">
+                       <option value="Chrome">
+                       <option value="Opera">
+                       <option value="Safari">
+                   </datalist>
+               </div>
+               </div>
+            <div class="row input_padding">
+                <div class="col-sm-6">
+                    <div class="valueinfo">เบอร์โทร</div>
+                    <input type="text" id="name" class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                </div>
+                <div class="col-sm-6">
+                    <div class="valueinfo">อีเมล</div>
+                    <input type="email" id="name" class="input">
+                </div>
+            </div>
+            <div class="row" style="padding-top:50px;">
+                <div class="valueinfo" style="padding-left:16px;">รายละเอียด</div>
+                    <textarea style="width:95%;height:100px;"></textarea>
+            </div>
+            <div  style="padding-top:15px;">
+                <button class="button" id="send"> ส่งข้อมูล </button>
+            </div>    
+            </form>
+        </div>
+
+</body>
+</html>
+<script>
+
+    </script>
+
+@*//////////////////////////////////////////////////*@
+<script>
+    ; (function () {
+
+        'use strict';
+
+        var c = document.getElementById('c');
+        var ctx = c.getContext('2d');
+        var w = c.width = window.innerWidth;
+        var h = c.height = window.innerHeight;
+        var itr = 100;
+        var s = 30;
+        var off = 0;
+
+        requestAnimationFrame(function loop() {
+            requestAnimationFrame(loop);
+
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, w, h);
+
+            off += 0.5;
+
+            for (var i = 0; i < itr; i++) {
+
+                var x = Math.random() * w;
+                var y = Math.random() * h;
+                var gx = Math.floor(x / s) * s;
+                var gy = Math.floor(y / s) * s;
+                var scl = Math.random();
+                var c = (gx + gy) / (w + h);
+
+                ctx.save();
+                ctx.translate(gx, gy);
+                ctx.rotate(Math.random() * Math.PI * 2);
+                ctx.scale(scl, scl);
+
+                ctx.beginPath();
+                ctx.fillStyle = 'hsl(' + (c * 200 + off) + ', 100%, 50%)';
+                ctx.arc(0, 0, s / 2, 0.25 * Math.PI, 1.25 * Math.PI);
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(0, 0, s / 2, 0.75 * Math.PI, 1.75 * Math.PI);
+                ctx.fill();
+
+                ctx.restore();
+            }
+        });
+
+
+
+
+    })();
+    </script>
