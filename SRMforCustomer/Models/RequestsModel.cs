@@ -8,11 +8,13 @@ namespace SRMforCustomer.Models {
         public int ReTicketID { get; set; }
         public int TypeRequestsID { get; set; }
         public int StaffID { get; set; }
+        public int StatusID { get; set; }
         public string ReTopicName { get; set; }
         public string ReCustomerName { get; set; }
         public string ReCustomerTel { get; set; }
         public string ReEmail { get; set; }
         public string ReDetail { get; set; }
+        
         public DateTime ReDateIn { get; set; }
         public DateTime ReDateOut { get; set; }
     }
