@@ -1,0 +1,43 @@
+﻿@using SRMforCustomer.Models
+
+@model SRMforCustomer.Models.RequestsModel
+
+@if (Model != null) {
+    <div>
+        @Model.ReTicketID
+    </div>
+    <div>
+        @Model.TypeRequestsID
+    </div>
+        <div>
+            @Model.StaffID
+        </div>
+        <div>
+            @Model.ReTopicName
+        </div>
+        <div>
+            @Model.ReCustomerName
+        </div>
+        <div>
+            @Model.ReCustomerTel
+        </div>
+        <div>
+            @Model.ReEmail
+        </div>
+        <div>
+            @Model.ReDetail
+        </div>
+        <div>
+            @Model.ReDateIn
+        </div>
+        <div>
+            @Model.ReDateOut
+        </div>
+        <div>
+            link to detail
+            @Html.Action("ResultSearchPartial", new { keyword = "" })
+
+        </div>
+
+}
+

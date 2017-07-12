@@ -212,6 +212,8 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\TrainLiew\PartialViewAjax.cshtml" />
     <Content Include="Views\TrainLiew\AjaxTest.cshtml" />
+    <Content Include="Views\TrainLiew\PartialViewAjax.cshtml" />
+    <Content Include="Views\Search\ResultSearchPartial.cshtml" />
     <Content Include="Views\Home\user.cshtml" />
   </ItemGroup>
   <ItemGroup>
