@@ -8,8 +8,6 @@ using System.Web.Mvc;
 namespace SRMforCustomer.Controllers {
     public class HomeController : Controller {
         public ActionResult Index() {
-
-
             RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
             var byteArray = new byte[4];
             var intArray = new UInt32[10];
@@ -32,32 +30,11 @@ namespace SRMforCustomer.Controllers {
 
         public ActionResult About() {
             ViewBag.Message = "Your application description page.";
-
+            //อาจจะไม่ทำ
             return View();
         }
 
-        public ActionResult Contact() {
-            //ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Tests() {
 
 
-
-            ViewBag.Message = "test ViewBag";
-            return View();
-        }
-        public ActionResult user() {
-
-
-
-            ViewBag.Message = "test ViewBag";
-            return View();
-        }
-        public string justdoit() {
-            return "Just Do It";
-        }
     }
 }

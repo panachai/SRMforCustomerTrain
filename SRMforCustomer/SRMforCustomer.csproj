@@ -157,6 +157,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TrainLiewController.cs" />
     <Compile Include="Global.asax.cs">
@@ -204,9 +205,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Tests.cshtml" />
     <Content Include="Views\TrainLiew\TrainLiew.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
@@ -214,7 +213,7 @@
     <Content Include="Views\TrainLiew\AjaxTest.cshtml" />
     <Content Include="Views\TrainLiew\PartialViewAjax.cshtml" />
     <Content Include="Views\Search\ResultSearchPartial.cshtml" />
-    <Content Include="Views\Home\user.cshtml" />
+    <Content Include="Views\Requests\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
