@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "AjaxTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    AjaxOptions options = new AjaxOptions {
+        UpdateTargetId = "searchResult",
+        InsertionMode = InsertionMode.Replace
+    };
+
+    //,Confirm = "Are you sure to start search?",LoadingElementId = "divLoading"
+}
+
+<h2>AjaxTest</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ReTicketID</th>
+            <th>TypeRequestsID</th>
+            <th>StaffID</th>
+            <th>ReTopicName</th>
+            <th>ReCustomerName</th>
+            <th>ReCustomerTel</th>
+            <th>ReEmail</th>
+            <th>ReDetail</th>
+            <th>ReDateIn</th>
+            <th>ReDateOut</th>
+        </tr>
+    </thead>
+    <tbody id="searchResult">
+        @Html.Action("PartialViewAjax", new { keyword = "" })
+    </tbody>
+</table>
+@using (Ajax.BeginForm("PartialViewAjax", options)) {
+    @*<div id="divLoading" style="color:red;width:200px;background-color:yellow;font-size:larger;display:none;position:absolute;">
+            Loading ....
+        </div>*@
+
+    <div class="row">
+        <div>
+            @Html.TextBox("keyword")
+            <button type="submit">Search</button>
+        </div>
+    </div>
+}
+
+@*https: //www.nuget.org/packages/Microsoft.jQuery.Unobtrusive.Ajax/3.2.3 โหลดด้วย*@
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

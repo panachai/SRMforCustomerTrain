@@ -1,0 +1,24 @@
+﻿@using SRMforCustomer.Models
+
+@model SRMforCustomer.Models.RequestsModel
+
+@*@foreach (RequestsModel p in Model) {*@
+
+@if (Model != null) {
+            <tr>
+                <td>@Model.ReTicketID</td>
+                <td>@Model.TypeRequestsID</td>
+                <td>@Model.StaffID</td>
+                <td>@Model.ReTopicName</td>
+                <td>@Model.ReCustomerName</td>
+                <td>@Model.ReCustomerTel</td>
+                <td>@Model.ReEmail</td>
+                <td>@Model.ReDetail</td>
+                <td>@Model.ReDateIn</td>
+                <td>@Model.ReDateOut</td>
+
+            </tr>
+        
+}
+
+    @*}*@

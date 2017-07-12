@@ -10,6 +10,7 @@ namespace SRMforCustomer.Controllers {
     public class TrainLiewController : Controller {
         // GET: SearchTicket
         //[Route("Search")]
+        //ตัวอย่างกรณี ? [Route("Search/{reTicketID?}")] //public ActionResult Index(int? reTicketID) {
 
         public ActionResult TrainLiew(RequestsModel model, List<string> searchs, HttpPostedFileBase image) {
             if (image != null) {
@@ -25,7 +26,7 @@ namespace SRMforCustomer.Controllers {
                     ReTopicName = "testSRMtopic2"
                 }
             };
-            
+
             return View(requestsModel);
         }
 
@@ -34,7 +35,44 @@ namespace SRMforCustomer.Controllers {
             //if (!id.HasValue)
             //    id = 0;
 
-            return Content(String.Format("TicketID2 = {0}", id));
+            //return Content(String.Format("TicketID2 = {0}", id));
+            return View();
         }
+
+        public ActionResult AjaxTest() {
+
+            var requests = new RequestsModel() { ReTopicName = "testSRMtopic" };
+
+            return View();
+        }
+
+        //Models.RequestsModel db = new Models.RequestsModel();
+
+        public PartialViewResult PartialViewAjax(string keyword) {
+            // System.Threading.Thread.Sleep(2000);
+            //var data = db.ReTopicName.Where(f => f.FirstName.Contains(keyword)).ToList();
+            //var selected = db.ReTopicName.Where(t => t..Contains(keyword));
+            //เก็บไว้ใช้ตอนระบบ comment เพราะตอนเซิท where ตอนยิงเซอวิส เลย
+
+            if (keyword != "") {
+                var selected = new RequestsModel() {
+                    ReTicketID = 1000000000,
+                    TypeRequestsID = 1,
+                    StaffID = 2,
+                    ReTopicName = "testSRMtopic : key : " + keyword + " : endKey ",
+                    ReCustomerName = "CustomerName Test",
+                    ReCustomerTel = "0900000000",
+                    ReEmail = "panachai.ny@gmail.com",
+                    ReDetail = "adasdasd Detail it here",
+                    ReDateIn = DateTime.Now,
+                    ReDateOut = DateTime.Now,
+
+                };
+                return PartialView(selected);
+            }
+
+            return PartialView();
+        }
+
     }
 }
