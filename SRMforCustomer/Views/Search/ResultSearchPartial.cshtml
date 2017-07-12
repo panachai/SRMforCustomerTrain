@@ -9,12 +9,12 @@
     <div>
         TypeRequestsID :  @Model.TypeRequestsID
     </div>
-        <div>
-            StaffID : @Model.StaffID
-        </div>
-        <div>
-            ReTopicName : @Model.ReTopicName
-        </div>
+    <div>
+        StaffID : @Model.StaffID
+    </div>
+    <div>
+        ReTopicName : @Model.ReTopicName
+    </div>
         <div>
             ReCustomerName : @Model.ReCustomerName
         </div>
@@ -34,9 +34,22 @@
             ReDateOut : @Model.ReDateOut
         </div>
         <div>
-            link to detail
-            @Html.Action("ResultSearchPartial", new { keyword = "" })
 
+            @*@Html.ActionLink("ResultSearchPartial", new { ticket = @Model.ReTicketID })*@
+            @*@Html.ActionLink("link to detail", "Index", "TicketDetail")*@
+            @*ticket = @Model.ReTicketID*@
+
+
+            @Html.ActionLink(
+            "link to detail",                                                  // linkText
+            "Index",                                    // actionName
+            "TicketDetail",                                                   // routeValues
+            new {                                                     // htmlAttributes
+                ticket = @Model.ReTicketID
+            }
+)
+
+            @*@Html.ActionLink("Home", "Index", "Home")*@
         </div>
 
 }

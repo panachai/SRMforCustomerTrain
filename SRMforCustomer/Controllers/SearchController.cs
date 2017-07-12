@@ -15,6 +15,8 @@ namespace SRMforCustomer.Controllers {
         public PartialViewResult ResultSearchPartial(string keyword) {
             if (keyword != "") {
 
+                //checksum
+
                 //ยิงเซอร์วิสเอาข้อมูล 1model ยัดใส่ด้านล่าง
 
                 var selected = new RequestsModel() {
