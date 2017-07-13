@@ -1,0 +1,63 @@
+﻿@using SRMforCustomer.Models
+
+@model SRMforCustomer.Models.RequestsModel
+
+@{
+    Layout = null;
+}
+
+@if (Model != null) {
+
+    <h1>
+        Success
+    </h1>
+
+    <h2>
+        show model id : @Model.ReTicketID
+    </h2>
+
+
+} else {
+
+    <div class="row input_content">
+        <form>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="valueinfo">ชื่อ-นามสกุล</div>
+                    <input type="text" id="name" class="input">
+                </div>
+                <div class="col-sm-6">
+                    <div class="valueinfo">ประเภทการร้องขอ</div>
+                    <select class="input">
+                        <option id="needhelp" disabled="disabled" selected="selected">กรุณาเลือกการร้องขอ</option>
+                        <option value="ข้อมูลที่ได้">เลือกข้อมูล</option>
+                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
+                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
+                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
+                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
+                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row input_padding">
+                <div class="col-sm-6">
+                    <div class="valueinfo">เบอร์โทร</div>
+                    <input type="text" min="8" max="10" id="phone" class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                </div>
+                <div class="col-sm-6">
+                    <div class="valueinfo">อีเมล</div>
+                    <input type="email" id="email" class="input">
+                </div>
+            </div>
+            <div class="row" style="padding-top:50px;">
+                <div class="valueinfo" style="padding-left:16px;">รายละเอียด</div>
+                <textarea style="width:97%;height:100px;" id="detail"></textarea>
+            </div>
+            <div style="padding-top:15px;">
+                <button class="button" id="send"> ส่งข้อมูล </button>
+            </div>
+        </form>
+
+    </div>
+}
+

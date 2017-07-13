@@ -217,6 +217,7 @@
     <Content Include="Views\Search\ResultSearchPartial.cshtml" />
     <Content Include="Views\Requests\Index.cshtml" />
     <Content Include="Views\TicketDetail\Index.cshtml" />
+    <Content Include="Views\Requests\RequestsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

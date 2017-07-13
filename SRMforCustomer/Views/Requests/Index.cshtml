@@ -2,7 +2,14 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    AjaxOptions options = new AjaxOptions {
+        UpdateTargetId = "requestsResult",
+        InsertionMode = InsertionMode.Replace
+    };
 }
+
+
     <style>
         canvas * {
             padding: 0;
@@ -64,60 +71,30 @@
     <div class="head_title">
         Requsets
     </div>
-    <div class="row input_content">
-        <form>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="valueinfo">ชื่อ-นามสกุล</div>
-                    <input type="text" id="name" class="input">
-                </div>
-                <div class="col-sm-6">
-                    <div class="valueinfo">ประเภทการร้องขอ</div>
-                    <select class="input">
-                        <option id="needhelp" disabled="disabled" selected="selected">กรุณาเลือกการร้องขอ</option>
-                        <option value="ข้อมูลที่ได้">เลือกข้อมูล</option>
-                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
-                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
-                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
-                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
-                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row input_padding">
-                <div class="col-sm-6">
-                    <div class="valueinfo">เบอร์โทร</div>
-                    <input type="text" min="8" max="10" id="phone" class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57" >
-                </div>
-                <div class="col-sm-6">
-                    <div class="valueinfo">อีเมล</div>
-                    <input type="email" id="email" class="input">
-                </div>
-            </div>
-            <div class="row" style="padding-top:50px;">
-                <div class="valueinfo" style="padding-left:16px;">รายละเอียด</div>
-                <textarea style="width:97%;height:100px;" id="detail"></textarea>
-            </div>
-            <div style="padding-top:15px;">
-                <button class="button" id="send"> ส่งข้อมูล </button>
-            </div>
-        </form>
+
+
+@using (Ajax.BeginForm("RequestsPartial", options)) {
+    <div class="row">
+        <div>
+            @Html.TextBox("keyword", null, new { type = "number"})
+
+            <button type="submit">Search</button>
+        </div>
         
     </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#send").click(function () {
-            if ($('#name').val() != '' || $('#needhelp').val() != '' || $('#phone').val() != '' || $('#email').val() != '' || $('#detail').val() != '') {
-                swal('กรุณากรอกข้อมูลให้ครบถ้วน', '', 'error')
-            } else {
-                swal('ขอบคุณที่ติดต่อเรา','','success')
-            }
-        })
-    })
-</script>
+}
+
+   
+<div id="requestsResult">
+    @Html.Action("RequestsPartial", new { keyword = "" })
+</div>
+
+
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}
+
 
 @*//////////////////////////////////////////////////*@
 <script>
