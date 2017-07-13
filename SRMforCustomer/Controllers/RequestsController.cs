@@ -16,14 +16,18 @@ namespace SRMforCustomer.Controllers {
         }
         [HttpPost]
         public JsonResult receiveMessage(SendMail.MessageViewModel Model) {
-            if (ModelState.IsValid) {
-                string BodyHTML = System.IO.File.ReadAllText(Request.PhysicalApplicationPath + "Templates\\TemplateLetterFeedback.html");
+            if (!string.IsNullOrEmpty(Model.name)&&
+                !string.IsNullOrEmpty(Model.phone) &&
+                !string.IsNullOrEmpty(Model.email) &&
+                !string.IsNullOrEmpty(Model.detail)) {
+
+        string BodyHTML = System.IO.File.ReadAllText(Request.PhysicalApplicationPath + "Templates\\TemplateLetterFeedback.html");
                 BodyHTML = BodyHTML.Replace("@fullname", Model.name);
-                BodyHTML = BodyHTML.Replace("@email", Model.email);
+                BodyHTML = BodyHTML.Replace("@needhelp", Model.needhelp);
                 BodyHTML = BodyHTML.Replace("@phone", Model.phone);
-                BodyHTML = BodyHTML.Replace("@word1", Model.detail);
+                BodyHTML = BodyHTML.Replace("@email", Model.email);
+                BodyHTML = BodyHTML.Replace("@detail", Model.detail);
                 MailMessage NotifyMail = new MailMessage();
-                var a = ConfigurationManager.AppSettings["MailFrom"];
                 NotifyMail.From = new MailAddress(ConfigurationManager.AppSettings["MailFrom"]);
                 NotifyMail.To.Add("thanaphan.w@prism.co.th");
                 NotifyMail.Subject = "Venio : Feedback";

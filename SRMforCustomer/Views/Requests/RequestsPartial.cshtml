@@ -28,14 +28,14 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="valueinfo">ประเภทการร้องขอ</div>
-                    <select class="input">
-                        <option id="needhelp" disabled="disabled" selected="selected">กรุณาเลือกการร้องขอ</option>
-                        <option value="ข้อมูลที่ได้">เลือกข้อมูล</option>
-                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
-                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
-                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
-                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
-                        <option value="ข้อมูลที่">เลือกข้อมูล</option>
+                    <select id="needhelp"  class="input">
+                        <option disabled="disabled" selected="selected">กรุณาเลือกการร้องข้อมูล</option>
+                        <option value="ข้อมูลที่1">เลือกข้อมูล1</option>
+                        <option value="ข้อมูลที่2">เลือกข้อมูล2</option>
+                        <option value="ข้อมูลที่3">เลือกข้อมูล3</option>
+                        <option value="ข้อมูลที่4">เลือกข้อมูล4</option>
+                        <option value="ข้อมูลที่5">เลือกข้อมูล5</option>
+                        <option value="ข้อมูลที่6">เลือกข้อมูล6</option>
                     </select>
                 </div>
             </div>
@@ -53,11 +53,49 @@
                 <div class="valueinfo" style="padding-left:16px;">รายละเอียด</div>
                 <textarea style="width:97%;height:100px;" id="detail"></textarea>
             </div>
-            <div style="padding-top:15px;">
-                <button class="button" id="send"> ส่งข้อมูล </button>
-            </div>
         </form>
-
+        <div style="padding-top:15px;">
+            <button class="button" id="sendEmail"> ส่งข้อมูล </button>
+        </div>
     </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
 }
+
+<script>
+    $(document).ready(function () {
+        $("#sendEmail").click(function () {
+            setfeedback();
+        });
+    });
+    function setfeedback() {
+        var model = {
+            name: $('#name').val(),
+            needhelp: $('#needhelp').val(),
+            phone: $('#phone').val(),
+            email: $('#email').val(),
+            detail: $('#detail').val()
+        };
+        console.log($('#MessageForm').serialize());
+        console.log(model);
+        jQuery.ajax({
+            type: "POST",
+            url: "@Url.Action("receiveMessage", "Requests")",
+            dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(model),
+        success: function (response) {
+            if (response != null && response.success) {
+                swal("เรียบร้อย", "เราจะติดต่อกลับภายใน 1 วันทำการ", "success");
+            } else {
+                swal("ไม่สำเร็จ", "กรุณาระบุข้อมูลให้ถูกต้อง ครบถ้วน", "error");
+            }
+        },
+        failure: function (errMsg) {
+            swal("ยกเลิก", "กรุณาระบุข้อมูลให้ถูกต้อง, ระบุข้อมูลให้ครบ", "error");
+        }
+    });
+    }
+</script>
 
