@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
     <style>
-        canvas * {
+        /*canvas * {
             padding: 0;
             margin: 0;
         }
@@ -12,7 +12,7 @@
         canvas {
             display: block;
             background: black;
-        }
+        }*/
 
         /*--------------------------------------*/
         .input_padding {
@@ -60,7 +60,7 @@
         }
     </style>
 
-    <canvas id="c" style="width: 100%;height:200px;"></canvas>
+    @*<canvas id="c" style="width: 100%;height:200px;"></canvas>*@
     <div class="head_title">
         Requsets
     </div>
@@ -98,29 +98,57 @@
                 <div class="valueinfo" style="padding-left:16px;">รายละเอียด</div>
                 <textarea style="width:97%;height:100px;" id="detail"></textarea>
             </div>
-            <div style="padding-top:15px;">
+            <div style="padding-top:40px;">
                 <button class="button" id="send"> ส่งข้อมูล </button>
             </div>
         </form>
+        <button class="button" id="TT"> ส่งข้อมูล </button>
+        <div id="test">ข้อความอยู่นี้ </div>
         
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
+
 <script>
     $(document).ready(function () {
-        $("#send").click(function () {
-            if ($('#name').val() != '' || $('#needhelp').val() != '' || $('#phone').val() != '' || $('#email').val() != '' || $('#detail').val() != '') {
-                swal('กรุณากรอกข้อมูลให้ครบถ้วน', '', 'error')
+        $("#TT").click(function () {
+            setfeedback();
+        });
+    });
+    function setfeedback() {
+        var model = {
+            Name: $('#name').val(),
+            Phone: $('#needhelp').val(),
+            Email: $('#phone').val(),
+            Message: $('#email').val(),
+            Message: $('#detail').val()
+        };
+        console.log($('#MessageForm').serialize());
+        console.log(model);
+        jQuery.ajax({
+            type: "POST",
+            url: "@Url.Action("receiveMessage", "Requests")",
+            dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(model),
+        success: function (response) {
+            if (response != null && response.success) {
+                swal("เรียบร้อย", "เราจะติดต่อกลับภายใน 1 วันทำการ", "success");
             } else {
-                swal('ขอบคุณที่ติดต่อเรา','','success')
+                swal("ไม่สำเร็จ", "กรุณาระบุข้อมูลให้ถูกต้อง ครบถ้วน", "error");
             }
-        })
-    })
+        },
+        failure: function (errMsg) {
+            swal("ยกเลิก", "กรุณาระบุข้อมูลให้ถูกต้อง, ระบุข้อมูลให้ครบ", "error");
+        }
+    });
+    }
 </script>
 
 @*//////////////////////////////////////////////////*@
-<script>
+@*<script>
     ; (function () {
 
         'use strict';
@@ -172,4 +200,4 @@
 
 
     })();
-</script>
+</script>*@
