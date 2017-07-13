@@ -158,6 +158,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequestsController.cs" />
+    <Compile Include="Controllers\RequestsStaffController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TicketDetailController.cs" />
     <Compile Include="Controllers\TrainLiewController.cs" />
@@ -166,6 +167,7 @@
     </Compile>
     <Compile Include="Helper\Util.cs" />
     <Compile Include="Models\RequestsModel.cs" />
+    <Compile Include="Models\StaffModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\RequestsViewModels.cs" />
   </ItemGroup>
@@ -218,6 +220,8 @@
     <Content Include="Views\Requests\Index.cshtml" />
     <Content Include="Views\TicketDetail\Index.cshtml" />
     <Content Include="Views\Requests\RequestsPartial.cshtml" />
+    <Content Include="Views\RequestsStaff\Index.cshtml" />
+    <Content Include="Views\RequestsStaff\LoginStaff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
