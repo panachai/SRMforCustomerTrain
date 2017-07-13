@@ -14,7 +14,7 @@ namespace SRMforCustomer.Controllers {
 
         public PartialViewResult ResultSearchPartial(string keyword) {
             if (!string.IsNullOrEmpty(keyword)) {
-                if (Helper.Util.IsValidOTP(keyword)) {//checksum 9700156 (test)
+                if (Helper.Util.IsValidOTP(keyword) && keyword.Length == 7) {//checksum 9700156 (test)
                     //ยิงเซอร์วิสเอาข้อมูล 1model ยัดใส่ด้านล่าง
 
                     var selected = new RequestsModel() {
