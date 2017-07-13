@@ -8,15 +8,24 @@ using System.Web.Mvc;
 namespace SRMforCustomer.Controllers {
     public class HomeController : Controller {
         public ActionResult Index() {
-            RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
-            var byteArray = new byte[4];
-            var intArray = new UInt32[10];
-            for (int i = 0; i < 10; i++) {
-                do {
-                    provider.GetBytes(byteArray);
-                    intArray[i] = BitConverter.ToUInt32(byteArray, 0);
-                } while (intArray[i] < 1000000000); //ไว้เช็คไม่ให้ค่าแรกเป็น 0
-            }
+
+            //---------------------ใช้ได้-----------------------
+            //RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+            //var byteArray = new byte[4];
+            //var intArray = new UInt32[10];
+            //for (int i = 0; i < 10; i++) {
+            //    do {
+            //        provider.GetBytes(byteArray);
+            //        intArray[i] = BitConverter.ToUInt32(byteArray, 0);
+            //    } while (intArray[i] < 1000000000); //ไว้เช็คไม่ให้ค่าแรกเป็น 0
+            //}
+            //-------------------------------------------------
+
+            //Random generator = new Random();
+            //int r;
+            //do {
+            //    r = generator.Next(0, 1000000);
+            //} while (r < 100000);
 
             //return Content(
             //    intArray[0] + " : " + intArray[1]
@@ -25,8 +34,12 @@ namespace SRMforCustomer.Controllers {
             //    + " : " + intArray[6] + " : " + intArray[7]
             //    + " : " + intArray[8] + " : " + intArray[9]
             //    );
+
+
+            //return Content(r+"");
             return View();
         }
+
 
         public ActionResult About() {
             ViewBag.Message = "Your application description page.";
@@ -34,6 +47,7 @@ namespace SRMforCustomer.Controllers {
             return View();
         }
 
+        
 
 
     }

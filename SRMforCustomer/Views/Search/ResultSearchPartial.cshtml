@@ -15,18 +15,18 @@
     <div>
         ReTopicName : @Model.ReTopicName
     </div>
-        <div>
-            ReCustomerName : @Model.ReCustomerName
-        </div>
-        <div>
-            ReCustomerTel : @Model.ReCustomerTel
-        </div>
-        <div>
-            ReEmail : @Model.ReEmail
-        </div>
-        <div>
-            ReDetail : @Model.ReDetail
-        </div>
+    <div>
+        ReCustomerName : @Model.ReCustomerName
+    </div>
+    <div>
+        ReCustomerTel : @Model.ReCustomerTel
+    </div>
+    <div>
+        ReEmail : @Model.ReEmail
+    </div>
+    <div>
+        ReDetail : @Model.ReDetail
+    </div>
         <div>
             ReDateIn : @Model.ReDateIn
         </div>
@@ -35,22 +35,17 @@
         </div>
         <div>
 
-            @*@Html.ActionLink("ResultSearchPartial", new { ticket = @Model.ReTicketID })*@
-            @*@Html.ActionLink("link to detail", "Index", "TicketDetail")*@
-            @*ticket = @Model.ReTicketID*@
-
-
             @Html.ActionLink(
-            "link to detail",                                                  // linkText
-            "Index",                                    // actionName
-            "TicketDetail",                                                   // routeValues
-            new {                                                     // htmlAttributes
-                ticket = @Model.ReTicketID
-            }
-)
+        "View Detail",                                                  // linkText
+        "Index",                                    // actionName
+        "TicketDetail",                                                   // routeValues
+        new { @ticket = @Model.ReTicketID }, null)
 
-            @*@Html.ActionLink("Home", "Index", "Home")*@
         </div>
 
+} else {
+    <h1>
+        @ViewBag.ErrorChecksum
+    </h1>
 }
 

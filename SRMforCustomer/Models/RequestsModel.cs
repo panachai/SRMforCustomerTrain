@@ -14,7 +14,6 @@ namespace SRMforCustomer.Models {
         public string ReCustomerTel { get; set; }
         public string ReEmail { get; set; }
         public string ReDetail { get; set; }
-        
         public DateTime ReDateIn { get; set; }
         public DateTime ReDateOut { get; set; }
     }
