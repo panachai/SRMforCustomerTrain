@@ -15,12 +15,12 @@
     <div>
         ReTopicName : @Model.ReTopicName
     </div>
-        <div>
-            ReCustomerName : @Model.ReCustomerName
-        </div>
-        <div>
-            ReCustomerTel : @Model.ReCustomerTel
-        </div>
+    <div>
+        ReCustomerName : @Model.ReCustomerName
+    </div>
+    <div>
+        ReCustomerTel : @Model.ReCustomerTel
+    </div>
         <div>
             ReEmail : @Model.ReEmail
         </div>
@@ -40,14 +40,20 @@
             @*ticket = @Model.ReTicketID*@
 
 
+            @*@Html.ActionLink(
+                "link to detail",                                                  // linkText
+                "Index",                                    // actionName
+                "TicketDetail",                                                   // routeValues
+                new {ticket = @Model.ReTicketID})*@
+
             @Html.ActionLink(
-            "link to detail",                                                  // linkText
-            "Index",                                    // actionName
-            "TicketDetail",                                                   // routeValues
-            new {                                                     // htmlAttributes
-                ticket = @Model.ReTicketID
-            }
-)
+        "View Detail",                                                  // linkText
+        "Index",                                    // actionName
+        "TicketDetail",                                                   // routeValues
+        new { @ticket = @Model.ReTicketID }, null)
+
+            @*<br />*@
+            @*@Html.ActionLink("Link Pass (NormalLink)", "Index", "TicketDetail")*@
 
             @*@Html.ActionLink("Home", "Index", "Home")*@
         </div>

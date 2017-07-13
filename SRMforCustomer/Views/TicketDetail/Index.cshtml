@@ -9,7 +9,23 @@
 
 <h2>Ticket Detail Index</h2>
 
-<h3>@ViewBag.Message</h3>
+@if (@ViewBag.Message != null) {
+    string message = ViewBag.Message;
+    <h3>@Html.ActionLink(message, "", "Search")</h3>
+} else {
+    <h3>TicketID : @ViewBag.testTicket</h3>
+
+
+    //เขียน layout ในนี้เลย
 
 
 
+
+
+
+
+
+
+
+
+}

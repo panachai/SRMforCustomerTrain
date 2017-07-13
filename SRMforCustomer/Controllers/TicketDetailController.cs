@@ -9,13 +9,14 @@ namespace SRMforCustomer.Controllers {
         // GET: TicketDetail
         public ActionResult Index(int? ticket) {
             if (ticket != null) {
-                
-               //show model
 
+                //show model
 
+                ViewBag.testTicket = ticket;
                 return View();
             }
             ViewBag.Message = "Return to Search Page";
+            
 
             return View();
         }

@@ -28,8 +28,15 @@
 
             <button type="submit">Search</button>
         </div>
+        
     </div>
 }
+
+@*@using (Html.BeginForm("Create", "Search")) {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+        </div>
+    }*@
 
 <div id="searchResult">
     @Html.Action("ResultSearchPartial", new { keyword = "" })
