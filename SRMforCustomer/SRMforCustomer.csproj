@@ -156,7 +156,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\RequestsStaffController.cs" />
@@ -226,7 +225,6 @@
     <Content Include="Views\Requests\RequestsPartial.cshtml" />
     <Content Include="Views\RequestsStaff\Index.cshtml" />
     <Content Include="Views\RequestsStaff\LoginStaff.cshtml" />
-    <Content Include="Views\Email\email_sent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
