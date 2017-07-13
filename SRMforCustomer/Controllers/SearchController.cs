@@ -13,25 +13,28 @@ namespace SRMforCustomer.Controllers {
         }
 
         public PartialViewResult ResultSearchPartial(string keyword) {
-            if (keyword != "") {
+            if (!string.IsNullOrEmpty(keyword)) {
+                if (Helper.Util.IsValidOTP(keyword)) {//checksum 9700156 (test)
+                    //ยิงเซอร์วิสเอาข้อมูล 1model ยัดใส่ด้านล่าง
 
-                //checksum
+                    var selected = new RequestsModel() {
+                        ReTicketID = 1000000000,
+                        StatusID = 0,
+                        ReTopicName = "testSRMtopic : key : " + keyword + " : endKey ",
+                        ReCustomerName = "CustomerName Test",
+                        ReCustomerTel = "0900000000",
+                        ReEmail = "panachai.ny@gmail.com",
+                        ReDetail = "adasdasd Detail it here",
+                        ReDateIn = DateTime.Now,
+                        ReDateOut = DateTime.Now,
 
-                //ยิงเซอร์วิสเอาข้อมูล 1model ยัดใส่ด้านล่าง
+                    };
+                    return PartialView(selected);
+                } else {
+                    ViewBag.ErrorChecksum = "Ticket ของท่านไม่ถูกต้อง";
+                }
 
-                var selected = new RequestsModel() {
-                    ReTicketID = 1000000000,
-                    StatusID = 0,
-                    ReTopicName = "testSRMtopic : key : " + keyword + " : endKey ",
-                    ReCustomerName = "CustomerName Test",
-                    ReCustomerTel = "0900000000",
-                    ReEmail = "panachai.ny@gmail.com",
-                    ReDetail = "adasdasd Detail it here",
-                    ReDateIn = DateTime.Now,
-                    ReDateOut = DateTime.Now,
 
-                };
-                return PartialView(selected);
             }
 
             return PartialView();

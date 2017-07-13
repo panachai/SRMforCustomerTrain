@@ -35,28 +35,17 @@
         </div>
         <div>
 
-            @*@Html.ActionLink("ResultSearchPartial", new { ticket = @Model.ReTicketID })*@
-            @*@Html.ActionLink("link to detail", "Index", "TicketDetail")*@
-            @*ticket = @Model.ReTicketID*@
-
-
-            @*@Html.ActionLink(
-                "link to detail",                                                  // linkText
-                "Index",                                    // actionName
-                "TicketDetail",                                                   // routeValues
-                new {ticket = @Model.ReTicketID})*@
-
             @Html.ActionLink(
         "View Detail",                                                  // linkText
         "Index",                                    // actionName
         "TicketDetail",                                                   // routeValues
         new { @ticket = @Model.ReTicketID }, null)
 
-            @*<br />*@
-            @*@Html.ActionLink("Link Pass (NormalLink)", "Index", "TicketDetail")*@
-
-            @*@Html.ActionLink("Home", "Index", "Home")*@
         </div>
 
+} else {
+    <h1>
+        @ViewBag.ErrorChecksum
+    </h1>
 }
 

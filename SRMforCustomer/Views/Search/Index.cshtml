@@ -24,7 +24,7 @@
 @using (Ajax.BeginForm("ResultSearchPartial", options)) {
     <div class="row">
         <div>
-            @Html.TextBox("keyword", null, new { type = "number" }) @*เดี๋ยวดักใหม่ให้ด้วย*@
+            @Html.TextBox("keyword", null, new { id = "testId" }) @*เดี๋ยว ดักผ่าน id*@
 
             <button type="submit">Search</button>
         </div>
