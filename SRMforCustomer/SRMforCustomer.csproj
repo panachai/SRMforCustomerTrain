@@ -225,8 +225,8 @@
     <Content Include="Views\TicketDetail\Index.cshtml" />
     <Content Include="Views\Requests\RequestsPartial.cshtml" />
     <Content Include="Views\RequestsStaff\Index.cshtml" />
-    <Content Include="Views\RequestsStaff\LoginStaff.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
+    <Content Include="Views\RequestsStaff\LoginStaffPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
