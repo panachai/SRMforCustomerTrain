@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="valueinfo">ชื่อ-นามสกุล</div>
-                    <input type="text" id="name" class="input">
+                    <input type="text"  oninput="this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');" id="name" class="input">
                 </div>
                 <div class="col-sm-6">
                     <div class="valueinfo">ประเภทการร้องขอ</div>
@@ -42,16 +42,16 @@
             <div class="row input_padding">
                 <div class="col-sm-6">
                     <div class="valueinfo">เบอร์โทร</div>
-                    <input type="text" min="8" max="10" id="phone" class="input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    <input id="phone" class="input" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
                 </div>
                 <div class="col-sm-6">
                     <div class="valueinfo">อีเมล</div>
-                    <input type="email" id="email" class="input">
+                    <input type="email" id="email" oninput=" this.value = this.value.replace(/^\s+/, '');" class="input">
                 </div>
             </div>
             <div class="row" style="padding-top:50px;">
                 <div class="valueinfo" style="padding-left:16px;">รายละเอียด</div>
-                <textarea style="width:97%;height:100px;" id="detail"></textarea>
+                <textarea style="width:97%;height:100px;" id="detail" oninput=" this.value = this.value.replace(/^\s+/, '');"></textarea>
             </div>
         </form>
         <div style="padding-top:15px;">
@@ -87,7 +87,7 @@
         data: JSON.stringify(model),
         success: function (response) {
             if (response != null && response.success) {
-                swal("เรียบร้อย", "เราจะติดต่อกลับภายใน 1 วันทำการ", "success");
+                swal("Ticket ของท่านคือ xxxxxxxxxx", "สามารถตรวจสอบการทำงานได้ที www.imc.co", "success");
             } else {
                 swal("ไม่สำเร็จ", "กรุณาระบุข้อมูลให้ถูกต้อง ครบถ้วน", "error");
             }
