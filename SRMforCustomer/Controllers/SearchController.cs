@@ -17,9 +17,9 @@ namespace SRMforCustomer.Controllers {
                 if (Helper.Util.IsValidOTP(keyword) && keyword.Length == 7) {//checksum 9700156 (test)
                     //ยิงเซอร์วิสเอาข้อมูล 1model ยัดใส่ด้านล่าง
 
-                    var selected = new RequestsModel() {
-                        ReTicketID = 1000000000,
-                        StatusID = 0,
+                    var selected = new Requests() {
+                        ReTicketId = 1000000000,
+                        StatusId = 0,
                         ReTopicName = "testSRMtopic : key : " + keyword + " : endKey ",
                         ReCustomerName = "CustomerName Test",
                         ReCustomerTel = "0900000000",

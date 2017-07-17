@@ -1,87 +1,149 @@
-﻿
+﻿@using SRMforCustomer.Models;
+
+@*@model SRMforCustomer.modelRequestss.RequestsmodelRequests*@
+
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var modelNewRequest = new Requests();
 
     //AjaxOptions options = new AjaxOptions {
     //    UpdateTargetId = "requestsResult",
     //    InsertionMode = InsertionMode.Replace
     //};
 }
-    <style>
+<style>
       
-        .input_padding {
-            padding-top: 50px;
-        }
+    .input_padding { padding-top: 50px; }
 
-        .valueinfo {
-            text-align: left;
-            color: rgba(0, 0, 0, 0.7);
-        }
+    .valueinfo {
+        text-align: left;
+        color: rgba(0, 0, 0, 0.7);
+    }
 
-        input,select {
-            height: 30px;
-            width: 100%;
-        }
+    input, select {
+        height: 30px;
+        width: 100%;
+    }
 
-        html {
-            height: 100%;
-        }
+    html { height: 100%; }
 
+    .input_content {
+        padding-top: 50px;
+        text-align: center;
+        padding-left: 170px;
+        padding-right: 170px;
+    }
+
+    @@media screen and (max-width: 767px) {
         .input_content {
-            padding-top: 50px;
-            text-align: center;
-            padding-left: 170px;
-            padding-right: 170px;
+            padding-left: unset;
+            padding-right: unset;
         }
 
-        @@media screen and (max-width: 767px) {
-            .input_content {
-                padding-left: unset;
-                padding-right: unset;
-            }
+        .row > .col-sm-6 { padding-top: 15px; }
 
-            .row > .col-sm-6 {
-                padding-top: 15px;
-            }
+        .input_padding { padding-top: unset; }
 
-            .input_padding {
-                padding-top: unset;
-            }
+        .input_content { padding-top: 50px; }
+    }
+</style>
 
-            .input_content {
-                padding-top: 50px;
-            }
-        }
-    </style>
+<div class="head_title">
+    Requsets
+</div>
 
-    <div class="head_title">
-        Requsets
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-@*@using (Ajax.BeginForm("RequestsPartial", options)) {
-    <div class="row input_content">
-        <div style="text-align:center">
-            @Html.TextBox("keyword", null, new { type = "number" })
-            <div style="text-align:center; padding-top:20px;">
-                <button class="button" type="submit">ค้นหา</button>
+@*@Html.Partial("RequestsPartial")*@
+
+
+<div class="row input_content">
+    <form id="frmRequest">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="valueinfo">ชื่อ-นามสกุล</div>
+                <input id="ReCustomerName" name="ReCustomerName" class="input" type="text" oninput="this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');"  >
+            </div>
+            <div class="col-sm-6">
+                <div class="valueinfo">ประเภทการร้องขอ</div>
+                <select id="TypeRequestsID" name="TypeRequestsID" class="input">
+                    <option disabled="disabled" selected="selected">กรุณาเลือกการร้องข้อมูล</option>
+                    <option value="1">เลือกข้อมูล1</option>
+                    <option value="2">เลือกข้อมูล2</option>
+                    <option value="3">เลือกข้อมูล3</option>
+                    <option value="4">เลือกข้อมูล4</option>
+                    <option value="5">เลือกข้อมูล5</option>
+                    <option value="6">เลือกข้อมูล6</option>
+                </select>
             </div>
         </div>
-
+        <div class="row input_padding">
+            <div class="col-sm-6">
+                <div class="valueinfo">เบอร์โทร</div>
+                <input id="ReCustomerTel" name="ReCustomerTel" class="input" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+            </div>
+            <div class="col-sm-6">
+                <div class="valueinfo">อีเมล</div>
+                <input id="ReEmail" name="ReEmail" type="email"  oninput=" this.value = this.value.replace(/^\s+/, '');" class="input">
+            </div>
+        </div>
+        <div class="row" style="padding-top: 50px;">
+            <div class="valueinfo" style="padding-left: 16px;">รายละเอียด</div>
+            <textarea id="ReDetail" name="ReDetail" style="width: 97%; height: 100px;" oninput=" this.value = this.value.replace(/^\s+/, '');"></textarea>
+        </div>
+    </form>
+    <div style="padding-top: 15px;">
+        <button class="button" id="sendEmail"> ส่งข้อมูล </button>
     </div>
-}
-
-<div id="requestsResult">
-    @Html.Action("RequestsPartial", new { keyword = "" })
-</div>*@
-
-@Html.Partial("RequestsPartial")
-
-@*@section scripts{
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-}*@
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
 
 
+<script>
+    $(document).ready(function() {
+        $("#sendEmail").click(function() {
+            setfeedback();
+        });
+    });
+
+    function setfeedback() {
+        //var model = {
+        //    name: $('#name').val(),
+        //    needhelp: $('#needhelp').val(),
+        //    phone: $('#phone').val(),
+        //    email: $('#email').val(),
+        //    detail: $('#detail').val()
+        //};
+        //console.log($('#MessageForm').serialize());
+        //console.log(model);
+        var model = $('#frmRequest').serialize();
+        jQuery.ajax({
+            type: "POST",
+            url: "@Url.Action("ReceiveMessage", "Requests")",
+            processData: false,
+            dataType: false,
+            data: model,
+            success: function(response) {
+                if (response != null && response.success && response.ticketid !== "") {
+
+                    @*@Url.Action("RequestsController", "Requests")*@
+                    
+                    swal("Ticket ของท่านคือ " + response.ticketid, "สามารถตรวจสอบการทำงานได้ที www.imc.co", "success");
+
+
+                } else {
+                    swal("ไม่สำเร็จ", response.messageAlert, "error");
+                }
+            },
+            failure: function(errMsg) {
+                swal("ยกเลิก", "กรุณาระบุข้อมูลให้ถูกต้อง, ระบุข้อมูลให้ครบ", "error");
+            }
+        });
+    }
+</script>

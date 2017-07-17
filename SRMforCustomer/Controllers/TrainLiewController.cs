@@ -12,17 +12,17 @@ namespace SRMforCustomer.Controllers {
         //[Route("Search")]
         //ตัวอย่างกรณี ? [Route("Search/{reTicketID?}")] //public ActionResult Index(int? reTicketID) {
 
-        public ActionResult TrainLiew(RequestsModel model, List<string> searchs, HttpPostedFileBase image) {
+        public ActionResult TrainLiew(Requests model, List<string> searchs, HttpPostedFileBase image) {
             if (image != null) {
                 //var imageFile = TKSLibrary.IOHelper.ReadToEnd(image.InputStream);
 
             }
 
-            var requestsModel = new List<RequestsModel>() {
-                new RequestsModel(){
+            var requestsModel = new List<Requests>() {
+                new Requests(){
                     ReTopicName = "testSRMtopic"
                 },
-                new RequestsModel(){
+                new Requests(){
                     ReTopicName = "testSRMtopic2"
                 }
             };
@@ -41,7 +41,7 @@ namespace SRMforCustomer.Controllers {
 
         public ActionResult AjaxTest() {
 
-            var requests = new RequestsModel() { ReTopicName = "testSRMtopic" };
+            var requests = new Requests() { ReTopicName = "testSRMtopic" };
 
             return View();
         }
@@ -55,10 +55,10 @@ namespace SRMforCustomer.Controllers {
             //เก็บไว้ใช้ตอนระบบ comment เพราะตอนเซิท where ตอนยิงเซอวิส เลย
 
             if (keyword != "") {
-                var selected = new RequestsModel() {
-                    ReTicketID = 1000000000,
-                    TypeRequestsID = 1,
-                    StaffID = 2,
+                var selected = new Requests() {
+                    ReTicketId = 1000000000,
+                    TypeRequestsId = 1,
+                    StaffId = 2,
                     ReTopicName = "testSRMtopic : key : " + keyword + " : endKey ",
                     ReCustomerName = "CustomerName Test",
                     ReCustomerTel = "0900000000",

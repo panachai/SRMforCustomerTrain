@@ -29,5 +29,4 @@ namespace SRMforCustomer.Helper {
             return checkDigit == CalculateCheckDigi(code);
         }
     }
-
 }

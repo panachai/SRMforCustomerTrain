@@ -4,13 +4,13 @@
 
 @if (Model != null) {
     <div>
-        ReTicketID : @Model.ReTicketID
+        ReTicketID : @Model.ReTicketId
     </div>
     <div>
-        TypeRequestsID :  @Model.TypeRequestsID
+        TypeRequestsID :  @Model.TypeRequestsId
     </div>
     <div>
-        StaffID : @Model.StaffID
+        StaffID : @Model.StaffId
     </div>
     <div>
         ReTopicName : @Model.ReTopicName
@@ -39,7 +39,7 @@
         "View Detail",                                                  // linkText
         "Index",                                    // actionName
         "TicketDetail",                                                   // routeValues
-        new { @ticket = @Model.ReTicketID }, null)
+        new { @ticket = @Model.ReTicketId}, null)
 
         </div>
 

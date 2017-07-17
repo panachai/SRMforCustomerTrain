@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SRMForCustomerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="CommentsId" />
+          </Key>
+          <Property Name="CommentsId" Type="int" Nullable="false" />
+          <Property Name="ReTicketId" Type="int" Nullable="false" />
+          <Property Name="StaffId" Type="int" Nullable="false" />
+          <Property Name="CommentsName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CommentsDate" Type="datetime" Nullable="false" />
+          <Property Name="CommentsStatus" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CommentsDetail" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pictures">
+          <Key>
+            <PropertyRef Name="PicId" />
+          </Key>
+          <Property Name="PicId" Type="int" Nullable="false" />
+          <Property Name="ReTicketId" Type="int" Nullable="false" />
+          <Property Name="PicName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PicType" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="PicImg" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="ReTicketId" />
+          </Key>
+          <Property Name="ReTicketId" Type="int" Nullable="false" />
+          <Property Name="TypeRequestsId" Type="int" Nullable="false" />
+          <Property Name="StaffId" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="ReTopicName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ReCustomerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ReCustomerTel" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ReEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReDetail" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="ReDateIn" Type="datetime" Nullable="false" />
+          <Property Name="ReDateOut" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="int" Nullable="false" />
+          <Property Name="StaffName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="StaffPosition" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="StatusType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AfterStatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeRequests">
+          <Key>
+            <PropertyRef Name="TypeRequestsId" />
+          </Key>
+          <Property Name="TypeRequestsId" Type="int" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Comments_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="ReTicketId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="ReTicketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="ReTicketId" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="ReTicketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_TypeRequests">
+          <End Role="TypeRequests" Type="Self.TypeRequests" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeRequests">
+              <PropertyRef Name="TypeRequestsId" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="TypeRequestsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SRMForCustomerModelStoreContainer">
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeRequests" EntityType="Self.TypeRequests" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Comments_Requests" Association="Self.FK_Comments_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Staff" Association="Self.FK_Comments_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Requests" Association="Self.FK_Pictures_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Staff" Association="Self.FK_Requests_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Statuses" Association="Self.FK_Requests_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_TypeRequests" Association="Self.FK_Requests_TypeRequests">
+            <End Role="TypeRequests" EntitySet="TypeRequests" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SRMForCustomerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="CommentsId" />
+          </Key>
+          <Property Name="CommentsId" Type="Int32" Nullable="false" />
+          <Property Name="ReTicketId" Type="Int32" Nullable="false" />
+          <Property Name="StaffId" Type="Int32" Nullable="false" />
+          <Property Name="CommentsName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommentsDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CommentsStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommentsDetail" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Comments_Requests" FromRole="Comments" ToRole="Requests" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Comments_Staff" FromRole="Comments" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Pictures">
+          <Key>
+            <PropertyRef Name="PicId" />
+          </Key>
+          <Property Name="PicId" Type="Int32" Nullable="false" />
+          <Property Name="ReTicketId" Type="Int32" Nullable="false" />
+          <Property Name="PicName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PicType" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PicImg" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Pictures_Requests" FromRole="Pictures" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="ReTicketId" />
+          </Key>
+          <Property Name="ReTicketId" Type="Int32" Nullable="false" />
+          <Property Name="TypeRequestsId" Type="Int32" Nullable="false" />
+          <Property Name="StaffId" Type="Int32" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="ReTopicName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReCustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReCustomerTel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReDetail" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReDateIn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReDateOut" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Requests" FromRole="Requests" ToRole="Comments" />
+          <NavigationProperty Name="Pictures" Relationship="Self.FK_Pictures_Requests" FromRole="Requests" ToRole="Pictures" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Requests_Staff" FromRole="Requests" ToRole="Staff" />
+          <NavigationProperty Name="Statuses" Relationship="Self.FK_Requests_Statuses" FromRole="Requests" ToRole="Statuses" />
+          <NavigationProperty Name="TypeRequests" Relationship="Self.FK_Requests_TypeRequests" FromRole="Requests" ToRole="TypeRequests" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="Int32" Nullable="false" />
+          <Property Name="StaffName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StaffPosition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Staff" FromRole="Staff" ToRole="Comments" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Staff" FromRole="Staff" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Statuses">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="StatusType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AfterStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Statuses" FromRole="Statuses" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="TypeRequests">
+          <Key>
+            <PropertyRef Name="TypeRequestsId" />
+          </Key>
+          <Property Name="TypeRequestsId" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_TypeRequests" FromRole="TypeRequests" ToRole="Requests" />
+        </EntityType>
+        <Association Name="FK_Comments_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="ReTicketId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="ReTicketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pictures_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="ReTicketId" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="ReTicketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Statuses">
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Statuses">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_TypeRequests">
+          <End Role="TypeRequests" Type="Self.TypeRequests" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeRequests">
+              <PropertyRef Name="TypeRequestsId" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="TypeRequestsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SRMForCustomerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="Self.Comments" />
+          <EntitySet Name="Pictures" EntityType="Self.Pictures" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="Statuses" EntityType="Self.Statuses" />
+          <EntitySet Name="TypeRequests" EntityType="Self.TypeRequests" />
+          <AssociationSet Name="FK_Comments_Requests" Association="Self.FK_Comments_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Staff" Association="Self.FK_Comments_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pictures_Requests" Association="Self.FK_Pictures_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Staff" Association="Self.FK_Requests_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Statuses" Association="Self.FK_Requests_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_TypeRequests" Association="Self.FK_Requests_TypeRequests">
+            <End Role="TypeRequests" EntitySet="TypeRequests" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SRMForCustomerModelStoreContainer" CdmEntityContainer="SRMForCustomerEntities">
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="SRMForCustomerModel.Comments">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="CommentsId" ColumnName="CommentsId" />
+                <ScalarProperty Name="ReTicketId" ColumnName="ReTicketId" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="CommentsName" ColumnName="CommentsName" />
+                <ScalarProperty Name="CommentsDate" ColumnName="CommentsDate" />
+                <ScalarProperty Name="CommentsStatus" ColumnName="CommentsStatus" />
+                <ScalarProperty Name="CommentsDetail" ColumnName="CommentsDetail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="SRMForCustomerModel.Pictures">
+              <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="PicId" ColumnName="PicId" />
+                <ScalarProperty Name="ReTicketId" ColumnName="ReTicketId" />
+                <ScalarProperty Name="PicName" ColumnName="PicName" />
+                <ScalarProperty Name="PicType" ColumnName="PicType" />
+                <ScalarProperty Name="PicImg" ColumnName="PicImg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="SRMForCustomerModel.Requests">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="ReTicketId" ColumnName="ReTicketId" />
+                <ScalarProperty Name="TypeRequestsId" ColumnName="TypeRequestsId" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="ReTopicName" ColumnName="ReTopicName" />
+                <ScalarProperty Name="ReCustomerName" ColumnName="ReCustomerName" />
+                <ScalarProperty Name="ReCustomerTel" ColumnName="ReCustomerTel" />
+                <ScalarProperty Name="ReEmail" ColumnName="ReEmail" />
+                <ScalarProperty Name="ReDetail" ColumnName="ReDetail" />
+                <ScalarProperty Name="ReDateIn" ColumnName="ReDateIn" />
+                <ScalarProperty Name="ReDateOut" ColumnName="ReDateOut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="SRMForCustomerModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+                <ScalarProperty Name="StaffPosition" ColumnName="StaffPosition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statuses">
+            <EntityTypeMapping TypeName="SRMForCustomerModel.Statuses">
+              <MappingFragment StoreEntitySet="Statuses">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StatusType" ColumnName="StatusType" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="AfterStatusName" ColumnName="AfterStatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeRequests">
+            <EntityTypeMapping TypeName="SRMForCustomerModel.TypeRequests">
+              <MappingFragment StoreEntitySet="TypeRequests">
+                <ScalarProperty Name="TypeRequestsId" ColumnName="TypeRequestsId" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
