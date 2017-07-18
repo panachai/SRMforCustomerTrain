@@ -12,14 +12,19 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Pictures
+    public partial class Attachments
     {
-        public int PicId { get; set; }
-        public int ReTicketId { get; set; }
-        public string PicName { get; set; }
-        public string PicType { get; set; }
-        public byte[] PicImg { get; set; }
+        public int AttachmentId { get; set; }
+        public int AttachmentNo { get; set; }
+        public int TicketId { get; set; }
+        public Nullable<int> CommentsId { get; set; }
+        public byte[] AttachmentFile { get; set; }
+        public string AttachmentMimeType { get; set; }
+        public string AttachmentFileName { get; set; }
+        public string AttachmentFileExtension { get; set; }
+        public string AttachmentSize { get; set; }
     
+        public virtual Comments Comments { get; set; }
         public virtual Requests Requests { get; set; }
     }
 }

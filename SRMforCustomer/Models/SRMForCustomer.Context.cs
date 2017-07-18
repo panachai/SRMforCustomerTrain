@@ -13,10 +13,10 @@ namespace SRMforCustomer.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SRMForCustomerEntities : DbContext
+    public partial class SRMForCustomerEntities1 : DbContext
     {
-        public SRMForCustomerEntities()
-            : base("name=SRMForCustomerEntities")
+        public SRMForCustomerEntities1()
+            : base("name=SRMForCustomerEntities1")
         {
         }
     
@@ -26,10 +26,10 @@ namespace SRMforCustomer.Models
         }
     
         public virtual DbSet<Comments> Comments { get; set; }
-        public virtual DbSet<Pictures> Pictures { get; set; }
         public virtual DbSet<Requests> Requests { get; set; }
+        public virtual DbSet<RequestType> RequestType { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<Statuses> Statuses { get; set; }
-        public virtual DbSet<TypeRequests> TypeRequests { get; set; }
+        public virtual DbSet<Attachments> Attachments { get; set; }
     }
 }

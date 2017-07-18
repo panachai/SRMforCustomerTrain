@@ -1,4 +1,4 @@
-﻿@model List<SRMforCustomer.Models.RequestsModel>
+﻿@model List<SRMforCustomer.Models.Requests>
 
 @{
     ViewBag.Title = "TrainLiew Na Ja";
@@ -9,14 +9,14 @@
     var className = Model.Count > 0 ? "popular" : null;
 }
 @foreach (var req in Model) {
-    <h2 class="@className">@req.ReTopicName</h2>
+    <h2 class="@className">@req.TopicName</h2>
 }
 
 
 @*ใช้เขียน form ที่เป็น List*@
 @using (Html.BeginForm("TrainLiew", "TrainLiew", FormMethod.Post, new { enctype = "multipart/form-data" })) {
     @Html.TextBox("image", null, new { type = "file" })
-    @Html.TextBox("ReTopicName")
+    @Html.TextBox("TopicName")
     @Html.TextBox("searchs[0]")
     @Html.TextBox("searchs[1]")
     @Html.TextBox("searchs[2]")

@@ -14,14 +14,22 @@ namespace SRMforCustomer.Models
     
     public partial class Comments
     {
-        public int CommentsId { get; set; }
-        public int ReTicketId { get; set; }
-        public int StaffId { get; set; }
-        public string CommentsName { get; set; }
-        public System.DateTime CommentsDate { get; set; }
-        public string CommentsStatus { get; set; }
-        public string CommentsDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Comments()
+        {
+            this.Attachments = new HashSet<Attachments>();
+        }
     
+        public int CommentsId { get; set; }
+        public int TicketId { get; set; }
+        public Nullable<int> StaffId { get; set; }
+        public string Name { get; set; }
+        public System.DateTime DateCreate { get; set; }
+        public string CreatedBy { get; set; }
+        public string TextComment { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Attachments> Attachments { get; set; }
         public virtual Requests Requests { get; set; }
         public virtual Staff Staff { get; set; }
     }

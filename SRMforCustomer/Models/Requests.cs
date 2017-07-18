@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel.DataAnnotations;
-
 namespace SRMforCustomer.Models
 {
     using System;
@@ -20,38 +18,29 @@ namespace SRMforCustomer.Models
         public Requests()
         {
             this.Comments = new HashSet<Comments>();
-            this.Pictures = new HashSet<Pictures>();
+            this.Attachments = new HashSet<Attachments>();
         }
-        [Required]
-        public int ReTicketId { get; set; }
-        [Required]
-        public int TypeRequestsId { get; set; }
-        [Required]
-        public int StaffId { get; set; }
-        [Required]
+
+        public int TicketId { get; set; }
+        public int RequestTypeId { get; set; }
+        public Nullable<int> StaffId { get; set; }
         public int StatusId { get; set; }
-        [Required]
-        public string ReTopicName { get; set; }
-        [Required]
-        public string ReCustomerName { get; set; }
-        [StringLength(maximumLength:10,ErrorMessage = "โปรป้อนให้ครบ 10หลัก", MinimumLength = 10)]
-        public string ReCustomerTel { get; set; }
-        [Required]
-        [EmailAddress]
-        public string ReEmail { get; set; }
-        [Required]
-        [MaxLength(1000)]
-        public string ReDetail { get; set; }
-        [Required]
-        public System.DateTime ReDateIn { get; set; }
-        public Nullable<System.DateTime> ReDateOut { get; set; }
+        public string TopicName { get; set; }
+        public string CustomerName { get; set; }
+        public string TelephoneNumber { get; set; }
+        public string Email { get; set; }
+
+        public string Remark { get; set; }
+        public int CurrentStaffId { get; set; }
+        public System.DateTime DateCreate { get; set; }
+        public Nullable<System.DateTime> DateFinish { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comments> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pictures> Pictures { get; set; }
+        public virtual ICollection<Attachments> Attachments { get; set; }
         public virtual Staff Staff { get; set; }
         public virtual Statuses Statuses { get; set; }
-        public virtual TypeRequests TypeRequests { get; set; }
+        public virtual RequestType RequestType { get; set; }
     }
 }

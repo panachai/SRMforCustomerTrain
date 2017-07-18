@@ -1,37 +1,37 @@
 ﻿@using SRMforCustomer.Models
 
-@model SRMforCustomer.Models.RequestsModel
+@model SRMforCustomer.Models.Requests
 
 @if (Model != null) {
     <div>
-        ReTicketID : @Model.ReTicketId
+        ReTicketID : @Model.TicketId
     </div>
     <div>
-        TypeRequestsID :  @Model.TypeRequestsId
+        TypeRequestsID :  @Model.RequestTypeId
     </div>
     <div>
         StaffID : @Model.StaffId
     </div>
     <div>
-        ReTopicName : @Model.ReTopicName
+        ReTopicName : @Model.TopicName
     </div>
     <div>
-        ReCustomerName : @Model.ReCustomerName
+        ReCustomerName : @Model.CustomerName
     </div>
     <div>
-        ReCustomerTel : @Model.ReCustomerTel
+        ReCustomerTel : @Model.TelephoneNumber
     </div>
     <div>
-        ReEmail : @Model.ReEmail
+        ReEmail : @Model.Email
     </div>
     <div>
-        ReDetail : @Model.ReDetail
+        ReDetail : @Model.Remark
     </div>
         <div>
-            ReDateIn : @Model.ReDateIn
+            ReDateIn : @Model.DateCreate
         </div>
         <div>
-            ReDateOut : @Model.ReDateOut
+            ReDateOut : @Model.DateFinish
         </div>
         <div>
 
@@ -39,7 +39,7 @@
         "View Detail",                                                  // linkText
         "Index",                                    // actionName
         "TicketDetail",                                                   // routeValues
-        new { @ticket = @Model.ReTicketId}, null)
+        new { @ticket = @Model.TicketId}, null)
 
         </div>
 

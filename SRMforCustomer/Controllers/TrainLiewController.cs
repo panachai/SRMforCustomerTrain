@@ -20,10 +20,10 @@ namespace SRMforCustomer.Controllers {
 
             var requestsModel = new List<Requests>() {
                 new Requests(){
-                    ReTopicName = "testSRMtopic"
+                    TopicName = "testSRMtopic"
                 },
                 new Requests(){
-                    ReTopicName = "testSRMtopic2"
+                    TopicName = "testSRMtopic2"
                 }
             };
 
@@ -41,7 +41,7 @@ namespace SRMforCustomer.Controllers {
 
         public ActionResult AjaxTest() {
 
-            var requests = new Requests() { ReTopicName = "testSRMtopic" };
+            var requests = new Requests() { TopicName = "testSRMtopic" };
 
             return View();
         }
@@ -56,16 +56,16 @@ namespace SRMforCustomer.Controllers {
 
             if (keyword != "") {
                 var selected = new Requests() {
-                    ReTicketId = 1000000000,
-                    TypeRequestsId = 1,
+                    TicketId = 1000000000,
+                    RequestTypeId = 1,
                     StaffId = 2,
-                    ReTopicName = "testSRMtopic : key : " + keyword + " : endKey ",
-                    ReCustomerName = "CustomerName Test",
-                    ReCustomerTel = "0900000000",
-                    ReEmail = "panachai.ny@gmail.com",
-                    ReDetail = "adasdasd Detail it here",
-                    ReDateIn = DateTime.Now,
-                    ReDateOut = DateTime.Now,
+                    TopicName = "testSRMtopic : key : " + keyword + " : endKey ",
+                    CustomerName = "CustomerName Test",
+                    TelephoneNumber = "0900000000",
+                    Email = "panachai.ny@gmail.com",
+                    Remark = "adasdasd Detail it here",
+                    DateCreate = DateTime.Now,
+                    DateFinish = DateTime.Now,
 
                 };
                 return PartialView(selected);

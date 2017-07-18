@@ -32,21 +32,21 @@ namespace SRMforCustomer.Controllers {
 
             if (ModelState.IsValid) {
 
-                modelRequests.ReTicketId = RequestsPartial();
+                modelRequests.TicketId = RequestsPartial();
                 modelRequests.StatusId = 0;
-                modelRequests.ReDateIn = DateTime.Now;
+                modelRequests.DateCreate = DateTime.Now;
 
 
                 string BodyHTML =
                     System.IO.File.ReadAllText(Request.PhysicalApplicationPath +
                                                "Templates\\TemplateLetterFeedback.html");
 
-                BodyHTML = BodyHTML.Replace("@reticketId", modelRequests.ReTicketId.ToString());
-                BodyHTML = BodyHTML.Replace("@typeRequestsId", modelRequests.TypeRequestsId.ToString()); //เดี๋ยวเขียนเพิ่มใน DB แล้วเขียน viewmodel ดึงค่ามา
-                BodyHTML = BodyHTML.Replace("@reCustomerName", modelRequests.ReCustomerName);
-                BodyHTML = BodyHTML.Replace("@reCustomerTel", modelRequests.ReCustomerTel);
-                BodyHTML = BodyHTML.Replace("@reEmail", modelRequests.ReEmail);
-                BodyHTML = BodyHTML.Replace("@reDetail", modelRequests.ReDetail);
+                BodyHTML = BodyHTML.Replace("@reticketId", modelRequests.TicketId.ToString());
+                BodyHTML = BodyHTML.Replace("@typeRequestsId", modelRequests.RequestType.ToString()); //เดี๋ยวเขียนเพิ่มใน DB แล้วเขียน viewmodel ดึงค่ามา
+                BodyHTML = BodyHTML.Replace("@reCustomerName", modelRequests.CustomerName);
+                BodyHTML = BodyHTML.Replace("@reCustomerTel", modelRequests.TelephoneNumber);
+                BodyHTML = BodyHTML.Replace("@reEmail", modelRequests.Email);
+                BodyHTML = BodyHTML.Replace("@reDetail", modelRequests.Remark);
 
                 MailMessage NotifyMail = new MailMessage();
                 NotifyMail.From = new MailAddress(ConfigurationManager.AppSettings["MailFrom"]);
@@ -57,7 +57,7 @@ namespace SRMforCustomer.Controllers {
                 SmtpClient SMTPClient = new SmtpClient();
                 SMTPClient.Host = Config.SMTPHost;
                 SMTPClient.Send(NotifyMail);
-                return Json(new {success = true, ticketid = modelRequests.ReTicketId.ToString() }, JsonRequestBehavior.AllowGet);
+                return Json(new {success = true, ticketid = modelRequests.TicketId.ToString() }, JsonRequestBehavior.AllowGet);
                 //}
             }
 

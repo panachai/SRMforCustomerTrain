@@ -18,15 +18,15 @@ namespace SRMforCustomer.Controllers {
                     //ยิงเซอร์วิสเอาข้อมูล 1model ยัดใส่ด้านล่าง
 
                     var selected = new Requests() {
-                        ReTicketId = 1000000000,
+                        TicketId = 1000000000,
                         StatusId = 0,
-                        ReTopicName = "testSRMtopic : key : " + keyword + " : endKey ",
-                        ReCustomerName = "CustomerName Test",
-                        ReCustomerTel = "0900000000",
-                        ReEmail = "panachai.ny@gmail.com",
-                        ReDetail = "adasdasd Detail it here",
-                        ReDateIn = DateTime.Now,
-                        ReDateOut = DateTime.Now,
+                        TopicName = "testSRMtopic : key : " + keyword + " : endKey ",
+                        CustomerName = "CustomerName Test",
+                        TelephoneNumber = "0900000000",
+                        Email = "panachai.ny@gmail.com",
+                        Remark = "adasdasd Detail it here",
+                        DateCreate = DateTime.Now,
+                        DateFinish = DateTime.Now,
 
                     };
                     return PartialView(selected);
