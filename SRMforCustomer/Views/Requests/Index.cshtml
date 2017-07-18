@@ -74,7 +74,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="valueinfo">ชื่อ-นามสกุล @Html.ValidationMessageFor(m=>m.CustomerName)</div>
-                @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", oninput= @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');"})
+                @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", placeholder = "ปณชัย นิยมกชกร", oninput= @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');"})
 
 
                 @*<input id="CustomerName" name="CustomerName" class="input" type="text" oninput="this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');">*@
@@ -96,9 +96,9 @@
         </div>
         <div class="row input_padding">
             <div class="col-sm-6">
-                <div class="valueinfo">เบอร์โทร @Html.ValidationMessageFor(m => m.TelephoneNumber)</div>
-                @Html.TextBoxFor(f => f.TelephoneNumber, new { @class = "input form-control", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })
-
+                <div class="valueinfo">เบอร์โทร</div>
+                @Html.TextBoxFor(f => f.TelephoneNumber, new { @class = "input form-control",placeholder="0901234567", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })
+                @Html.ValidationMessageFor(m => m.TelephoneNumber)
                 @*<input id="TelephoneNumber" name="TelephoneNumber" class="input" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">*@
             </div>
             <div class="col-sm-6">
