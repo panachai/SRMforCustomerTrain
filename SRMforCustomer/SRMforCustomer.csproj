@@ -182,6 +182,7 @@
     </Compile>
     <Compile Include="Models\Config.cs" />
     <Compile Include="Helper\Util.cs" />
+    <Compile Include="Models\RequestMetadata.cs" />
     <Compile Include="Models\Requests.cs">
       <DependentUpon>SRMForCustomer.tt</DependentUpon>
     </Compile>
@@ -278,7 +279,7 @@
     <Content Include="Views\Search\ResultSearchPartial.cshtml" />
     <Content Include="Views\Requests\Index.cshtml" />
     <Content Include="Views\TicketDetail\Index.cshtml" />
-    <Content Include="Views\Requests\RequestsPartial.cshtml" />
+    <Content Include="Views\Requests\GenRandomNumber.cshtml" />
     <Content Include="Views\RequestsStaff\Index.cshtml" />
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\RequestsStaff\LoginStaffPage.cshtml" />

@@ -19,6 +19,7 @@ namespace SRMforCustomer.Controllers {
         //public void 
 
         public void InsertRequests() {
+
         }
 
         [HttpPost]
@@ -29,10 +30,9 @@ namespace SRMforCustomer.Controllers {
             ModelState.Remove("ReTopicName");
             ModelState.Remove("ReDateIn");
             ModelState.Remove("ReDateOut");
-
             if (ModelState.IsValid) {
 
-                modelRequests.TicketId = RequestsPartial();
+                modelRequests.TicketId = GenRandomNumber();
                 modelRequests.StatusId = 0;
                 modelRequests.DateCreate = DateTime.Now;
 
@@ -42,7 +42,7 @@ namespace SRMforCustomer.Controllers {
                                                "Templates\\TemplateLetterFeedback.html");
 
                 BodyHTML = BodyHTML.Replace("@reticketId", modelRequests.TicketId.ToString());
-                BodyHTML = BodyHTML.Replace("@typeRequestsId", modelRequests.RequestType.ToString()); //เดี๋ยวเขียนเพิ่มใน DB แล้วเขียน viewmodel ดึงค่ามา
+                BodyHTML = BodyHTML.Replace("@typeRequestsId", modelRequests.RequestTypeId.ToString()); //เดี๋ยวเขียนเพิ่มใน DB แล้วเขียน viewmodel ดึงค่ามา
                 BodyHTML = BodyHTML.Replace("@reCustomerName", modelRequests.CustomerName);
                 BodyHTML = BodyHTML.Replace("@reCustomerTel", modelRequests.TelephoneNumber);
                 BodyHTML = BodyHTML.Replace("@reEmail", modelRequests.Email);
@@ -62,11 +62,11 @@ namespace SRMforCustomer.Controllers {
             }
 
             //modelRequests.Success = "false";
-            return Json(new {success = false , messageAlert = "โปรป้อนข้อมูลที่ถูกต้อง"}, JsonRequestBehavior.AllowGet);
+            return Json(new {success = false , messageAlert = "โปรป้อนข้อมูลที่ถูกต้อง", errors = ModelState.Where(w => w.Value.Errors.Any()).Select(s => new { s.Key, s.Value.Errors }).ToList()}, JsonRequestBehavior.AllowGet);
         }
 
 
-        public int RequestsPartial() {
+        public int GenRandomNumber() {
             //if (string.IsNullOrEmpty(keyword)) {
             //    return PartialView();
             //}
