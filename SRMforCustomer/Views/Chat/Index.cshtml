@@ -5,70 +5,86 @@
 }
 <style>
     table {
-    width:100%;
-    border-collapse: collapse;
+        width: 100%;
+        border-collapse: collapse;
     }
+
     .table_left {
-    text-align:left;
+        text-align: left;
     }
-    th, td {
-    border-bottom: 1px solid #ddd;
-    padding: 8px;
-}
-    </style>
+
+    .main_table th, .main_table td {
+        border-bottom: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    .chat {
+        text-align: left;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+        padding: 15px;
+    }
+</style>
 <div class="head_title">
     Chat
-    </div>
+</div>
 <div style="padding:0 10%;">
-<table class="" style="text-align:left">
-    <tbody>
-        <tr>
-            <td class="" width="50%">Status  :</td>
-            <td style="text-align:right">@(DateTime.Now)</td>
-        </tr>
-        <tr>
-            <td class="">Title Name :</td>
-            <td class="">ประเภทการร้องขอ</td>
-        </tr>
-        <tr>
-            <td class="">Tel :</td>
-            <td class="">Email :</td>
-        </tr>
-    </tbody>
-    </table>
-
-    <table>
+    <table class="main_table" style="text-align:left">
         <tbody>
             <tr>
-                <td>
-                    <div class="i_chat">
-                        ทดลองการพิมพ์ ของตัวเงดูวาจะออกมาเป้นอย่างวไร
-                        </div>
-                    </td>
-                <td>
-                    <div class="u_chat">
-                        </div> 
-                    </td>
-                </tr>
-        </tbody>
-        </table>
-
-    <form>
-    <div style="padding-top:50px;">
-    <table style="width:100%;">
-        <tbody>
-            <tr>
-                <td>
-                    <textarea style="width:100%;height:100px "></textarea>
-                </td>
+                <td class="" width="50%">Status  :</td>
+                <td style="text-align:right">@(DateTime.Now)</td>
             </tr>
             <tr>
-                <td style="padding-top:20px;"> 
-                    <button class="button" style="width:100%"> ส่ง </button>
+                <td class="">Title Name :</td>
+                <td class="">ประเภทการร้องขอ</td>
+            </tr>
+            <tr>
+                <td class="">Tel :</td>
+                <td class="">Email :</td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="padding-top:20px;">
+        <table>
+            <tbody>
+                <tr style="height:90px;">
+                    <td width="50%">
+                        <div style="text-align:left">@(DateTime.Now)</div>
+                        <div class="chat">
+                            ทดลองการพิมพ์ ของตัวเงดูวาจะออกมาเป้นอย่างวไร
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr style="height:90px;">
+                    <td></td>
+                    <td width="50%">
+                        <div style="text-align:right">@(DateTime.Now)</div>
+                        <div class="chat">
+                            ทดลองการพิมพ์ ของตัวเงดูวาจะออกมาเป้นอย่างวไร
+                        </div>
                     </td>
                 </tr>
-        </tbody>
+            </tbody>
         </table>
-        </div>
-        </form>
     </div>
+    <form>
+        <div style="padding-top:25px;">
+            <table style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <textarea style="width:100%;height:100px "></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:20px;">
+                            <button class="button" style="width:100%"> ส่ง </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>

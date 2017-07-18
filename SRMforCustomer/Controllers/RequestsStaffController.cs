@@ -9,7 +9,9 @@ namespace SRMforCustomer.Controllers {
         // GET: RequestsStaff
         public ActionResult Index() {
             if (Session["username"] == null) {
-                return RedirectToAction("LoginStaffPage", "RequestsStaff");
+                //return RedirectToAction("LoginStaffPage", "RequestsStaff");
+                return View();
+
             } else {
                 return View();
             }
@@ -19,7 +21,9 @@ namespace SRMforCustomer.Controllers {
 
 
             if (Session["username"] != null) {
-                return RedirectToAction("Index", "RequestsStaff", new { username = Session["username"].ToString() });
+                //return RedirectToAction("Index", "RequestsStaff", new { username = Session["username"].ToString() });
+                return View();
+
             } else {
                 return View();
             }

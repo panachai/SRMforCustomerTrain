@@ -1,4 +1,28 @@
-﻿<link rel="shortcut icon" href="~/Content/img/favicon.ico" />
+﻿@{ 
+    var active = new string[] {
+        "","","","",""
+    };
+    if (Request.Url.AbsolutePath.Contains("Search")) {
+        active[1] = "active";
+    } else if (Request.Url.AbsolutePath.Contains("RequestsStaff")) {
+        active[3] = "active";
+    } else if (Request.Url.AbsolutePath.Contains("Requests")) {
+        active[2] = "active";
+    } else if (Request.Url.AbsolutePath.Contains("Chat")) {
+        active[4] = "active";
+    } else {
+        active[0] = "active";
+    }
+
+
+}
+<style>
+    .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color:#47803C;
+    color:white;
+    }
+    </style>
+<link rel="shortcut icon" href="~/Content/img/favicon.ico" />
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -13,19 +37,22 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
+                <li class="@active[0]">
                     @Html.ActionLink("Home", "Index", "Home")
                 </li>
-                <li>
+                <li class="@active[1]">
                     @Html.ActionLink("Search", "Index", "Search")
                 </li>
-                <li>
+                <li class="@active[2]">
                     @Html.ActionLink("Requests", "Index", "Requests")
                 </li>
-                <li>
+                <li class="@active[3]">
                     @Html.ActionLink("Staff", "Index", "RequestsStaff")
+                </li>
+                <li class="@active[4]">
+                    @Html.ActionLink("Chat", "Index", "Chat")
                 </li>
             </ul>
         </div>
