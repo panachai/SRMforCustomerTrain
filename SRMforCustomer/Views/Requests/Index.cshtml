@@ -73,12 +73,17 @@
     <form id="frmRequest">
         <div class="row">
             <div class="col-sm-6">
-                <div class="valueinfo">ชื่อ-นามสกุล</div>
-                <input id="CustomerName" name="CustomerName" class="input" type="text" oninput="this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');">
+                <div class="valueinfo">ชื่อ-นามสกุล @Html.ValidationMessageFor(m=>m.CustomerName)</div>
+                @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", oninput= @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');"})
+
+
+                @*<input id="CustomerName" name="CustomerName" class="input" type="text" oninput="this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');">*@
             </div>
             <div class="col-sm-6">
-                <div class="valueinfo">ประเภทการร้องขอ</div>
-                <select id="RequestTypeId" name="TypeRequestsID" class="input">
+                <div class="valueinfo">ประเภทการร้องขอ @Html.ValidationMessageFor(m => m.RequestTypeId)</div>
+                @*@Html.(f => f.RequestTypeId, new { @class = "form-control", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })*@
+                @*เดี๋ยวต้องดึงจาก Database รอสร้าง Table เพิ่ม ไม่ต้องสร้างแล้วใช้ RequestType*@
+                <select id="RequestTypeId" name="RequestTypeId" class="input">
                     <option disabled="disabled" selected="selected">กรุณาเลือกการร้องข้อมูล</option>
                     <option value="1">เลือกข้อมูล1</option>
                     <option value="2">เลือกข้อมูล2</option>
@@ -91,20 +96,19 @@
         </div>
         <div class="row input_padding">
             <div class="col-sm-6">
-                <div class="valueinfo">เบอร์โทร</div>
-                <text>
-                    
-                </text>
-                <input id="TelephoneNumber" name="TelephoneNumber" class="input" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">
+                <div class="valueinfo">เบอร์โทร @Html.ValidationMessageFor(m => m.TelephoneNumber)</div>
+                @Html.TextBoxFor(f => f.TelephoneNumber, new { @class = "input form-control", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })
+
+                @*<input id="TelephoneNumber" name="TelephoneNumber" class="input" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">*@
             </div>
             <div class="col-sm-6">
                 <div class="valueinfo">อีเมล @Html.ValidationMessageFor(m => m.Email)</div>
-                @Html.TextBoxFor(f => f.Email, new { @class = "input form-control"})
+                @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
             </div>
         </div>
         <div class="row" style="padding-top: 50px;">
-            <div class="valueinfo" style="padding-left: 16px;">รายละเอียด</div>
-            @Html.TextAreaFor(m => m.Remark, new { style = "width: 97%; height: 100px;" ,oninput = @"this.value = this.value.replace(/^\s+/, '');" })
+            <div class="valueinfo" style="padding-left: 16px;">รายละเอียด @Html.ValidationMessageFor(m => m.Remark)</div>
+            @Html.TextAreaFor(m => m.Remark, new { @class="form-control", style = "width: 97%; height: 100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
         </div>
     </form>
     <div style="padding-top: 15px;">
@@ -114,15 +118,15 @@
 
 
 @section scripts{
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css" />
     @Scripts.Render("~/bundles/jqueryval")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
     <script>
         $("#sendEmail").click(function() {
             setfeedback();
         });
-        
+
         function setfeedback() {
             console.log($('#frmRequest').valid());
             if ($('#frmRequest').valid()) {
@@ -172,7 +176,7 @@
             //};
             //console.log($('#MessageForm').serialize());
             //console.log(model);
-            
+
         }
     </script>
 
