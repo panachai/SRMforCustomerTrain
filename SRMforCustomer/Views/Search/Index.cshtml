@@ -24,13 +24,29 @@
 @using (Ajax.BeginForm("ResultSearchPartial", options)) {
     <div class="row">
         <div>
-            @Html.TextBox("keyword", null, new { id = "testId" }) @*เดี๋ยว ดักผ่าน id*@
+            <div id="hintSearch" name="hintSearch" style="color:#0000FF"></div>
+            @Html.TextBox("keyword", "", new { onKeyUp = "validate()" }) @*เดี๋ยว ดักผ่าน id*@
 
             <button type="submit">Search</button>
         </div>
-        
+
     </div>
 }
+
+@*<script>
+    function validate() {
+        console.log("test");
+        if (/[0-9]{7,7}$/.test($("input[name=keyword]").val())) {
+            //submit
+            //console.log("Success");
+            document.getElementById("hintSearch").innerHTML = "Pass";
+        } else {
+            //console.log("Failue");
+            document.getElementById("hintSearch").innerHTML = "โปรดป้อนเฉพาะตัวเลขและ มีจำนวน 7หลัก";
+
+        }
+    }
+</script>*@
 
 @*@using (Html.BeginForm("Create", "Search")) {
         <div class="form-group">
