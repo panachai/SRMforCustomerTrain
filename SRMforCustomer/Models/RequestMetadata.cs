@@ -14,12 +14,12 @@ namespace SRMforCustomer.Models {
         public int TicketId { get; set; }
         [Required]
         public int RequestTypeId { get; set; }
-        [Required]
+
         public Nullable<int> StaffId { get; set; }
         [Required]
         public int StatusId { get; set; }
-        [Required]
-        [StringLength(250, MinimumLength = 3, ErrorMessage = "ป้อนไม่ถูกต้อง")]
+        //[Required]
+        //[StringLength(250, MinimumLength = 3, ErrorMessage = "ป้อนไม่ถูกต้อง")]
         public string TopicName { get; set; }
         [Required]
         [StringLength(100, MinimumLength = 5, ErrorMessage = "ป้อนชื่อตั้งแต่ 5 ถึง 100ตัวอักษร")]

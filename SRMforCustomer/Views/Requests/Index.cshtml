@@ -114,13 +114,7 @@
             @Html.ValidationMessageFor(m => m.Remark)
         </div>
     </form>
-    <div class="g-recaptcha" data-sitekey="6LcylSkUAAAAAJnF0kFLk59k2EBOxYGuMlmS9-Nk"></div>
-
-    @*<button class="g-recaptcha"
-            data-sitekey="6LeDlykUAAAAAD09LuE94MSLnKiu2VYxAoFQ8MWO"
-            data-callback="YourOnSubmitFn">
-        Submit
-    </button>*@
+    @*<div class="g-recaptcha" data-sitekey="6LcylSkUAAAAAJnF0kFLk59k2EBOxYGuMlmS9-Nk"></div>*@
 
     <div style="padding-top: 15px;">
         <button class="button" id="sendEmail"> ส่งข้อมูล </button>
@@ -146,7 +140,7 @@
                 var model = $('#frmRequest').serialize();
                 jQuery.ajax({
                     type: "POST",
-                    url: "@Url.Action("ReceiveMessage", "Requests")",
+                    url: "@Url.Action("RequestProcess", "Requests")",
                     processData: false,
                     dataType: false,
                     data: model,
