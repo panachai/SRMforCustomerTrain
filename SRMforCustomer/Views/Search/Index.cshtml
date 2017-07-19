@@ -2,7 +2,6 @@
 <link href="~/Content/Search.css" rel="stylesheet" />
 
 @{
-    ViewBag.Title = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     AjaxOptions options = new AjaxOptions {
@@ -10,9 +9,9 @@
         InsertionMode = InsertionMode.Replace
     };
 }
-<div class="jumbotron" style="margin-top:50px">
-    <h2>@ViewBag.Title</h2>
-</div>
+<div class="head_title">
+    Search
+    </div>
 @*@if (Model != null) {
         foreach (var req in Model) {
             <h2>@req.ReTopicName</h2>
@@ -21,7 +20,7 @@
         <h2>โปรตรวจสอบ Ticket ของท่าน</h2>
     }*@
 @using (Ajax.BeginForm("ResultSearchPartial", options)) {
-    <div class="row">
+    <div class="row" style="padding-top:35px;">
         <div id="custom-search-input">
             <div class="input-group">
                 @Html.TextBox("keyword", "", new { onKeyUp = "validate()", @class = "search-query form-control", placeholder = "Search", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
