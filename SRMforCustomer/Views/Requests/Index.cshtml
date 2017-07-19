@@ -8,12 +8,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var requestType = (SelectList)ViewBag.RequestTypeId;
-    //var modelNewRequest = new Requests();
-
-    //AjaxOptions options = new AjaxOptions {
-    //    UpdateTargetId = "requestsResult",
-    //    InsertionMode = InsertionMode.Replace
-    //};
+ 
 }
 <style>
     .input_padding {
@@ -65,10 +60,6 @@
     Requsets
 </div>
 
-
-@*@Html.Partial("GenRandomNumber")*@
-
-
 <div class="row input_content">
     <form id="frmRequest">
         <div class="row">
@@ -77,12 +68,9 @@
                 @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", placeholder = "ปณชัย นิยมกชกร", oninput = @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');" })
                 @Html.ValidationMessageFor(m => m.CustomerName)
 
-                @*<input id="CustomerName" name="CustomerName" class="input" type="text" oninput="this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');">*@
             </div>
             <div class="col-sm-6">
                 <div class="valueinfo">ประเภทการร้องขอ</div>
-                @*@Html.(f => f.RequestTypeId, new { @class = "form-control", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })*@
-                @*เดี๋ยวต้องดึงจาก Database รอสร้าง Table เพิ่ม ไม่ต้องสร้างแล้วใช้ RequestType*@
                 @Html.DropDownListFor(f => f.RequestTypeId, requestType, "กรุณาเลือกการร้องข้อมูล", new { @class = "input" })
                 @Html.ValidationMessageFor(m => m.RequestTypeId)
             </div>
@@ -92,7 +80,6 @@
                 <div class="valueinfo">เบอร์โทร</div>
                 @Html.TextBoxFor(f => f.TelephoneNumber, new { @class = "form-control", placeholder = "0901234567", oninput = @"this.value = this.value.replace(/[^0-9]/g, '');", maxlength = "10", minlength = "9" })
                 @Html.ValidationMessageFor(m => m.TelephoneNumber)
-                @*<input id="TelephoneNumber" name="TelephoneNumber" class="input" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">*@
             </div>
             <div class="col-sm-6">
                 <div class="valueinfo">อีเมล</div>
@@ -106,7 +93,7 @@
             @Html.ValidationMessageFor(m => m.Remark)
         </div>
     </form>
-    @*<div class="g-recaptcha" data-sitekey="6LcylSkUAAAAAJnF0kFLk59k2EBOxYGuMlmS9-Nk"></div>*@
+    @*<div class="g-recaptcha" data-sitekey="6LcylSkUAAAAAJnF0kFLk59k2EBOxYGuMlmS9-Nk"></div>*@ 
 
     <div style="padding-top: 15px;">
         <button class="button" id="sendEmail"> ส่งข้อมูล </button>
@@ -142,17 +129,13 @@
                     data: model,
                     success: function(response) {
                         if (response != null && response.success) {
-                            @*@Url.Action("RequestsController", "Requests")*@
                             var link = '@Html.ActionLink("Click", "Index", "Search", new { keyword = "ssss" }, null)';
                             link = link.replace("ssss", response.modelRequest.TicketId);
 
                             swal("Ticket ของท่านคือ " + response.modelRequest.TicketId,
                                 //"สามารถตรวจสอบได้ที่ Email " + response.modelRequest.Email + "</br>" + "<a href='www.srmforcustomer.com\\search\\" + response.modelRequest.TicketId + "'>test</a>",
                                 "สามารถตรวจสอบได้ที่ Email " + response.modelRequest.Email + "</br>" + link,
-
-
                                 "success");
-
                         } else {
                             console.log(response.errors);
                             var errors = response.errors;
@@ -160,10 +143,6 @@
                                 var error = errors[i];
                                 $('#' + error.Key).addClass('has-error');
                             }
-
-                            //response.error[0];
-
-
                             swal("ไม่สำเร็จ", response.messageAlert, "error");
                         }
                     },
@@ -182,16 +161,6 @@
                     }
                 });
             }
-            //var model = {
-            //    name: $('#name').val(),
-            //    needhelp: $('#needhelp').val(),
-            //    phone: $('#phone').val(),
-            //    email: $('#email').val(),
-            //    detail: $('#detail').val()
-            //};
-            //console.log($('#MessageForm').serialize());
-            //console.log(model);
-
         }
     </script>
 
