@@ -9,7 +9,7 @@ namespace SRMforCustomer.Controllers {
     public class SearchController : Controller {
         // GET: Search
         public ActionResult Index() {
-        return View();
+            return View();
         }
 
         public PartialViewResult ResultSearchPartial(string keyword) {
