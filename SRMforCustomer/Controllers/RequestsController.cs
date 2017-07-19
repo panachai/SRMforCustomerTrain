@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using SRMforCustomer.Helper;
 
 namespace SRMforCustomer.Controllers {
     public class RequestsController : Controller {
@@ -71,6 +72,8 @@ namespace SRMforCustomer.Controllers {
             BodyHTML = BodyHTML.Replace("@reCustomerTel", modelRequests.TelephoneNumber);
             BodyHTML = BodyHTML.Replace("@reEmail", modelRequests.Email);
             BodyHTML = BodyHTML.Replace("@reDetail", modelRequests.Remark);
+            BodyHTML = BodyHTML.Replace("@timeNow", DateTimeUtils.DateFormat(modelRequests.DateCreate));
+
 
             MailMessage NotifyMail = new MailMessage();
             NotifyMail.From = new MailAddress(ConfigurationManager.AppSettings["MailFrom"]);
