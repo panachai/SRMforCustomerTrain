@@ -143,7 +143,7 @@
                             @*@Url.Action("RequestsController", "Requests")*@
 
                             swal("Ticket ของท่านคือ " + response.modelRequest.TicketId,
-                                "สามารถตรวจสอบได้ที่ Email " + response.modelRequest.Email + " หรือ www.srmforcustomer.com\search" + response.modelRequest.TicketId,
+                                "สามารถตรวจสอบได้ที่ Email " + response.modelRequest.Email + " หรือ www.srmforcustomer.com\\search\\" + response.modelRequest.TicketId,
                                 "success");
 
                         } else {
@@ -166,6 +166,12 @@
                     },
                     complete: function() {
                         $('#sendEmail').button('reset');
+                        $('#TelephoneNumber').val('');
+                        $('#CustomerName').val('');
+                        $('#Email').val('');
+                        $('#Remark').val('');
+                        $('#RequestTypeId').val('');
+
                     }
                 });
             }
