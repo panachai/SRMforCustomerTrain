@@ -12,7 +12,7 @@ namespace SRMforCustomer.Models {
 
         [Required]
         public int TicketId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "กรุณาเลือกประเภทการร้องขอ")]
         public int RequestTypeId { get; set; }
 
         public Nullable<int> StaffId { get; set; }
@@ -21,19 +21,21 @@ namespace SRMforCustomer.Models {
         //[Required]
         //[StringLength(250, MinimumLength = 3, ErrorMessage = "ป้อนไม่ถูกต้อง")]
         public string TopicName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "กรุณากรอกชื่อของท่าน")]
         [StringLength(100, MinimumLength = 5, ErrorMessage = "ป้อนชื่อตั้งแต่ 5 ถึง 100ตัวอักษร")]
         public string CustomerName { get; set; }
-        [Required]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "อย่างน้อย 10ตัวอักษร")]
-        [Phone(ErrorMessage = "ป้อนเบอร์โทรศัพท์ให้ถูกต้อง")]
+        [Required(ErrorMessage = "กรุณากรอกเบอร์โทรศัพท์")]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "กรอกอย่างน้อย 10ตัวอักษร")]
+        //[Phone(ErrorMessage = "กรุณากรอกเบอร์โทรศัพท์")]
+        //[DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"(^[0][0-9]{8,9})" , ErrorMessage =  "โปรดกรอกให้ถูกต้อง")]
         public string TelephoneNumber { get; set; }
-        [Required]
+        [Required(ErrorMessage = "กรุณากรอก Email")]
         [EmailAddress(ErrorMessage = "Email ของท่านไม่ถูกต้อง")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "ป้อน Email ตั้งแต่ 5 ถึง 50ตัวอักษร")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "กรอก Email ตั้งแต่ 5 ถึง 50ตัวอักษร")]
         public string Email { get; set; }
-        [Required]
-        [StringLength(2000, MinimumLength = 10, ErrorMessage = "โปรดกรอกอย่างน้อย 10 ตัวอักษร แต่ไม่เกิน 2000ตัวอักษร")]
+        [Required(ErrorMessage = "กรุณากรอกรายละเอียด")]
+        [StringLength(2000, MinimumLength = 10, ErrorMessage = "กรอกอย่างน้อย 10 ตัวอักษร แต่ไม่เกิน 2000ตัวอักษร")]
         public string Remark { get; set; }
         
         public int CurrentStaffId { get; set; }
