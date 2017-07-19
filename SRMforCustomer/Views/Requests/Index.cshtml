@@ -7,13 +7,8 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    //var modelNewRequest = new Requests();
-
-    //AjaxOptions options = new AjaxOptions {
-    //    UpdateTargetId = "requestsResult",
-    //    InsertionMode = InsertionMode.Replace
-    //};
+    var requestType = (SelectList)ViewBag.RequestTypeId;
+ 
 }
 <style>
     .input_padding {
@@ -64,52 +59,41 @@
     Requsets
 </div>
 
-
-@*@Html.Partial("GenRandomNumber")*@
-
-
 <div class="row input_content">
     <form id="frmRequest">
         <div class="row">
             <div class="col-sm-6">
-                <div class="valueinfo">ชื่อ-นามสกุล @Html.ValidationMessageFor(m=>m.CustomerName)</div>
-                @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", placeholder = "ปณชัย นิยมกชกร", oninput= @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');"})
+                <div class="valueinfo">ชื่อ-นามสกุล</div>
+                @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", placeholder = "ปณชัย นิยมกชกร", oninput = @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');" })
+                @Html.ValidationMessageFor(m => m.CustomerName)
 
-
-                @*<input id="CustomerName" name="CustomerName" class="input" type="text" oninput="this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');">*@
             </div>
             <div class="col-sm-6">
-                <div class="valueinfo">ประเภทการร้องขอ @Html.ValidationMessageFor(m => m.RequestTypeId)</div>
-                @*@Html.(f => f.RequestTypeId, new { @class = "form-control", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })*@
-                @*เดี๋ยวต้องดึงจาก Database รอสร้าง Table เพิ่ม ไม่ต้องสร้างแล้วใช้ RequestType*@
-                <select id="RequestTypeId" name="RequestTypeId" class="input form-control">
-                    <option disabled="disabled" selected="selected">กรุณาเลือกการร้องข้อมูล</option>
-                    <option value="1">เลือกข้อมูล1</option>
-                    <option value="2">เลือกข้อมูล2</option>
-                    <option value="3">เลือกข้อมูล3</option>
-                    <option value="4">เลือกข้อมูล4</option>
-                    <option value="5">เลือกข้อมูล5</option>
-                    <option value="6">เลือกข้อมูล6</option>
-                </select>
+                <div class="valueinfo">ประเภทการร้องขอ</div>
+                @Html.DropDownListFor(f => f.RequestTypeId, requestType, "กรุณาเลือกการร้องข้อมูล", new { @class = "input" })
+                @Html.ValidationMessageFor(m => m.RequestTypeId)
             </div>
         </div>
         <div class="row input_padding">
             <div class="col-sm-6">
                 <div class="valueinfo">เบอร์โทร</div>
-                @Html.TextBoxFor(f => f.TelephoneNumber, new { @class = "input form-control",placeholder="0901234567", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })
+                @Html.TextBoxFor(f => f.TelephoneNumber, new { @class = "form-control", placeholder = "0901234567", oninput = @"this.value = this.value.replace(/[^0-9]/g, '');", maxlength = "10", minlength = "9" })
                 @Html.ValidationMessageFor(m => m.TelephoneNumber)
-                @*<input id="TelephoneNumber" name="TelephoneNumber" class="input" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">*@
             </div>
             <div class="col-sm-6">
-                <div class="valueinfo">อีเมล @Html.ValidationMessageFor(m => m.Email)</div>
+                <div class="valueinfo">อีเมล</div>
                 @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email)
             </div>
         </div>
-        <div class="row" style="padding-top: 50px;text-align:center">
-            <div class="valueinfo" style="padding-left: 16px;">รายละเอียด @Html.ValidationMessageFor(m => m.Remark)</div>
-            @Html.TextAreaFor(m => m.Remark, new { @class= "form-control", style = "width: 97%; height: 100px;display:unset;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
+        <div class="row" style="padding-top: 50px;">
+            <div class="valueinfo" style="padding-left: 16px;">รายละเอียด</div>
+            @Html.TextAreaFor(m => m.Remark, new { @class = "form-control", style = "width: 97%; height: 100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
+            @Html.ValidationMessageFor(m => m.Remark)
         </div>
     </form>
+    @*<div class="g-recaptcha" data-sitekey="6LcylSkUAAAAAJnF0kFLk59k2EBOxYGuMlmS9-Nk"></div>*@ 
+
     <div style="padding-top: 15px;">
         <button class="button" id="sendEmail"> ส่งข้อมูล </button>
     </div>
@@ -121,6 +105,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css" />
     @Scripts.Render("~/bundles/jqueryval")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    
+    @{
+        string ticketId = "";
+    }
     <script>
         $("#sendEmail").click(function() {
             setfeedback();
@@ -129,23 +118,23 @@
         function setfeedback() {
             console.log($('#frmRequest').valid());
             if ($('#frmRequest').valid()) {
+                $('#sendEmail').button('loading');
                 var model = $('#frmRequest').serialize();
                 jQuery.ajax({
                     type: "POST",
-                    url: "@Url.Action("ReceiveMessage", "Requests")",
+                    url: "@Url.Action("RequestProcess", "Requests")",
                     processData: false,
                     dataType: false,
                     data: model,
                     success: function(response) {
-                        if (response != null && response.success && response.ticketid !== "") {
+                        if (response != null && response.success) {
+                            var link = '@Html.ActionLink("Click", "Index", "Search", new { keyword = "ssss" }, null)';
+                            link = link.replace("ssss", response.modelRequest.TicketId);
 
-                            @*@Url.Action("RequestsController", "Requests")*@
-
-                            swal("Ticket ของท่านคือ " + response.ticketid,
-                                "สามารถตรวจสอบการทำงานได้ที www.imc.co",
+                            swal("Ticket ของท่านคือ " + response.modelRequest.TicketId,
+                                //"สามารถตรวจสอบได้ที่ Email " + response.modelRequest.Email + "</br>" + "<a href='www.srmforcustomer.com\\search\\" + response.modelRequest.TicketId + "'>test</a>",
+                                "สามารถตรวจสอบได้ที่ Email " + response.modelRequest.Email + "</br>" + link,
                                 "success");
-
-
                         } else {
                             console.log(response.errors);
                             var errors = response.errors;
@@ -153,29 +142,24 @@
                                 var error = errors[i];
                                 $('#' + error.Key).addClass('has-error');
                             }
-
-                            //response.error[0];
-
-
                             swal("ไม่สำเร็จ", response.messageAlert, "error");
                         }
                     },
                     error: function(errMsg) {
                         console.log(errMsg.responseText);
                         swal("ยกเลิก", "กรุณาระบุข้อมูลให้ถูกต้อง, ระบุข้อมูลให้ครบ", "error");
+                    },
+                    complete: function() {
+                        $('#sendEmail').button('reset');
+                        $('#TelephoneNumber').val('');
+                        $('#CustomerName').val('');
+                        $('#Email').val('');
+                        $('#Remark').val('');
+                        $('#RequestTypeId').val('');
+
                     }
                 });
             }
-            //var model = {
-            //    name: $('#name').val(),
-            //    needhelp: $('#needhelp').val(),
-            //    phone: $('#phone').val(),
-            //    email: $('#email').val(),
-            //    detail: $('#detail').val()
-            //};
-            //console.log($('#MessageForm').serialize());
-            //console.log(model);
-
         }
     </script>
 
