@@ -7,11 +7,15 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace SRMforCustomer.Controllers {
     public class RequestsController : Controller {
         // GET: Requests
         public ActionResult Index() {
+            using (SRMForCustomerEntities1 db = new SRMForCustomerEntities1()) {
+                ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
+            }
             return View();
         }
 
@@ -23,7 +27,7 @@ namespace SRMforCustomer.Controllers {
             ModelState.Remove("ReTopicName");
             ModelState.Remove("ReDateIn");
             ModelState.Remove("ReDateOut");
-
+            if(modelRequests.RequestTypeId == 0) ModelState.AddModelError("RequestTypeId", " โปรดเลือก");
             if (ModelState.IsValid) {
 
                 modelRequests.TicketId = GenRandomNumber();
@@ -33,15 +37,17 @@ namespace SRMforCustomer.Controllers {
 
                 InsertRequests(modelRequests);
                 using (SRMForCustomerEntities1 db = new SRMForCustomerEntities1()) {
-                    var reqType = db.RequestType.SingleOrDefault(s => s.RequestTypeId == modelRequests.RequestTypeId);
-                    modelRequests.RequestType = reqType;
-
-                    //modelRequests = db.Requests.Single(s => s.TicketId == modelRequests.TicketId);
+                    //var reqType = db.RequestType.SingleOrDefault(s => s.RequestTypeId == modelRequests.RequestTypeId);
+                    //modelRequests.RequestType = reqType;
+                    db.Configuration.ProxyCreationEnabled = false;
+                    modelRequests = db.Requests.Include(i => i.RequestType).Include(i => i.Statuses).Single(s => s.TicketId == modelRequests.TicketId);
                 }
 
                 ReceiveMessage(modelRequests);
-
-                return Json(new { success = true, ticketid = modelRequests.TicketId.ToString() }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true, modelRequest = new {
+                    modelRequests.TicketId,
+                    modelRequests.Email
+                } }, JsonRequestBehavior.AllowGet);
 
             }
 
@@ -60,7 +66,7 @@ namespace SRMforCustomer.Controllers {
                     System.IO.File.ReadAllText(Request.PhysicalApplicationPath +
                                                "Templates\\TemplateLetterFeedback.html");
             BodyHTML = BodyHTML.Replace("@reticketId", modelRequests.TicketId.ToString());
-           BodyHTML = BodyHTML.Replace("@typeRequestsId", modelRequests.RequestType.ToString()); //เดี๋ยวเขียนเพิ่มใน DB แล้วเขียน viewmodel ดึงค่ามา
+            BodyHTML = BodyHTML.Replace("@typeRequestsId", modelRequests.RequestType.Name);//เดี๋ยวเขียนเพิ่มใน DB แล้วเขียน viewmodel ดึงค่ามา
             BodyHTML = BodyHTML.Replace("@reCustomerName", modelRequests.CustomerName);
             BodyHTML = BodyHTML.Replace("@reCustomerTel", modelRequests.TelephoneNumber);
             BodyHTML = BodyHTML.Replace("@reEmail", modelRequests.Email);
@@ -69,7 +75,7 @@ namespace SRMforCustomer.Controllers {
             MailMessage NotifyMail = new MailMessage();
             NotifyMail.From = new MailAddress(ConfigurationManager.AppSettings["MailFrom"]);
             NotifyMail.To.Add(modelRequests.Email);//thanaphan.w@prism.co.th
-            NotifyMail.Subject = "SRMforCustomer : " + modelRequests.RequestType + " จากคุณ " + modelRequests.CustomerName; //+ modelRequests.TopicName +
+            NotifyMail.Subject = "SRMforCustomer : " + modelRequests.RequestType.Name + " จากคุณ " + modelRequests.CustomerName; //+ modelRequests.TopicName +
             NotifyMail.IsBodyHtml = true;
             NotifyMail.Body = BodyHTML;
             SmtpClient SMTPClient = new SmtpClient();
