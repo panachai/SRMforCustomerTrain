@@ -73,14 +73,14 @@
     <form id="frmRequest">
         <div class="row">
             <div class="col-sm-6">
-                <div class="valueinfo">ชื่อ-นามสกุล @Html.ValidationMessageFor(m=>m.CustomerName)</div>
-                @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", placeholder = "ปณชัย นิยมกชกร", oninput= @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');"})
-
+                <div class="valueinfo">ชื่อ-นามสกุล</div>
+                @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", placeholder = "ปณชัย นิยมกชกร", oninput = @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');" })
+                @Html.ValidationMessageFor(m => m.CustomerName)
 
                 @*<input id="CustomerName" name="CustomerName" class="input" type="text" oninput="this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');">*@
             </div>
             <div class="col-sm-6">
-                <div class="valueinfo">ประเภทการร้องขอ @Html.ValidationMessageFor(m => m.RequestTypeId)</div>
+                <div class="valueinfo">ประเภทการร้องขอ</div>
                 @*@Html.(f => f.RequestTypeId, new { @class = "form-control", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })*@
                 @*เดี๋ยวต้องดึงจาก Database รอสร้าง Table เพิ่ม ไม่ต้องสร้างแล้วใช้ RequestType*@
                 <select id="RequestTypeId" name="RequestTypeId" class="input">
@@ -92,25 +92,36 @@
                     <option value="5">เลือกข้อมูล5</option>
                     <option value="6">เลือกข้อมูล6</option>
                 </select>
+                @Html.ValidationMessageFor(m => m.RequestTypeId)
             </div>
         </div>
         <div class="row input_padding">
             <div class="col-sm-6">
                 <div class="valueinfo">เบอร์โทร</div>
-                @Html.TextBoxFor(f => f.TelephoneNumber, new { @class = "input form-control",placeholder="0901234567", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })
-                @Html.ValidationMessageFor(m => m.TelephoneNumber)
+                @Html.TextBoxFor(f => f.TelephoneNumber, new { @class = "input form-control", placeholder = "0901234567", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })
+                <div class="validationMessage"> @Html.ValidationMessageFor(m => m.TelephoneNumber) </div>
                 @*<input id="TelephoneNumber" name="TelephoneNumber" class="input" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');">*@
             </div>
             <div class="col-sm-6">
-                <div class="valueinfo">อีเมล @Html.ValidationMessageFor(m => m.Email)</div>
+                <div class="valueinfo">อีเมล</div>
                 @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email)
             </div>
         </div>
         <div class="row" style="padding-top: 50px;">
-            <div class="valueinfo" style="padding-left: 16px;">รายละเอียด @Html.ValidationMessageFor(m => m.Remark)</div>
-            @Html.TextAreaFor(m => m.Remark, new { @class="form-control", style = "width: 97%; height: 100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
+            <div class="valueinfo" style="padding-left: 16px;">รายละเอียด</div>
+            @Html.TextAreaFor(m => m.Remark, new { @class = "form-control", style = "width: 97%; height: 100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
+            @Html.ValidationMessageFor(m => m.Remark)
         </div>
     </form>
+    <div class="g-recaptcha" data-sitekey="6LcylSkUAAAAAJnF0kFLk59k2EBOxYGuMlmS9-Nk"></div>
+
+    @*<button class="g-recaptcha"
+            data-sitekey="6LeDlykUAAAAAD09LuE94MSLnKiu2VYxAoFQ8MWO"
+            data-callback="YourOnSubmitFn">
+        Submit
+    </button>*@
+
     <div style="padding-top: 15px;">
         <button class="button" id="sendEmail"> ส่งข้อมูล </button>
     </div>
@@ -122,6 +133,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.css" />
     @Scripts.Render("~/bundles/jqueryval")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
     <script>
         $("#sendEmail").click(function() {
             setfeedback();

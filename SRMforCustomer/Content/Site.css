@@ -68,3 +68,7 @@ input {
 input:hover {
    color:rgba(0, 0, 0, 1);
 }
+
+body .field-validation-error {
+    color: #ff0000;
+}
