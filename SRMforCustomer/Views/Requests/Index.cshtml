@@ -35,10 +35,9 @@
     }
 
     .input_content {
-        padding-top: 50px;
+        padding-top:50px;
         text-align: center;
-        padding-left: 170px;
-        padding-right: 170px;
+        padding: 0 170px;
     }
 
     @@media screen and (max-width: 767px) {
@@ -83,7 +82,7 @@
                 <div class="valueinfo">ประเภทการร้องขอ @Html.ValidationMessageFor(m => m.RequestTypeId)</div>
                 @*@Html.(f => f.RequestTypeId, new { @class = "form-control", oninput = @"this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" })*@
                 @*เดี๋ยวต้องดึงจาก Database รอสร้าง Table เพิ่ม ไม่ต้องสร้างแล้วใช้ RequestType*@
-                <select id="RequestTypeId" name="RequestTypeId" class="input">
+                <select id="RequestTypeId" name="RequestTypeId" class="input form-control">
                     <option disabled="disabled" selected="selected">กรุณาเลือกการร้องข้อมูล</option>
                     <option value="1">เลือกข้อมูล1</option>
                     <option value="2">เลือกข้อมูล2</option>
@@ -106,9 +105,9 @@
                 @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
             </div>
         </div>
-        <div class="row" style="padding-top: 50px;">
+        <div class="row" style="padding-top: 50px;text-align:center">
             <div class="valueinfo" style="padding-left: 16px;">รายละเอียด @Html.ValidationMessageFor(m => m.Remark)</div>
-            @Html.TextAreaFor(m => m.Remark, new { @class="form-control", style = "width: 97%; height: 100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
+            @Html.TextAreaFor(m => m.Remark, new { @class= "form-control", style = "width: 97%; height: 100px;display:unset;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
         </div>
     </form>
     <div style="padding-top: 15px;">
