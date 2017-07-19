@@ -8,19 +8,8 @@ using SRMforCustomer.Models;
 namespace SRMforCustomer.Controllers {
     public class SearchController : Controller {
         // GET: Search
-        public ActionResult Index(string keyword) {
-            if (!string.IsNullOrEmpty(keyword)) {
-
-                ResultSearchPartial(keyword);
-
-                return View();
-            }
-
-
-
-
-
-            return View();
+        public ActionResult Index() {
+        return View();
         }
 
         public PartialViewResult ResultSearchPartial(string keyword) {
@@ -32,7 +21,7 @@ namespace SRMforCustomer.Controllers {
                         //ยิงเซอร์วิสเอาข้อมูล 1model ยัดใส่ด้านล่าง
 
                         var selected = new Requests() {
-                            TicketId = 1000000000,
+                            TicketId = 1000000,
                             StatusId = 0,
                             TopicName = "testSRMtopic : key : " + keyword + " : endKey ",
                             CustomerName = "CustomerName Test",

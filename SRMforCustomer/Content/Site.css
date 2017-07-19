@@ -72,3 +72,25 @@ input:hover {
 body .field-validation-error {
     color: #ff0000;
 }
+
+
+    table {
+     width: 100%;
+     border-collapse: collapse;
+ }
+
+.table_left {
+    text-align: left;
+}
+
+.main_table th, .main_table td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+.chat {
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+}

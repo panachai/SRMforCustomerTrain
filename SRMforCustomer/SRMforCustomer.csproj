@@ -164,7 +164,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\RequestsStaffController.cs" />
@@ -283,7 +282,6 @@
     <Content Include="Views\TicketDetail\Index.cshtml" />
     <Content Include="Views\Requests\GenRandomNumber.cshtml" />
     <Content Include="Views\RequestsStaff\Index.cshtml" />
-    <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\RequestsStaff\LoginStaffPage.cshtml" />
   </ItemGroup>
   <ItemGroup>

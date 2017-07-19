@@ -128,7 +128,7 @@
                     data: model,
                     success: function(response) {
                         if (response != null && response.success) {
-                            var link = '@Html.ActionLink("Click", "Index", "Search", new { keyword = "ssss" }, null)';
+                            var link = '@Html.ActionLink("Click", "Index", "TicketDetail", new { ticket = "ssss" }, null)';
                             link = link.replace("ssss", response.modelRequest.TicketId);
 
                             swal("Ticket ของท่านคือ " + response.modelRequest.TicketId,

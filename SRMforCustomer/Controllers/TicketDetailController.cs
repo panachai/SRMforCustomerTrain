@@ -7,8 +7,8 @@ using System.Web.Mvc;
 namespace SRMforCustomer.Controllers {
     public class TicketDetailController : Controller {
         // GET: TicketDetail
-        public ActionResult Index(int? ticket) {
-            if (ticket != null) {
+        public ActionResult Index(string ticket) {
+            if (ticket != null && ticket.Length == 7 ) {
 
                 //show model
 
