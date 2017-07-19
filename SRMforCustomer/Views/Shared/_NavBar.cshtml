@@ -1,6 +1,6 @@
 ﻿@{ 
     var active = new string[] {
-        "","","","",""
+        "","","",""
     };
     if (Request.Url.AbsolutePath.Contains("Search")) {
         active[1] = "active";
@@ -8,8 +8,6 @@
         active[3] = "active";
     } else if (Request.Url.AbsolutePath.Contains("Requests")) {
         active[2] = "active";
-    } else if (Request.Url.AbsolutePath.Contains("Chat")) {
-        active[4] = "active";
     } else {
         active[0] = "active";
     }
@@ -50,9 +48,6 @@
                 </li>
                 <li class="@active[3]">
                     @Html.ActionLink("Staff", "Index", "RequestsStaff")
-                </li>
-                <li class="@active[4]">
-                    @Html.ActionLink("Chat", "Index", "Chat")
                 </li>
             </ul>
         </div>

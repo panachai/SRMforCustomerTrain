@@ -1,0 +1,55 @@
+﻿.textbox_detail {
+    padding-top: 50px;
+    margin: 0 15px;
+}
+
+.input_padding {
+    padding-top: 50px;
+}
+
+.valueinfo {
+    text-align: left;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+input, select {
+    height: 30px;
+    width: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.input_content {
+    padding-top: 50px;
+    text-align: center;
+    padding: 0 170px;
+}
+
+@media screen and (max-width: 767px) {
+    .input_content {
+        padding-left: unset;
+        padding-right: unset;
+    }
+    .textbox_detail {
+        padding-top: 25px;
+    }
+    .row > .col-sm-6 {
+        padding-top: 15px;
+    }
+
+    .input_padding {
+        padding-top: unset;
+    }
+
+    .input_content {
+        padding-top: 50px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .input_content {
+        padding: 0 70px;
+    }
+}

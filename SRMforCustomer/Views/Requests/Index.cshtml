@@ -10,51 +10,7 @@
     var requestType = (SelectList)ViewBag.RequestTypeId;
  
 }
-<style>
-    .input_padding {
-        padding-top: 50px;
-    }
-
-    .valueinfo {
-        text-align: left;
-        color: rgba(0, 0, 0, 0.7);
-    }
-
-    input, select {
-        height: 30px;
-        width: 100%;
-    }
-
-    html {
-        height: 100%;
-    }
-
-    .input_content {
-        padding-top:50px;
-        text-align: center;
-        padding: 0 170px;
-    }
-
-    @@media screen and (max-width: 767px) {
-        .input_content {
-            padding-left: unset;
-            padding-right: unset;
-        }
-
-        .row > .col-sm-6 {
-            padding-top: 15px;
-        }
-
-        .input_padding {
-            padding-top: unset;
-        }
-
-        .input_content {
-            padding-top: 50px;
-        }
-    }
-</style>
-
+<link href="~/Content/Requests.css" rel="stylesheet" />
 <div class="head_title">
     Requsets
 </div>
@@ -70,7 +26,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="valueinfo">ประเภทการร้องขอ</div>
-                @Html.DropDownListFor(f => f.RequestTypeId, requestType, "กรุณาเลือกการร้องข้อมูล", new { @class = "input" })
+                @Html.DropDownListFor(f => f.RequestTypeId, requestType, "กรุณาเลือกการร้องข้อมูล", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.RequestTypeId)
             </div>
         </div>
@@ -86,15 +42,15 @@
                 @Html.ValidationMessageFor(m => m.Email)
             </div>
         </div>
-        <div class="row" style="padding-top: 50px;">
-            <div class="valueinfo" style="padding-left: 16px;">รายละเอียด</div>
-            @Html.TextAreaFor(m => m.Remark, new { @class = "form-control", style = "width: 97%; height: 100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
+        <div class="row textbox_detail">
+            <div class="valueinfo">รายละเอียด</div>
+            @Html.TextAreaFor(m => m.Remark, new { @class = "form-control", style = "width: 100%; height: 100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
             @Html.ValidationMessageFor(m => m.Remark)
         </div>
     </form>
     @*<div class="g-recaptcha" data-sitekey="6LcylSkUAAAAAJnF0kFLk59k2EBOxYGuMlmS9-Nk"></div>*@ 
 
-    <div style="padding-top: 15px;">
+    <div style="padding-top:20px;margin: 0 15px;">
         <button class="button" id="sendEmail"> ส่งข้อมูล </button>
     </div>
 </div>
