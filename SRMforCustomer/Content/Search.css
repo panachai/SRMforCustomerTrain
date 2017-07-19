@@ -1,0 +1,86 @@
+﻿#custom-search-input button {
+    border: 0;
+    background: none;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #47803C;
+}
+
+.search-query:focus + button {
+    z-index: 3;
+}
+
+.card hr {
+    border: 0;
+    border-top: 1px solid #47803c;
+    margin: 10px 0;
+}
+
+.card {
+    text-align: center;
+    margin: 12px 300px;
+    padding: 15px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.titile_card {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+td {
+    vertical-align: text-top;
+    text-align: left;
+    line-height: 25px;
+}
+
+.tb_1 {
+    width: 40%;
+}
+
+table {
+    padding-left: 20px;
+}
+
+.input-group {
+    padding: 12px 300px;
+    margin-right: -25px;
+}
+
+@media screen and (max-width: 1199px) {
+    .card {
+        margin: 12px 245px;
+    }
+
+    .input-group {
+        padding: 12px 245px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .card {
+        margin: 12px 135px;
+    }
+
+    .input-group {
+        padding: 12px 135px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .card {
+        margin: 12px 0px;
+    }
+
+    .input-group {
+        padding: 12px 0px;
+    }
+}

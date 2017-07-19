@@ -3,48 +3,103 @@
 @*@model SRMforCustomer.Models.Requests*@
 
 @if (Model != null) {
-    <div>
-        ReTicketID : @Model.TicketId
-    </div>
-    <div>
-        TypeRequestsID :  @Model.RequestTypeId
-    </div>
-    <div>
-        StaffID : @Model.StaffId
-    </div>
-    <div>
-        ReTopicName : @Model.TopicName
-    </div>
-    <div>
-        ReCustomerName : @Model.CustomerName
-    </div>
-    <div>
-        ReCustomerTel : @Model.TelephoneNumber
-    </div>
-    <div>
-        ReEmail : @Model.Email
-    </div>
-    <div>
-        ReDetail : @Model.Remark
-    </div>
-        <div>
-            ReDateIn : @Model.DateCreate
+    <div class="card">
+        <div class="titile_card">
+            ReTicketID : @Model.TicketId
         </div>
-        <div>
-            ReDateOut : @Model.DateFinish
-        </div>
-        <div>
+        <hr>
+        <table>
+            <tbody>
+                <tr>
+                    <td class="tb_1">
+                        TypeRequestsID
+                    </td>
+                    <td>
+                        : @Model.RequestTypeId
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tb_1">
+                        StaffID
+                    </td>
+                    <td>
+                        : @Model.StaffId
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tb_1">
+                        ReTopicName
+                    </td>
+                    <td>
+                        : @Model.TopicName
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tb_1">
+                        ReCustomerName
+                    </td>
+                    <td>
+                        : @Model.CustomerName
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tb_1">
+                        ReCustomerTel
+                    </td>
+                    <td>
+                        : @Model.TelephoneNumber
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tb_1">
+                        ReEmail
+                    </td>
+                    <td>
+                        : @Model.Email
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tb_1">
+                        ReDetail
+                    </td>
+                    <td>
+                        : @Model.Remark
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tb_1">
+                        ReDateIn
+                    </td>
+                    <td>
+                        : @Model.DateCreate
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tb_1">
+                        ReDateOut
+                    </td>
+                    <td>
+                        : @Model.DateFinish
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+
+        <div style="text-align:left">
 
             @Html.ActionLink(
-        "View Detail",                                                  // linkText
-        "Index",                                    // actionName
-        "TicketDetail",                                                   // routeValues
-        new { @ticket = @Model.TicketId}, null)
+     "View Detail",                                                  // linkText
+     "Index",                                    // actionName
+     "TicketDetail",                                                   // routeValues
+     new { @ticket = @Model.TicketId }, null)
 
         </div>
-
+    </div>
 } else {
-    <h1>
+    <div>
+
         @ViewBag.ErrorChecksum
-    </h1>
+
+    </div>
 }
