@@ -8,7 +8,18 @@ using SRMforCustomer.Models;
 namespace SRMforCustomer.Controllers {
     public class SearchController : Controller {
         // GET: Search
-        public ActionResult Index() {
+        public ActionResult Index(string keyword) {
+            if (!string.IsNullOrEmpty(keyword)) {
+
+                ResultSearchPartial(keyword);
+
+                return View();
+            }
+
+
+
+
+
             return View();
         }
 
