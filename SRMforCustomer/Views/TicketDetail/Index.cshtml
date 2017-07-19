@@ -1,0 +1,86 @@
+﻿@using SRMforCustomer.Models
+
+@*@model SRMforCustomer.Models.Requests*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<h2>Ticket Detail Index</h2>
+
+@if (@ViewBag.Message != null) {
+    string message = ViewBag.Message;
+    <h3>@Html.ActionLink(message, "", "Search")</h3>
+} else {
+    <h3>TicketID : @ViewBag.testTicket</h3>
+
+
+    //เขียน layout ในนี้เลย
+
+    <div class="head_title">
+        Chat
+    </div>
+    <div style="padding:0 10%;">
+        <table class="main_table" style="text-align:left">
+            <tbody>
+                <tr>
+                    <td class="" width="50%">Status  :</td>
+                    <td style="text-align:right">@(DateTime.Now)</td>
+                </tr>
+                <tr>
+                    <td class="">Title Name :</td>
+                    <td class="">ประเภทการร้องขอ</td>
+                </tr>
+                <tr>
+                    <td class="">Tel :</td>
+                    <td class="">Email :</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="padding-top:20px;">
+            <table>
+                <tbody>
+                    <tr style="height:90px;">
+                        <td width="50%">
+                            <div style="text-align:left">@(DateTime.Now)</div>
+                            <div class="chat">
+                                ทดลองการพิมพ์ ของตัวเองดูวาจะออกมาเป้นอย่างวไร
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr style="height:90px;">
+                        <td></td>
+                        <td width="50%">
+                            <div style="text-align:right">@(DateTime.Now)</div>
+                            <div class="chat">
+                                ทดลองการพิมพ์ ของตัวเองดูวาจะออกมาเป้นอย่างวไร
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form>
+            <div style="padding-top:25px;">
+                <table style="width:100%;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <textarea class="form-control" style="width:100%;height:100px "></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top:20px;">
+                                <button class="button" style="width:100%"> ส่ง </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+}
