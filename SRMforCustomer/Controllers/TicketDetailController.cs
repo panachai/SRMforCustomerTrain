@@ -7,6 +7,7 @@ using SRMforCustomer.Helper;
 using SRMforCustomer.Models;
 
 namespace SRMforCustomer.Controllers {
+    [RoutePrefix("TicketDetail")]
     public class TicketDetailController : Controller {
 
         private readonly ServiceConnectDB service;
@@ -16,6 +17,7 @@ namespace SRMforCustomer.Controllers {
         }
 
         // GET: TicketDetail
+        [Route("{ticket}")]
         public ActionResult Index(string ticket) {
             int ticketSearch;
 
@@ -26,7 +28,10 @@ namespace SRMforCustomer.Controllers {
                     Requests modelRequests = service.RequestsModelALL(ticketSearch); //check ยิงเซอวิสว่าผ่านไหม mockdata ไว้ (3852671)
 
                     //ยิงเรียก Comment
+                    List<Comments> listComments = service.CommentsMdoelformTicket(ticketSearch);
 
+                    ViewBag.lsitCommetn = listComments;
+                    //ทำ comment ต่อด้วย
 
 
                     ViewBag.testTicket = ticket;
@@ -41,5 +46,15 @@ namespace SRMforCustomer.Controllers {
 
             return View();
         }
+
+        public ActionResult SendComment(string ticket,string textComment) {
+
+
+            //var s = Request.Form["textComment"];
+
+            var controllerName = this.ViewBag.RouteData.Values["textComment"].ToString();
+            return RedirectToAction("Index", new {ticket = ticket});
+        }
+
     }
 }

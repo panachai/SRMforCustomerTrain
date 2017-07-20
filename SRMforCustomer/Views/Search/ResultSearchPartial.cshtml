@@ -1,34 +1,42 @@
 ﻿@using SRMforCustomer.Models
 
-@*@model SRMforCustomer.Models.Requests*@
+@model SRMforCustomer.Models.Requests
 
 @if (Model != null) {
     <div class="card">
         <div class="titile_card">
-            ReTicketID : @Model.TicketId
+            TicketID : @Model.TicketId
         </div>
         <hr>
         <table>
             <tbody>
                 <tr>
                     <td class="tb_1">
-                        TypeRequestsID
+                        RequestTypeId
                     </td>
                     <td>
-                        : @Model.RequestTypeId
+                        : @Model.RequestType.Name
                     </td>
                 </tr>
                 <tr>
                     <td class="tb_1">
-                        StaffID
+                        StaffId
                     </td>
                     <td>
-                        : @Model.StaffId
+                        : @{
+                            if (@Model.StatusId != null) {
+
+                                @Model.StatusId
+                            } else {
+                                <p>ค้นหาด้วย Customer</p>
+                            }
+
+                        }
                     </td>
                 </tr>
                 <tr>
                     <td class="tb_1">
-                        ReTopicName
+                        TopicName
                     </td>
                     <td>
                         : @Model.TopicName
@@ -36,7 +44,7 @@
                 </tr>
                 <tr>
                     <td class="tb_1">
-                        ReCustomerName
+                        CustomerName
                     </td>
                     <td>
                         : @Model.CustomerName
@@ -44,7 +52,7 @@
                 </tr>
                 <tr>
                     <td class="tb_1">
-                        ReCustomerTel
+                        CustomerTel
                     </td>
                     <td>
                         : @Model.TelephoneNumber
@@ -52,7 +60,7 @@
                 </tr>
                 <tr>
                     <td class="tb_1">
-                        ReEmail
+                        Email
                     </td>
                     <td>
                         : @Model.Email
@@ -60,7 +68,7 @@
                 </tr>
                 <tr>
                     <td class="tb_1">
-                        ReDetail
+                        Detail (Remark)
                     </td>
                     <td>
                         : @Model.Remark
@@ -68,7 +76,7 @@
                 </tr>
                 <tr>
                     <td class="tb_1">
-                        ReDateIn
+                        DateCreate
                     </td>
                     <td>
                         : @Model.DateCreate
@@ -76,10 +84,10 @@
                 </tr>
                 <tr>
                     <td class="tb_1">
-                        ReDateOut
+                        DateOut
                     </td>
                     <td>
-                        : @Model.DateFinish
+                        : Null @*@Model.DateFinish*@
                     </td>
                 </tr>
             </tbody>
@@ -87,19 +95,17 @@
         <hr>
 
         <div style="text-align:left">
-
-            @Html.ActionLink(
-     "View Detail",                                                  // linkText
-     "Index",                                    // actionName
-     "TicketDetail",                                                   // routeValues
-     new { @ticket = @Model.TicketId }, null)
+            @*// linkText
+                // actionName
+                // routeValues*@
+            @Html.ActionLink("View Detail", "Index", "TicketDetail", new { @ticket = @Model.TicketId }, null)
 
         </div>
     </div>
-} else {
-    <div>
+                            } else {
+                                <div>
 
-        @ViewBag.ErrorChecksum
+                                    @ViewBag.ErrorChecksum
 
-    </div>
-}
+                                </div>
+                            }

@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SRMforCustomer.Helper;
 using SRMforCustomer.Models;
 
 namespace SRMforCustomer.Controllers {
     public class SearchController : Controller {
+
+        private readonly ServiceConnectDB service;
+
+        public SearchController() {
+            this.service = new ServiceConnectDB();
+        }
+
+
         // GET: Search
         public ActionResult Index() {
             return View();
@@ -19,20 +28,9 @@ namespace SRMforCustomer.Controllers {
                     if (Helper.Util.IsValidOTP(keyword) && keyword.Length == 7) {//checksum 9700156 (test)
 
                         //ยิงเซอร์วิสเอาข้อมูล 1model ยัดใส่ด้านล่าง
+                        Requests modelRequests = service.RequestsModelALL(ticketSearch); //check ยิงเซอวิสว่าผ่านไหม mockdata ไว้ (3852671)
 
-                        var selected = new Requests() {
-                            TicketId = 1000000,
-                            StatusId = 0,
-                            TopicName = "testSRMtopic : key : " + keyword + " : endKey ",
-                            CustomerName = "CustomerName Test",
-                            TelephoneNumber = "0900000000",
-                            Email = "panachai.ny@gmail.com",
-                            Remark = "adasdasd Detail it here",
-                            DateCreate = DateTime.Now,
-                            DateFinish = DateTime.Now,
-
-                        };
-                        return PartialView(selected);
+                        return PartialView(modelRequests);
                     } else {
                         ViewBag.ErrorChecksum = "Ticket ของท่านไม่ถูกต้อง";
                         return PartialView();

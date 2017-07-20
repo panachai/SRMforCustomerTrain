@@ -1,5 +1,6 @@
 ﻿@*using SRMforCustomer.Models*@
 
+@using System.Web.UI.HtmlControls
 @model SRMforCustomer.Models.Requests
 
 @{
@@ -44,6 +45,8 @@
         <div style="padding-top:20px;">
             <table>
                 <tbody>
+
+
                     <tr style="height:90px;">
                         <td width="50%">
                             <div style="text-align:left">@(DateTime.Now)</div>
@@ -53,6 +56,8 @@
                         </td>
                         <td></td>
                     </tr>
+
+
                     <tr style="height:90px;">
                         <td></td>
                         <td width="50%">
@@ -62,6 +67,8 @@
                             </div>
                         </td>
                     </tr>
+
+
                 </tbody>
             </table>
         </div>
@@ -69,17 +76,28 @@
             <div style="padding-top:25px;">
                 <table style="width:100%;">
                     <tbody>
-                        @*อาจจะต้องเขียน form ตรงนี้ครอบ Textarea และปุ่ม ส่ง เพื่อให้ส่งข้อมูลไปหลังบ้านได้ หรือ ใช้วิธียัดเข้า model แต่แค่ค่าๆเดียว อาจจะไม่สร้าง model by golf*@
-                        <tr>
-                            <td>
-                                <textarea class="form-control" style="width:100%;height:100px "></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding-top:20px;">
-                                <button class="button" style="width:100%"> ส่ง </button>
-                            </td>
-                        </tr>
+
+
+                        @using (Html.BeginForm("SendComment", "TicketDetail")) {
+                            <tr>
+                                <td>
+                                    @*อาจจะต้องเขียน form ตรงนี้ครอบ Textarea และปุ่ม ส่ง เพื่อให้ส่งข้อมูลไปหลังบ้านได้ หรือ ใช้วิธียัดเข้า model แต่แค่ค่าๆเดียว อาจจะไม่สร้าง model by golf*@
+
+                                    @Html.TextArea("textComment", new { @class = "form-control", style = "height:100px;" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top: 20px;">
+                                    <button type="submit"></button>
+
+                                    @*<button class="button" style="width: 100%"> ส่ง </button>*@
+                                </td>
+                            </tr>
+
+                        }
+
+
+
                     </tbody>
                 </table>
             </div>
