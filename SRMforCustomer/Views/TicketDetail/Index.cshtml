@@ -86,16 +86,15 @@
                     <tbody>
                         <tr>
                             <td>
-                                @*อาจจะต้องเขียน form ตรงนี้ครอบ Textarea และปุ่ม ส่ง เพื่อให้ส่งข้อมูลไปหลังบ้านได้ หรือ ใช้วิธียัดเข้า model แต่แค่ค่าๆเดียว อาจจะไม่สร้าง model by golf*@
-
-                                @Html.TextArea("textComment", new { @class = "form-control", style = "height:100px;" })
+                                @*@"this.value = this.value.replace(/[^0-9]/g, '');"*@
+                                @Html.TextArea("textComment", new {@class = "form-control",
+                               style = "height:100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');",
+                               maxlength = "4000", minlength = "3", required = "required" })
                             </td>
                         </tr>
                         <tr>
                             <td style="padding-top: 20px;">
-                                <button type="submit">Send</button>
-
-                                @*<button class="button" style="width: 100%"> ส่ง </button>*@
+                                <button class="btn-danger" type="submit" style="outline:none">Send</button>
                             </td>
                         </tr>
                     </tbody>
@@ -104,3 +103,7 @@
         }
     </div>
                         }
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
