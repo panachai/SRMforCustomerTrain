@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SRMforCustomer.Helper;
+using SRMforCustomer.Models;
 
 namespace SRMforCustomer.Controllers {
     public class TicketDetailController : Controller {
@@ -14,13 +16,11 @@ namespace SRMforCustomer.Controllers {
                 if (int.TryParse(ticket, out ticketSearch) && Helper.Util.IsValidOTP(ticket)) {
 
                     //ยิงเก็ทค่าจากเบส
-
-
-
-                    //show model
+                   Requests modelRequests = ServiceConnectDB.RequestsModelALL(3852671); //check ยิงเซอวิสว่าผ่านไหม mockdata ไว้ (3852671)
 
                     ViewBag.testTicket = ticket;
-                    return View();
+
+                    return View(modelRequests);
                 }
                 ViewBag.Message = "URL ของท่านผิดพลาดกรุณากลับไปค้นหาที่หน้า Search";
                 return View();

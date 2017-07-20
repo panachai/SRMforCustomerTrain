@@ -1,6 +1,6 @@
-﻿@using SRMforCustomer.Models
+﻿@*using SRMforCustomer.Models*@
 
-@*@model SRMforCustomer.Models.Requests*@
+@model SRMforCustomer.Models.Requests
 
 @{
     ViewBag.Title = "Index";
@@ -11,12 +11,13 @@
 
 <h2>Ticket Detail Index</h2>
 
-@if (@ViewBag.Message != null) {
+@if (@ViewBag.Message != null && Model == null) { //เดี๋ยวเอา Viewbag ออก
     string message = ViewBag.Message;
     <h3>@Html.ActionLink(message, "", "Search")</h3>
+
 } else {
     <h3>TicketID : @ViewBag.testTicket</h3>
-
+    <h3>from db : @Model.TicketId</h3>
 
     //เขียน layout ในนี้เลย
 
@@ -31,8 +32,8 @@
                     <td style="text-align:right">@(DateTime.Now)</td>
                 </tr>
                 <tr>
-                    <td class="">Title Name :</td>
-                    <td class="">ประเภทการร้องขอ</td>
+                    <td class="">Title Name : </td>
+                    <td class="">ประเภทการร้องขอ : @Model.RequestTypeId</td>
                 </tr>
                 <tr>
                     <td class="">Tel :</td>
