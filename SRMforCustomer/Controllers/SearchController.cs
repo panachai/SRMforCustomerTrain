@@ -39,7 +39,6 @@ namespace SRMforCustomer.Controllers {
                     return PartialView();
                 }
             }
-            ViewBag.ErrorChecksum = "โปรดป้อนข้อมูล";
             return PartialView();
         }
 

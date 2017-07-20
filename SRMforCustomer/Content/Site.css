@@ -93,4 +93,6 @@ body .field-validation-error {
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 10px;
     padding: 15px;
+    display: inline-block;
+    word-wrap: break-word;
 }

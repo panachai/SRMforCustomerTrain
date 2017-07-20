@@ -50,23 +50,22 @@
                         //int i = 1;
                         for (int i = 0; i < listComment.Count; i++) {
 
-                            if (@listComment[i].StaffId != null) {
-
+                            if (@listComment[i].StaffId != null) { //staff
                                 <tr style="height:90px;">
                                     <td></td>
                                     <td width="50%">
                                         <div style="text-align:right">@listComment[i].DateCreate</div>
-                                        <div class="chat">
+                                        <div class="chat" style="word-wrap: break-word; display: inline-block;">
                                             @listComment[i].TextComment
                                         </div>
                                     </td>
                                 </tr>
 
-                            } else {
+                            } else { //customer
                                 <tr style="height: 90px;">
                                     <td width="50%">
                                         <div style="text-align: left">@listComment[i].DateCreate</div>
-                                        <div class="chat">
+                                        <div class="chat" style="word-wrap: break-word; display: inline-block;">
                                             @listComment[i].TextComment
                                         </div>
                                     </td>
@@ -74,7 +73,6 @@
                                 </tr>
                             }
                         }
-
                     }
                 </tbody>
             </table>
@@ -87,9 +85,11 @@
                         <tr>
                             <td>
                                 @*@"this.value = this.value.replace(/[^0-9]/g, '');"*@
-                                @Html.TextArea("textComment", new {@class = "form-control",
+                                @Html.TextArea("textComment", new {
+                               @class = "form-control",
                                style = "height:100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');",
-                               maxlength = "4000", minlength = "3", required = "required" })
+                               maxlength = "4000", minlength = "3", required = "required"
+                           })
                             </td>
                         </tr>
                         <tr>
