@@ -1,6 +1,7 @@
 ﻿@*using SRMforCustomer.Models*@
 
 @using System.Web.UI.HtmlControls
+@using SRMforCustomer.Models
 @model SRMforCustomer.Models.Requests
 
 @{
@@ -44,40 +45,45 @@
         <div style="padding-top:20px;">
             <table>
                 <tbody>
+                    @{
+                        List<Comments> listComment = ViewBag.listComment;
+                        //int i = 1;
+                        for (int i = 0; i < listComment.Count; i++) {
 
+                            if (@listComment[i].StaffId != null) {
 
-                    <tr style="height:90px;">
-                        <td width="50%">
-                            <div style="text-align:left">@(DateTime.Now)</div>
-                            <div class="chat">
-                                ทดลองการพิมพ์ ของตัวเองดูวาจะออกมาเป้นอย่างวไร
-                            </div>
-                        </td>
-                        <td></td>
-                    </tr>
+                                <tr style="height:90px;">
+                                    <td></td>
+                                    <td width="50%">
+                                        <div style="text-align:right">@listComment[i].DateCreate</div>
+                                        <div class="chat">
+                                            @listComment[i].TextComment
+                                        </div>
+                                    </td>
+                                </tr>
 
+                            } else {
+                                <tr style="height: 90px;">
+                                    <td width="50%">
+                                        <div style="text-align: left">@listComment[i].DateCreate</div>
+                                        <div class="chat">
+                                            @listComment[i].TextComment
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
 
-                    <tr style="height:90px;">
-                        <td></td>
-                        <td width="50%">
-                            <div style="text-align:right">@(DateTime.Now)</div>
-                            <div class="chat">
-                                ทดลองการพิมพ์ ของตัวเองดูวาจะออกมาเป้นอย่างวไร
-                            </div>
-                        </td>
-                    </tr>
-
-
+                    }
                 </tbody>
             </table>
         </div>
+        @*@using (Html.BeginForm("SendComment", "TicketDetail", new { modelRequest = Model }, FormMethod.Post)) {*@
         @using (Html.BeginForm("SendComment", "TicketDetail", new { ticket = Model.TicketId }, FormMethod.Post)) {
             <div style="padding-top:25px;">
                 <table style="width:100%;">
                     <tbody>
-
-
-
                         <tr>
                             <td>
                                 @*อาจจะต้องเขียน form ตรงนี้ครอบ Textarea และปุ่ม ส่ง เพื่อให้ส่งข้อมูลไปหลังบ้านได้ หรือ ใช้วิธียัดเข้า model แต่แค่ค่าๆเดียว อาจจะไม่สร้าง model by golf*@
@@ -92,14 +98,9 @@
                                 @*<button class="button" style="width: 100%"> ส่ง </button>*@
                             </td>
                         </tr>
-
-
-
-
-
                     </tbody>
                 </table>
             </div>
         }
     </div>
-}
+                        }

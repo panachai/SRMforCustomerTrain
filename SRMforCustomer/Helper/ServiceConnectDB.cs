@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 using SRMforCustomer.Models;
@@ -16,11 +17,28 @@ namespace SRMforCustomer.Helper {
                 return req;
             }
         }
+
         public List<Comments> CommentsModelformTicket(int ticket) {
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-               var req = db.Comments.Where(s => s.CommentsId == ticket).ToList();
+                var req = db.Comments.Where(s => s.TicketId == ticket).ToList();
                 return req;
             }
+        }
+
+        public Boolean InsertComment(Comments model) {
+
+            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+                var comment = new Comments();
+                comment = model;
+                db.Comments.Add(comment);
+                db.SaveChanges();
+
+                return true;
+            }
+
+            //true false รอเงื่อนไขว่า check database ยังไงถ้าทำงานไม่ผิดพลาด
+
+            return false;
         }
 
     }

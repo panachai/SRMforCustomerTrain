@@ -45,12 +45,34 @@ namespace SRMforCustomer.Controllers {
         }
 
         [Route("SendComment/{ticket}")]
-        public ActionResult SendComment(string ticket,string textComment) {
-            var s = textComment;
-            var ticksss = ticket;
+        public ActionResult SendComment(string ticket, int? staffId, string textComment) {
+            Comments commentModel;
 
+            Requests modelRequest = service.RequestsModelALL(Int32.Parse(ticket));
 
-            return RedirectToAction("Index", new {ticket = ticket});
+            if (staffId == null) {//User
+                commentModel = new Comments() {
+                    //CommentsId = modelRequest.
+                    TicketId = modelRequest.TicketId
+                    ,Name = "-"
+                    ,DateCreate = DateTime.Now
+                    ,CreatedBy = modelRequest.CustomerName
+                    ,TextComment = textComment
+                };
+            }
+            else { //Staff
+                commentModel = new Comments() {
+                    //CommentsId = modelRequest.
+                    TicketId = modelRequest.TicketId
+                    , StaffId = staffId
+                    //, Name
+                    //,DateCreate
+                    //,CreatedBy
+                    //,TextComment
+                };
+            }
+            var check = service.InsertComment(commentModel);
+            return RedirectToAction("Index", new {ticket = modelRequest.TicketId});
         }
 
     }

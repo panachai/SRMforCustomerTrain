@@ -23,7 +23,7 @@
           <Key>
             <PropertyRef Name="CommentsId" />
           </Key>
-          <Property Name="CommentsId" Type="int" Nullable="false" />
+          <Property Name="CommentsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TicketId" Type="int" Nullable="false" />
           <Property Name="StaffId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -198,26 +198,13 @@
       <Schema Namespace="SRMForCustomerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SRMForCustomerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Attachments" EntityType="SRMForCustomerModel.Attachments" />
-          <EntitySet Name="Comments" EntityType="SRMForCustomerModel.Comments" />
           <EntitySet Name="Requests" EntityType="SRMForCustomerModel.Requests" />
           <EntitySet Name="RequestType" EntityType="SRMForCustomerModel.RequestType" />
           <EntitySet Name="Staff" EntityType="SRMForCustomerModel.Staff" />
           <EntitySet Name="Statuses" EntityType="SRMForCustomerModel.Statuses" />
-          <AssociationSet Name="FK_Attachments_Comments" Association="SRMForCustomerModel.FK_Attachments_Comments">
-            <End Role="Comments" EntitySet="Comments" />
-            <End Role="Attachments" EntitySet="Attachments" />
-          </AssociationSet>
           <AssociationSet Name="FK_Attachments_Requests" Association="SRMForCustomerModel.FK_Attachments_Requests">
             <End Role="Requests" EntitySet="Requests" />
             <End Role="Attachments" EntitySet="Attachments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comments_Requests" Association="SRMForCustomerModel.FK_Comments_Requests">
-            <End Role="Requests" EntitySet="Requests" />
-            <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comments_Staff" Association="SRMForCustomerModel.FK_Comments_Staff">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
           <AssociationSet Name="FK_Requests_Staff" Association="SRMForCustomerModel.FK_Requests_Staff">
             <End Role="Staff" EntitySet="Staff" />
@@ -230,6 +217,19 @@
           <AssociationSet Name="FK_Requests_TypeRequests" Association="SRMForCustomerModel.FK_Requests_TypeRequests">
             <End Role="RequestType" EntitySet="RequestType" />
             <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <EntitySet Name="Comments" EntityType="SRMForCustomerModel.Comments" />
+          <AssociationSet Name="FK_Attachments_Comments" Association="SRMForCustomerModel.FK_Attachments_Comments">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="Attachments" EntitySet="Attachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Requests" Association="SRMForCustomerModel.FK_Comments_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Staff" Association="SRMForCustomerModel.FK_Comments_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Attachments">
@@ -245,23 +245,8 @@
           <Property Name="AttachmentFileName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
           <Property Name="AttachmentFileExtension" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="AttachmentSize" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Attachments_Comments" FromRole="Attachments" ToRole="Comments" />
           <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Attachments_Requests" FromRole="Attachments" ToRole="Requests" />
-        </EntityType>
-        <EntityType Name="Comments">
-          <Key>
-            <PropertyRef Name="CommentsId" />
-          </Key>
-          <Property Name="CommentsId" Type="Int32" Nullable="false" />
-          <Property Name="TicketId" Type="Int32" Nullable="false" />
-          <Property Name="StaffId" Type="Int32" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TextComment" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Attachments" Relationship="SRMForCustomerModel.FK_Attachments_Comments" FromRole="Comments" ToRole="Attachments" />
-          <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Comments_Requests" FromRole="Comments" ToRole="Requests" />
-          <NavigationProperty Name="Staff" Relationship="SRMForCustomerModel.FK_Comments_Staff" FromRole="Comments" ToRole="Staff" />
+          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Attachments_Comments" FromRole="Attachments" ToRole="Comments" />
         </EntityType>
         <EntityType Name="Requests">
           <Key>
@@ -280,10 +265,10 @@
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateFinish" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Attachments" Relationship="SRMForCustomerModel.FK_Attachments_Requests" FromRole="Requests" ToRole="Attachments" />
-          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Comments_Requests" FromRole="Requests" ToRole="Comments" />
           <NavigationProperty Name="Staff" Relationship="SRMForCustomerModel.FK_Requests_Staff" FromRole="Requests" ToRole="Staff" />
           <NavigationProperty Name="Statuses" Relationship="SRMForCustomerModel.FK_Requests_Statuses" FromRole="Requests" ToRole="Statuses" />
           <NavigationProperty Name="RequestType" Relationship="SRMForCustomerModel.FK_Requests_TypeRequests" FromRole="Requests" ToRole="RequestType" />
+          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Comments_Requests" FromRole="Requests" ToRole="Comments" />
         </EntityType>
         <EntityType Name="RequestType">
           <Key>
@@ -300,8 +285,8 @@
           <Property Name="StaffId" Type="Int32" Nullable="false" />
           <Property Name="StaffName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="StaffPosition" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Comments_Staff" FromRole="Staff" ToRole="Comments" />
           <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Requests_Staff" FromRole="Staff" ToRole="Requests" />
+          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Comments_Staff" FromRole="Staff" ToRole="Comments" />
         </EntityType>
         <EntityType Name="Statuses">
           <Key>
@@ -313,18 +298,6 @@
           <Property Name="AfterStatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Requests_Statuses" FromRole="Statuses" ToRole="Requests" />
         </EntityType>
-        <Association Name="FK_Attachments_Comments">
-          <End Type="SRMForCustomerModel.Comments" Role="Comments" Multiplicity="0..1" />
-          <End Type="SRMForCustomerModel.Attachments" Role="Attachments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Comments">
-              <PropertyRef Name="CommentsId" />
-            </Principal>
-            <Dependent Role="Attachments">
-              <PropertyRef Name="CommentsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Attachments_Requests">
           <End Type="SRMForCustomerModel.Requests" Role="Requests" Multiplicity="1" />
           <End Type="SRMForCustomerModel.Attachments" Role="Attachments" Multiplicity="*" />
@@ -334,30 +307,6 @@
             </Principal>
             <Dependent Role="Attachments">
               <PropertyRef Name="TicketId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Comments_Requests">
-          <End Type="SRMForCustomerModel.Requests" Role="Requests" Multiplicity="1" />
-          <End Type="SRMForCustomerModel.Comments" Role="Comments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Requests">
-              <PropertyRef Name="TicketId" />
-            </Principal>
-            <Dependent Role="Comments">
-              <PropertyRef Name="TicketId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Comments_Staff">
-          <End Type="SRMForCustomerModel.Staff" Role="Staff" Multiplicity="0..1" />
-          <End Type="SRMForCustomerModel.Comments" Role="Comments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Staff">
-              <PropertyRef Name="StaffId" />
-            </Principal>
-            <Dependent Role="Comments">
-              <PropertyRef Name="StaffId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -397,6 +346,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="CommentsId" />
+          </Key>
+          <Property Name="CommentsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TicketId" Type="Int32" Nullable="false" />
+          <Property Name="StaffId" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TextComment" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Attachments" Relationship="SRMForCustomerModel.FK_Attachments_Comments" FromRole="Comments" ToRole="Attachments" />
+          <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Comments_Requests" FromRole="Comments" ToRole="Requests" />
+          <NavigationProperty Name="Staff" Relationship="SRMForCustomerModel.FK_Comments_Staff" FromRole="Comments" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_Attachments_Comments">
+          <End Type="SRMForCustomerModel.Comments" Role="Comments" Multiplicity="0..1" />
+          <End Type="SRMForCustomerModel.Attachments" Role="Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="CommentsId" />
+            </Principal>
+            <Dependent Role="Attachments">
+              <PropertyRef Name="CommentsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Requests">
+          <End Type="SRMForCustomerModel.Requests" Role="Requests" Multiplicity="1" />
+          <End Type="SRMForCustomerModel.Comments" Role="Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="TicketId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="TicketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Staff">
+          <End Type="SRMForCustomerModel.Staff" Role="Staff" Multiplicity="0..1" />
+          <End Type="SRMForCustomerModel.Comments" Role="Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -415,19 +415,6 @@
                 <ScalarProperty Name="TicketId" ColumnName="TicketId" />
                 <ScalarProperty Name="AttachmentNo" ColumnName="AttachmentNo" />
                 <ScalarProperty Name="AttachmentId" ColumnName="AttachmentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="SRMForCustomerModel.Comments">
-              <MappingFragment StoreEntitySet="Comments">
-                <ScalarProperty Name="TextComment" ColumnName="TextComment" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
-                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
-                <ScalarProperty Name="CommentsId" ColumnName="CommentsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -473,6 +460,19 @@
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
                 <ScalarProperty Name="StatusType" ColumnName="StatusType" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="SRMForCustomerModel.Comments">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="TextComment" ColumnName="TextComment" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
+                <ScalarProperty Name="CommentsId" ColumnName="CommentsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
