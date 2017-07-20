@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using SRMforCustomer.Models;
@@ -7,16 +8,20 @@ using SRMforCustomer.Models;
 
 namespace SRMforCustomer.Helper {
     public class ServiceConnectDB {
-        private static SRMForCustomerEntities1 db = new SRMForCustomerEntities1();
 
-        public static Requests RequestsModelALL(int ticket) {
+        public Requests RequestsModelALL(int ticket) {
+            //var req = db.Requests.SingleOrDefault(s => s.TicketId == ticket);
+            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+                var req = db.Requests.Include(i => i.Statuses).Include(i => i.RequestType).Single(s => s.TicketId == ticket);
+                return req;
+            }
 
-            //int ticketSearch =  Int32.Parse(ticket);
-
-            var req = db.Requests.SingleOrDefault(s => s.TicketId == ticket);
-
-            return req;
         }
+
+
+
+
+
 
     }
 }

@@ -8,6 +8,13 @@ using SRMforCustomer.Models;
 
 namespace SRMforCustomer.Controllers {
     public class TicketDetailController : Controller {
+
+        private readonly ServiceConnectDB service;
+
+        public TicketDetailController() {
+            this.service = new ServiceConnectDB();
+        }
+
         // GET: TicketDetail
         public ActionResult Index(string ticket) {
             int ticketSearch;
@@ -16,7 +23,11 @@ namespace SRMforCustomer.Controllers {
                 if (int.TryParse(ticket, out ticketSearch) && Helper.Util.IsValidOTP(ticket)) {
 
                     //ยิงเก็ทค่าจากเบส
-                   Requests modelRequests = ServiceConnectDB.RequestsModelALL(3852671); //check ยิงเซอวิสว่าผ่านไหม mockdata ไว้ (3852671)
+                    Requests modelRequests = service.RequestsModelALL(ticketSearch); //check ยิงเซอวิสว่าผ่านไหม mockdata ไว้ (3852671)
+
+                    //ยิงเรียก Comment
+
+
 
                     ViewBag.testTicket = ticket;
 

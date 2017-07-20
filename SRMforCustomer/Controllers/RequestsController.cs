@@ -14,7 +14,7 @@ namespace SRMforCustomer.Controllers {
     public class RequestsController : Controller {
         // GET: Requests
         public ActionResult Index() {
-            using (SRMForCustomerEntities1 db = new SRMForCustomerEntities1()) {
+            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
                 ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
             }
             return View();
@@ -37,7 +37,7 @@ namespace SRMforCustomer.Controllers {
                 modelRequests.TopicName = "-";
 
                 InsertRequests(modelRequests);
-                using (SRMForCustomerEntities1 db = new SRMForCustomerEntities1()) {
+                using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
                     //var reqType = db.RequestType.SingleOrDefault(s => s.RequestTypeId == modelRequests.RequestTypeId);
                     //modelRequests.RequestType = reqType;
                     db.Configuration.ProxyCreationEnabled = false;
@@ -56,7 +56,7 @@ namespace SRMforCustomer.Controllers {
         }
 
         public void InsertRequests(Requests model) {
-            using (SRMForCustomerEntities1 db = new SRMForCustomerEntities1()) {
+            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
                 db.Requests.Add(model);
                 db.SaveChanges();
             }

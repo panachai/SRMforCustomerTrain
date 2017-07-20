@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3192c2473fb04098ab0b8b55fad7e500" Name="Diagram1">
-        <EntityTypeShape EntityType="SRMForCustomerModel.Comments" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SRMForCustomerModel.Requests" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SRMForCustomerModel.RequestType" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SRMForCustomerModel.Staff" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SRMForCustomerModel.Statuses" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SRMForCustomerModel.Attachments" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Comments" ManuallyRouted="false" />
-        <AssociationConnector Association="SRMForCustomerModel.FK_Comments_Requests" ManuallyRouted="false" />
-        <AssociationConnector Association="SRMForCustomerModel.FK_Comments_Staff" ManuallyRouted="false" />
-        <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Requests" ManuallyRouted="false" />
-        <AssociationConnector Association="SRMForCustomerModel.FK_Requests_Staff" ManuallyRouted="false" />
-        <AssociationConnector Association="SRMForCustomerModel.FK_Requests_Statuses" ManuallyRouted="false" />
-        <AssociationConnector Association="SRMForCustomerModel.FK_Requests_TypeRequests" ManuallyRouted="false" />
+      <Diagram DiagramId="3d3aff8325744b7288acada7f5d7ea92" Name="Diagram1">
+        <EntityTypeShape EntityType="SRMForCustomerModel.Attachments" Width="1.5" PointX="7.5" PointY="3.75" />
+        <EntityTypeShape EntityType="SRMForCustomerModel.Comments" Width="1.5" PointX="5.25" PointY="3.875" />
+        <EntityTypeShape EntityType="SRMForCustomerModel.Requests" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="SRMForCustomerModel.RequestType" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="SRMForCustomerModel.Staff" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="SRMForCustomerModel.Statuses" Width="1.5" PointX="0.75" PointY="7.5" />
+        <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Comments" />
+        <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Requests" />
+        <AssociationConnector Association="SRMForCustomerModel.FK_Comments_Requests" />
+        <AssociationConnector Association="SRMForCustomerModel.FK_Comments_Staff" />
+        <AssociationConnector Association="SRMForCustomerModel.FK_Requests_Staff" />
+        <AssociationConnector Association="SRMForCustomerModel.FK_Requests_Statuses" />
+        <AssociationConnector Association="SRMForCustomerModel.FK_Requests_TypeRequests" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

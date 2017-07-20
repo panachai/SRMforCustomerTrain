@@ -4,19 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SRMForCustomerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+    <Schema Namespace="SRMForCustomerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Attachments">
           <Key>
             <PropertyRef Name="AttachmentId" />
-            <PropertyRef Name="AttachmentNo" />
-            <PropertyRef Name="TicketId" />
-            <PropertyRef Name="AttachmentFile" />
-            <PropertyRef Name="AttachmentMimeType" />
-            <PropertyRef Name="AttachmentFileName" />
-            <PropertyRef Name="AttachmentFileExtension" />
-            <PropertyRef Name="AttachmentSize" />
           </Key>
           <Property Name="AttachmentId" Type="int" Nullable="false" />
           <Property Name="AttachmentNo" Type="int" Nullable="false" />
@@ -53,7 +44,7 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
           <Property Name="TelephoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="2000" Nullable="false" />
-          <Property Name="CurrentStaffId" Type="int" Nullable="false" />
+          <Property Name="CurrentStaffId" Type="int" />
           <Property Name="DateCreate" Type="datetime" Nullable="false" />
           <Property Name="DateFinish" Type="datetime" />
         </EntityType>
@@ -142,14 +133,14 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Requests_Statuses">
-          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
+          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
           <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Statuses">
               <PropertyRef Name="StatusId" />
             </Principal>
             <Dependent Role="Requests">
-              <PropertyRef Name="StaffId" />
+              <PropertyRef Name="StatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -166,24 +157,12 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SRMForCustomerModelStoreContainer">
+          <EntitySet Name="Attachments" EntityType="Self.Attachments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RequestType" EntityType="Self.RequestType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Attachments" EntityType="Self.Attachments" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Attachments].[AttachmentId] AS [AttachmentId], 
-    [Attachments].[AttachmentNo] AS [AttachmentNo], 
-    [Attachments].[TicketId] AS [TicketId], 
-    [Attachments].[CommentsId] AS [CommentsId], 
-    [Attachments].[AttachmentFile] AS [AttachmentFile], 
-    [Attachments].[AttachmentMimeType] AS [AttachmentMimeType], 
-    [Attachments].[AttachmentFileName] AS [AttachmentFileName], 
-    [Attachments].[AttachmentFileExtension] AS [AttachmentFileExtension], 
-    [Attachments].[AttachmentSize] AS [AttachmentSize]
-    FROM [dbo].[Attachments] AS [Attachments]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Attachments_Comments" Association="Self.FK_Attachments_Comments">
             <End Role="Comments" EntitySet="Comments" />
             <End Role="Attachments" EntitySet="Attachments" />
@@ -213,11 +192,62 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
             <End Role="Requests" EntitySet="Requests" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SRMForCustomerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SRMForCustomerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Attachments" EntityType="SRMForCustomerModel.Attachments" />
+          <EntitySet Name="Comments" EntityType="SRMForCustomerModel.Comments" />
+          <EntitySet Name="Requests" EntityType="SRMForCustomerModel.Requests" />
+          <EntitySet Name="RequestType" EntityType="SRMForCustomerModel.RequestType" />
+          <EntitySet Name="Staff" EntityType="SRMForCustomerModel.Staff" />
+          <EntitySet Name="Statuses" EntityType="SRMForCustomerModel.Statuses" />
+          <AssociationSet Name="FK_Attachments_Comments" Association="SRMForCustomerModel.FK_Attachments_Comments">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="Attachments" EntitySet="Attachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attachments_Requests" Association="SRMForCustomerModel.FK_Attachments_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Attachments" EntitySet="Attachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Requests" Association="SRMForCustomerModel.FK_Comments_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Staff" Association="SRMForCustomerModel.FK_Comments_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Staff" Association="SRMForCustomerModel.FK_Requests_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Statuses" Association="SRMForCustomerModel.FK_Requests_Statuses">
+            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_TypeRequests" Association="SRMForCustomerModel.FK_Requests_TypeRequests">
+            <End Role="RequestType" EntitySet="RequestType" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Attachments">
+          <Key>
+            <PropertyRef Name="AttachmentId" />
+          </Key>
+          <Property Name="AttachmentId" Type="Int32" Nullable="false" />
+          <Property Name="AttachmentNo" Type="Int32" Nullable="false" />
+          <Property Name="TicketId" Type="Int32" Nullable="false" />
+          <Property Name="CommentsId" Type="Int32" />
+          <Property Name="AttachmentFile" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="AttachmentMimeType" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentFileName" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentFileExtension" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AttachmentSize" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Attachments_Comments" FromRole="Attachments" ToRole="Comments" />
+          <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Attachments_Requests" FromRole="Attachments" ToRole="Requests" />
+        </EntityType>
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="CommentsId" />
@@ -225,13 +255,13 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
           <Property Name="CommentsId" Type="Int32" Nullable="false" />
           <Property Name="TicketId" Type="Int32" Nullable="false" />
           <Property Name="StaffId" Type="Int32" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TextComment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Attachments" Relationship="Self.FK_Attachments_Comments" FromRole="Comments" ToRole="Attachments" />
-          <NavigationProperty Name="Requests" Relationship="Self.FK_Comments_Requests" FromRole="Comments" ToRole="Requests" />
-          <NavigationProperty Name="Staff" Relationship="Self.FK_Comments_Staff" FromRole="Comments" ToRole="Staff" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TextComment" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Attachments" Relationship="SRMForCustomerModel.FK_Attachments_Comments" FromRole="Comments" ToRole="Attachments" />
+          <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Comments_Requests" FromRole="Comments" ToRole="Requests" />
+          <NavigationProperty Name="Staff" Relationship="SRMForCustomerModel.FK_Comments_Staff" FromRole="Comments" ToRole="Staff" />
         </EntityType>
         <EntityType Name="Requests">
           <Key>
@@ -241,74 +271,51 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
           <Property Name="RequestTypeId" Type="Int32" Nullable="false" />
           <Property Name="StaffId" Type="Int32" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="TopicName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TelephoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Remark" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CurrentStaffId" Type="Int32" Nullable="false" />
+          <Property Name="TopicName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentStaffId" Type="Int32" />
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateFinish" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Requests" FromRole="Requests" ToRole="Comments" />
-          <NavigationProperty Name="Attachments" Relationship="Self.FK_Attachments_Requests" FromRole="Requests" ToRole="Attachments" />
-          <NavigationProperty Name="Staff" Relationship="Self.FK_Requests_Staff" FromRole="Requests" ToRole="Staff" />
-          <NavigationProperty Name="Statuses" Relationship="Self.FK_Requests_Statuses" FromRole="Requests" ToRole="Statuses" />
-          <NavigationProperty Name="RequestType" Relationship="Self.FK_Requests_TypeRequests" FromRole="Requests" ToRole="RequestType" />
+          <NavigationProperty Name="Attachments" Relationship="SRMForCustomerModel.FK_Attachments_Requests" FromRole="Requests" ToRole="Attachments" />
+          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Comments_Requests" FromRole="Requests" ToRole="Comments" />
+          <NavigationProperty Name="Staff" Relationship="SRMForCustomerModel.FK_Requests_Staff" FromRole="Requests" ToRole="Staff" />
+          <NavigationProperty Name="Statuses" Relationship="SRMForCustomerModel.FK_Requests_Statuses" FromRole="Requests" ToRole="Statuses" />
+          <NavigationProperty Name="RequestType" Relationship="SRMForCustomerModel.FK_Requests_TypeRequests" FromRole="Requests" ToRole="RequestType" />
         </EntityType>
         <EntityType Name="RequestType">
           <Key>
             <PropertyRef Name="RequestTypeId" />
           </Key>
           <Property Name="RequestTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_TypeRequests" FromRole="RequestType" ToRole="Requests" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Requests_TypeRequests" FromRole="RequestType" ToRole="Requests" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
             <PropertyRef Name="StaffId" />
           </Key>
           <Property Name="StaffId" Type="Int32" Nullable="false" />
-          <Property Name="StaffName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StaffPosition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Staff" FromRole="Staff" ToRole="Comments" />
-          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Staff" FromRole="Staff" ToRole="Requests" />
+          <Property Name="StaffName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StaffPosition" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Comments_Staff" FromRole="Staff" ToRole="Comments" />
+          <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Requests_Staff" FromRole="Staff" ToRole="Requests" />
         </EntityType>
         <EntityType Name="Statuses">
           <Key>
             <PropertyRef Name="StatusId" />
           </Key>
           <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="StatusType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AfterStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Requests" Relationship="Self.FK_Requests_Statuses" FromRole="Statuses" ToRole="Requests" />
-        </EntityType>
-        <EntityType Name="Attachments">
-          <Key>
-            <PropertyRef Name="AttachmentId" />
-            <PropertyRef Name="AttachmentNo" />
-            <PropertyRef Name="TicketId" />
-            <PropertyRef Name="AttachmentFile" />
-            <PropertyRef Name="AttachmentMimeType" />
-            <PropertyRef Name="AttachmentFileName" />
-            <PropertyRef Name="AttachmentFileExtension" />
-            <PropertyRef Name="AttachmentSize" />
-          </Key>
-          <Property Name="AttachmentId" Type="Int32" Nullable="false" />
-          <Property Name="AttachmentNo" Type="Int32" Nullable="false" />
-          <Property Name="TicketId" Type="Int32" Nullable="false" />
-          <Property Name="CommentsId" Type="Int32" />
-          <Property Name="AttachmentFile" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="AttachmentMimeType" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AttachmentFileName" Type="String" MaxLength="512" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AttachmentFileExtension" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AttachmentSize" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Comments" Relationship="Self.FK_Attachments_Comments" FromRole="Attachments" ToRole="Comments" />
-          <NavigationProperty Name="Requests" Relationship="Self.FK_Attachments_Requests" FromRole="Attachments" ToRole="Requests" />
+          <Property Name="StatusType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AfterStatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Requests_Statuses" FromRole="Statuses" ToRole="Requests" />
         </EntityType>
         <Association Name="FK_Attachments_Comments">
-          <End Role="Comments" Type="Self.Comments" Multiplicity="0..1" />
-          <End Role="Attachments" Type="Self.Attachments" Multiplicity="*" />
+          <End Type="SRMForCustomerModel.Comments" Role="Comments" Multiplicity="0..1" />
+          <End Type="SRMForCustomerModel.Attachments" Role="Attachments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comments">
               <PropertyRef Name="CommentsId" />
@@ -318,9 +325,21 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Attachments_Requests">
+          <End Type="SRMForCustomerModel.Requests" Role="Requests" Multiplicity="1" />
+          <End Type="SRMForCustomerModel.Attachments" Role="Attachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="TicketId" />
+            </Principal>
+            <Dependent Role="Attachments">
+              <PropertyRef Name="TicketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Comments_Requests">
-          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
-          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <End Type="SRMForCustomerModel.Requests" Role="Requests" Multiplicity="1" />
+          <End Type="SRMForCustomerModel.Comments" Role="Comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Requests">
               <PropertyRef Name="TicketId" />
@@ -331,8 +350,8 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comments_Staff">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
-          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <End Type="SRMForCustomerModel.Staff" Role="Staff" Multiplicity="0..1" />
+          <End Type="SRMForCustomerModel.Comments" Role="Comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Staff">
               <PropertyRef Name="StaffId" />
@@ -342,21 +361,9 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Attachments_Requests">
-          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
-          <End Role="Attachments" Type="Self.Attachments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Requests">
-              <PropertyRef Name="TicketId" />
-            </Principal>
-            <Dependent Role="Attachments">
-              <PropertyRef Name="TicketId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Requests_Staff">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
-          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <End Type="SRMForCustomerModel.Staff" Role="Staff" Multiplicity="0..1" />
+          <End Type="SRMForCustomerModel.Requests" Role="Requests" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Staff">
               <PropertyRef Name="StaffId" />
@@ -367,20 +374,20 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Requests_Statuses">
-          <End Role="Statuses" Type="Self.Statuses" Multiplicity="0..1" />
-          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <End Type="SRMForCustomerModel.Statuses" Role="Statuses" Multiplicity="1" />
+          <End Type="SRMForCustomerModel.Requests" Role="Requests" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Statuses">
               <PropertyRef Name="StatusId" />
             </Principal>
             <Dependent Role="Requests">
-              <PropertyRef Name="StaffId" />
+              <PropertyRef Name="StatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Requests_TypeRequests">
-          <End Role="RequestType" Type="Self.RequestType" Multiplicity="1" />
-          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <End Type="SRMForCustomerModel.RequestType" Role="RequestType" Multiplicity="1" />
+          <End Type="SRMForCustomerModel.Requests" Role="Requests" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RequestType">
               <PropertyRef Name="RequestTypeId" />
@@ -390,118 +397,82 @@ warning 6002: The table/view 'SRMForCustomer.dbo.Attachments' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SRMForCustomerEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Comments" EntityType="Self.Comments" />
-          <EntitySet Name="Requests" EntityType="Self.Requests" />
-          <EntitySet Name="RequestType" EntityType="Self.RequestType" />
-          <EntitySet Name="Staff" EntityType="Self.Staff" />
-          <EntitySet Name="Statuses" EntityType="Self.Statuses" />
-          <EntitySet Name="Attachments" EntityType="Self.Attachments" />
-          <AssociationSet Name="FK_Attachments_Comments" Association="Self.FK_Attachments_Comments">
-            <End Role="Comments" EntitySet="Comments" />
-            <End Role="Attachments" EntitySet="Attachments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comments_Requests" Association="Self.FK_Comments_Requests">
-            <End Role="Requests" EntitySet="Requests" />
-            <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comments_Staff" Association="Self.FK_Comments_Staff">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="Comments" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Attachments_Requests" Association="Self.FK_Attachments_Requests">
-            <End Role="Requests" EntitySet="Requests" />
-            <End Role="Attachments" EntitySet="Attachments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Requests_Staff" Association="Self.FK_Requests_Staff">
-            <End Role="Staff" EntitySet="Staff" />
-            <End Role="Requests" EntitySet="Requests" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Requests_Statuses" Association="Self.FK_Requests_Statuses">
-            <End Role="Statuses" EntitySet="Statuses" />
-            <End Role="Requests" EntitySet="Requests" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Requests_TypeRequests" Association="Self.FK_Requests_TypeRequests">
-            <End Role="RequestType" EntitySet="RequestType" />
-            <End Role="Requests" EntitySet="Requests" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SRMForCustomerModelStoreContainer" CdmEntityContainer="SRMForCustomerEntities1">
+        <EntityContainerMapping StorageEntityContainer="SRMForCustomerModelStoreContainer" CdmEntityContainer="SRMForCustomerEntities">
+          <EntitySetMapping Name="Attachments">
+            <EntityTypeMapping TypeName="SRMForCustomerModel.Attachments">
+              <MappingFragment StoreEntitySet="Attachments">
+                <ScalarProperty Name="AttachmentSize" ColumnName="AttachmentSize" />
+                <ScalarProperty Name="AttachmentFileExtension" ColumnName="AttachmentFileExtension" />
+                <ScalarProperty Name="AttachmentFileName" ColumnName="AttachmentFileName" />
+                <ScalarProperty Name="AttachmentMimeType" ColumnName="AttachmentMimeType" />
+                <ScalarProperty Name="AttachmentFile" ColumnName="AttachmentFile" />
+                <ScalarProperty Name="CommentsId" ColumnName="CommentsId" />
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
+                <ScalarProperty Name="AttachmentNo" ColumnName="AttachmentNo" />
+                <ScalarProperty Name="AttachmentId" ColumnName="AttachmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="SRMForCustomerModel.Comments">
               <MappingFragment StoreEntitySet="Comments">
-                <ScalarProperty Name="CommentsId" ColumnName="CommentsId" />
-                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
-                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="TextComment" ColumnName="TextComment" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
+                <ScalarProperty Name="CommentsId" ColumnName="CommentsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Requests">
             <EntityTypeMapping TypeName="SRMForCustomerModel.Requests">
               <MappingFragment StoreEntitySet="Requests">
-                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
-                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
-                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="CurrentStaffId" ColumnName="CurrentStaffId" />
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
                 <ScalarProperty Name="DateFinish" ColumnName="DateFinish" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="CurrentStaffId" ColumnName="CurrentStaffId" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RequestType">
             <EntityTypeMapping TypeName="SRMForCustomerModel.RequestType">
               <MappingFragment StoreEntitySet="RequestType">
-                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Staff">
             <EntityTypeMapping TypeName="SRMForCustomerModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
-                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
-                <ScalarProperty Name="StaffName" ColumnName="StaffName" />
                 <ScalarProperty Name="StaffPosition" ColumnName="StaffPosition" />
+                <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Statuses">
             <EntityTypeMapping TypeName="SRMForCustomerModel.Statuses">
               <MappingFragment StoreEntitySet="Statuses">
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="StatusType" ColumnName="StatusType" />
-                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
                 <ScalarProperty Name="AfterStatusName" ColumnName="AfterStatusName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Attachments">
-            <EntityTypeMapping TypeName="SRMForCustomerModel.Attachments">
-              <MappingFragment StoreEntitySet="Attachments">
-                <ScalarProperty Name="AttachmentId" ColumnName="AttachmentId" />
-                <ScalarProperty Name="AttachmentNo" ColumnName="AttachmentNo" />
-                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
-                <ScalarProperty Name="CommentsId" ColumnName="CommentsId" />
-                <ScalarProperty Name="AttachmentFile" ColumnName="AttachmentFile" />
-                <ScalarProperty Name="AttachmentMimeType" ColumnName="AttachmentMimeType" />
-                <ScalarProperty Name="AttachmentFileName" ColumnName="AttachmentFileName" />
-                <ScalarProperty Name="AttachmentFileExtension" ColumnName="AttachmentFileExtension" />
-                <ScalarProperty Name="AttachmentSize" ColumnName="AttachmentSize" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="StatusType" ColumnName="StatusType" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

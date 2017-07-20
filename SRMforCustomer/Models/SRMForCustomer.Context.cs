@@ -13,10 +13,10 @@ namespace SRMforCustomer.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SRMForCustomerEntities1 : DbContext
+    public partial class SRMForCustomerEntities : DbContext
     {
-        public SRMForCustomerEntities1()
-            : base("name=SRMForCustomerEntities1")
+        public SRMForCustomerEntities()
+            : base("name=SRMForCustomerEntities")
         {
         }
     
@@ -25,11 +25,11 @@ namespace SRMforCustomer.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Attachments> Attachments { get; set; }
         public virtual DbSet<Comments> Comments { get; set; }
         public virtual DbSet<Requests> Requests { get; set; }
         public virtual DbSet<RequestType> RequestType { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<Statuses> Statuses { get; set; }
-        public virtual DbSet<Attachments> Attachments { get; set; }
     }
 }

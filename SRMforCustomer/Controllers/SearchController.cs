@@ -41,10 +41,8 @@ namespace SRMforCustomer.Controllers {
                     ViewBag.ErrorChecksum = "โปรดป้อนเฉพาะตัวเลข";
                     return PartialView();
                 }
-                ViewBag.ErrorChecksum = "โปรดป้อนข้อมูล";
-                return PartialView();
             }
-
+            ViewBag.ErrorChecksum = "โปรดป้อนข้อมูล";
             return PartialView();
         }
 
