@@ -23,10 +23,11 @@
                         StaffId
                     </td>
                     <td>
-                        : @{
-                            if (@Model.StatusId != null) {
 
-                                @Model.StatusId
+                        :  @{
+                            if (@Model.StaffId != null) {
+
+                                @Model.StaffId
                             } else {
                                 <p>ค้นหาด้วย Customer</p>
                             }
@@ -34,6 +35,15 @@
                         }
                     </td>
                 </tr>
+                <tr>
+                    <td class="tb_1">
+                        StatusName
+                    </td>
+                    <td>
+                        : @Model.Statuses.StatusName
+                    </td>
+                </tr>
+
                 <tr>
                     <td class="tb_1">
                         TopicName
@@ -72,6 +82,14 @@
                     </td>
                     <td>
                         : @Model.Remark
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tb_1">
+                        CurrentStaffId
+                    </td>
+                    <td>
+                        : @Model.CurrentStaffId
                     </td>
                 </tr>
                 <tr>

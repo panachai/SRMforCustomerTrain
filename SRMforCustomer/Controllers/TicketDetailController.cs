@@ -28,7 +28,7 @@ namespace SRMforCustomer.Controllers {
                     Requests modelRequests = service.RequestsModelALL(ticketSearch); //check ยิงเซอวิสว่าผ่านไหม mockdata ไว้ (3852671)
 
                     //ยิงเรียก Comment
-                    List<Comments> listComments = service.CommentsMdoelformTicket(ticketSearch);
+                    List<Comments> listComments = service.CommentsModelformTicket(ticketSearch);
 
                     ViewBag.lsitCommetn = listComments;
                     //ทำ comment ต่อด้วย

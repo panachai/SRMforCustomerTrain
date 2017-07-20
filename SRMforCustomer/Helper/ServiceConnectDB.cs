@@ -18,7 +18,7 @@ namespace SRMforCustomer.Helper {
 
         }
 
-        public List<Comments> CommentsMdoelformTicket(int ticket) {
+        public List<Comments> CommentsModelformTicket(int ticket) {
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
                var req = db.Comments.Where(s => s.CommentsId == ticket).ToList();
                 return req;
