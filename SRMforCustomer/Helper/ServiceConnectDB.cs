@@ -15,20 +15,13 @@ namespace SRMforCustomer.Helper {
                 var req = db.Requests.Include(i => i.Statuses).Include(i => i.RequestType).Single(s => s.TicketId == ticket);
                 return req;
             }
-
         }
-
         public List<Comments> CommentsModelformTicket(int ticket) {
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
                var req = db.Comments.Where(s => s.CommentsId == ticket).ToList();
                 return req;
             }
         }
-
-
-
-
-
 
     }
 }

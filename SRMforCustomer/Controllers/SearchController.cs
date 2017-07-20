@@ -15,7 +15,6 @@ namespace SRMforCustomer.Controllers {
             this.service = new ServiceConnectDB();
         }
 
-
         // GET: Search
         public ActionResult Index() {
             return View();
@@ -27,7 +26,7 @@ namespace SRMforCustomer.Controllers {
                 if (int.TryParse(keyword, out ticketSearch)) {
                     if (Helper.Util.IsValidOTP(keyword) && keyword.Length == 7) {//checksum 9700156 (test)
 
-                        //ยิงเซอร์วิสเอาข้อมูล 1model ยัดใส่ด้านล่าง
+                        //check ในกรณีที่ search ไม่เจอด้วย
                         Requests modelRequests = service.RequestsModelALL(ticketSearch); //check ยิงเซอวิสว่าผ่านไหม mockdata ไว้ (3852671)
 
                         return PartialView(modelRequests);

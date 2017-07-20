@@ -17,8 +17,7 @@
     <h3>@Html.ActionLink(message, "", "Search")</h3>
 
 } else {
-    <h3>TicketID : @ViewBag.testTicket</h3>
-    <h3>from db : @Model.TicketId</h3>
+    <h3>TicketID : @Model.TicketId</h3>
 
     //เขียน layout ในนี้เลย
 
@@ -72,35 +71,35 @@
                 </tbody>
             </table>
         </div>
-        <form>
+        @using (Html.BeginForm("SendComment", "TicketDetail", new { ticket = Model.TicketId }, FormMethod.Post)) {
             <div style="padding-top:25px;">
                 <table style="width:100%;">
                     <tbody>
 
 
-                        @using (Html.BeginForm("SendComment", "TicketDetail")) {
-                            <tr>
-                                <td>
-                                    @*อาจจะต้องเขียน form ตรงนี้ครอบ Textarea และปุ่ม ส่ง เพื่อให้ส่งข้อมูลไปหลังบ้านได้ หรือ ใช้วิธียัดเข้า model แต่แค่ค่าๆเดียว อาจจะไม่สร้าง model by golf*@
 
-                                    @Html.TextArea("textComment", new { @class = "form-control", style = "height:100px;" })
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-top: 20px;">
-                                    <button type="submit"></button>
+                        <tr>
+                            <td>
+                                @*อาจจะต้องเขียน form ตรงนี้ครอบ Textarea และปุ่ม ส่ง เพื่อให้ส่งข้อมูลไปหลังบ้านได้ หรือ ใช้วิธียัดเข้า model แต่แค่ค่าๆเดียว อาจจะไม่สร้าง model by golf*@
 
-                                    @*<button class="button" style="width: 100%"> ส่ง </button>*@
-                                </td>
-                            </tr>
+                                @Html.TextArea("textComment", new { @class = "form-control", style = "height:100px;" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 20px;">
+                                <button type="submit">Send</button>
 
-                        }
+                                @*<button class="button" style="width: 100%"> ส่ง </button>*@
+                            </td>
+                        </tr>
+
+
 
 
 
                     </tbody>
                 </table>
             </div>
-        </form>
+        }
     </div>
 }

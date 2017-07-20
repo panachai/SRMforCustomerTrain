@@ -17,8 +17,8 @@ namespace SRMforCustomer.Controllers {
         }
 
         // GET: TicketDetail
-        [Route("{ticket}")]
-        public ActionResult Index(string ticket) {
+        [Route("{ticket?}")]
+        public ActionResult Index(string ticket = null) {
             int ticketSearch;
 
             if (!string.IsNullOrEmpty(ticket) && ticket.Length == 7) {
@@ -30,11 +30,8 @@ namespace SRMforCustomer.Controllers {
                     //ยิงเรียก Comment
                     List<Comments> listComments = service.CommentsModelformTicket(ticketSearch);
 
-                    ViewBag.lsitCommetn = listComments;
+                    ViewBag.listComment = listComments;
                     //ทำ comment ต่อด้วย
-
-
-                    ViewBag.testTicket = ticket;
 
                     return View(modelRequests);
                 }
@@ -47,12 +44,12 @@ namespace SRMforCustomer.Controllers {
             return View();
         }
 
+        [Route("SendComment/{ticket}")]
         public ActionResult SendComment(string ticket,string textComment) {
+            var s = textComment;
+            var ticksss = ticket;
 
 
-            //var s = Request.Form["textComment"];
-
-            var controllerName = this.ViewBag.RouteData.Values["textComment"].ToString();
             return RedirectToAction("Index", new {ticket = ticket});
         }
 
