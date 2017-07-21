@@ -20,12 +20,18 @@ namespace SRMforCustomer.Controllers {
 
 
         public ActionResult Index() {
-            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-                ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
-            }
-            return View();
-        }
 
+            if (Session["staffModel"] == null) {
+
+                using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+                    ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
+                }
+                return View();
+
+            } else {
+                return RedirectToAction("Index", "RequestsStaff");
+            }
+        }
 
         public JsonResult RequestProcess(Requests modelRequests) {
             ModelState.Remove("ReTicketId"); //remove ออกจากเงื่อนไขการเช็ค IsValid
@@ -67,7 +73,7 @@ namespace SRMforCustomer.Controllers {
             return Json(new { success = false, messageAlert = "โปรดป้อนข้อมูลที่ถูกต้อง", errors = ModelState.Where(w => w.Value.Errors.Any()).Select(s => new { s.Key, s.Value.Errors }).ToList() }, JsonRequestBehavior.AllowGet);
         }
 
-       
+
 
         private void ReceiveMessage(Requests modelRequests) {
             string BodyHTML =

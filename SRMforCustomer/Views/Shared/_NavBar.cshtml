@@ -48,9 +48,14 @@
                 <li class="@active[1]">
                     @Html.ActionLink("Search", "Index", "Search")
                 </li>
-                <li class="@active[2]">
-                    @Html.ActionLink("Requests", "Index", "Requests")
-                </li>
+
+                @{if (Session["staffModel"] == null) {
+                        <li class="@active[2]">
+                            @Html.ActionLink("Requests", "Index", "Requests")
+                        </li>
+                    }
+                }
+
                 <li class="@active[3]">
                     @Html.ActionLink("Staff", "Index", "RequestsStaff") @*/LoginStaffPage*@
                 </li>
