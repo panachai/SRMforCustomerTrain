@@ -96,3 +96,6 @@ body .field-validation-error {
     display: inline-block;
     word-wrap: break-word;
 }
+textarea {
+resize:none
+}
