@@ -19,6 +19,8 @@ namespace SRMforCustomer.Controllers {
         // GET: TicketDetail
         [Route("{ticket?}")]
         public ActionResult Index(string ticket = null) {
+
+
             int ticketSearch;
 
             if (!string.IsNullOrEmpty(ticket) && ticket.Length == 7) {
