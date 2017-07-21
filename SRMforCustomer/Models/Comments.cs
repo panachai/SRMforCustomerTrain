@@ -28,9 +28,9 @@ namespace SRMforCustomer.Models
         public string CreatedBy { get; set; }
         public string TextComment { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Attachments> Attachments { get; set; }
         public virtual Requests Requests { get; set; }
         public virtual Staff Staff { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Attachments> Attachments { get; set; }
     }
 }

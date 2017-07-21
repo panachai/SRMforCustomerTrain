@@ -17,8 +17,8 @@ namespace SRMforCustomer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Requests()
         {
-            this.Attachments = new HashSet<Attachments>();
             this.Comments = new HashSet<Comments>();
+            this.Attachments = new HashSet<Attachments>();
         }
     
         public int TicketId { get; set; }
@@ -34,12 +34,12 @@ namespace SRMforCustomer.Models
         public System.DateTime DateCreate { get; set; }
         public Nullable<System.DateTime> DateFinish { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Attachments> Attachments { get; set; }
         public virtual Staff Staff { get; set; }
         public virtual Statuses Statuses { get; set; }
         public virtual RequestType RequestType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comments> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Attachments> Attachments { get; set; }
     }
 }

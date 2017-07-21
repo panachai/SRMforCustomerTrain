@@ -54,5 +54,22 @@ namespace SRMforCustomer.Helper {
             }
         }
 
+
+        public Boolean InsertAttachments(Attachments attachmentsModel) {
+
+            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+                //var attachments = new Attachments();
+                //attachments = attachmentsModel;
+                db.Attachments.Add(attachmentsModel);
+                //ดัก try ioexception ได้
+                db.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+
+        }
+
     }
 }

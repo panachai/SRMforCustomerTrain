@@ -5,19 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3d3aff8325744b7288acada7f5d7ea92" Name="Diagram1">
-        <EntityTypeShape EntityType="SRMForCustomerModel.Attachments" Width="1.5" PointX="7.5" PointY="3.75" />
         <EntityTypeShape EntityType="SRMForCustomerModel.Requests" Width="1.5" PointX="3" PointY="3.125" />
         <EntityTypeShape EntityType="SRMForCustomerModel.RequestType" Width="1.5" PointX="0.75" PointY="1.125" />
         <EntityTypeShape EntityType="SRMForCustomerModel.Staff" Width="1.5" PointX="0.75" PointY="4.375" />
         <EntityTypeShape EntityType="SRMForCustomerModel.Statuses" Width="1.5" PointX="0.75" PointY="7.5" />
-        <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Requests" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Requests_Staff" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Requests_Statuses" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Requests_TypeRequests" />
         <EntityTypeShape EntityType="SRMForCustomerModel.Comments" Width="1.5" PointX="5.25" PointY="3.75" />
-        <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Comments" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Comments_Requests" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Comments_Staff" />
+        <EntityTypeShape EntityType="SRMForCustomerModel.Attachments" Width="1.5" PointX="7.5" PointY="3.75" />
+        <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Comments" />
+        <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Requests" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

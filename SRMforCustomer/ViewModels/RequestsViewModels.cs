@@ -9,7 +9,7 @@ namespace SRMforCustomer.ViewModels {
         //ใช้สำหรับหน้าใดหน้านึง เอาไว้แต่ง Models ตอนโยนเข้าออก
         public Requests RequestsModel { get; set; }
 
-        //public List< MyProperty { get; set; }
+        public Attachments AttachmentsModel { get; set; }
 
     }
 }

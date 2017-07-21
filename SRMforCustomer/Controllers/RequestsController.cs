@@ -8,7 +8,10 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using System.IO;
 using SRMforCustomer.Helper;
+using SRMforCustomer.ViewModels;
+using TKSLibrary;
 
 namespace SRMforCustomer.Controllers {
     public class RequestsController : Controller {
@@ -33,22 +36,28 @@ namespace SRMforCustomer.Controllers {
             }
         }
 
-        public JsonResult RequestProcess(Requests modelRequests) {
+        public JsonResult RequestProcess(Requests model, HttpPostedFileBase attachment) { //รับตรง Parameter (กรณีใช้ Formdata)
+
             ModelState.Remove("ReTicketId"); //remove ออกจากเงื่อนไขการเช็ค IsValid
             ModelState.Remove("StaffId");
             ModelState.Remove("StatusId");
             ModelState.Remove("ReTopicName");
             ModelState.Remove("ReDateIn");
             ModelState.Remove("ReDateOut");
-            if (modelRequests.RequestTypeId == 0) ModelState.AddModelError("RequestTypeId", " โปรดเลือก");
+            if (model.RequestTypeId == 0) ModelState.AddModelError("RequestTypeId", " โปรดเลือก");
             if (ModelState.IsValid) {
 
-                modelRequests.TicketId = GenRandomNumber();
-                modelRequests.StatusId = 0;
-                modelRequests.DateCreate = DateTime.Now;
-                modelRequests.TopicName = "-";
+                model.TicketId = GenRandomNumber();
+                model.StatusId = 0;
+                model.DateCreate = DateTime.Now;
+                model.TopicName = "-";
 
-                service.InsertRequests(modelRequests);
+                service.InsertRequests(model);
+
+                //ยิงภาพ
+                if (attachment != null) {
+                    AddPicture(attachment, model.TicketId);
+                }
 
                 //using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
 
@@ -57,14 +66,14 @@ namespace SRMforCustomer.Controllers {
                 //}
 
 
-                modelRequests = service.RequestsModelALL(modelRequests.TicketId);
+                model = service.RequestsModelALL(model.TicketId);
 
 
-                ReceiveMessage(modelRequests);
+                ReceiveMessage(model);
                 return Json(new {
                     success = true, modelRequest = new {
-                        modelRequests.TicketId,
-                        modelRequests.Email
+                        model.TicketId,
+                        model.Email
                     }
                 }, JsonRequestBehavior.AllowGet);
 
@@ -73,6 +82,38 @@ namespace SRMforCustomer.Controllers {
             return Json(new { success = false, messageAlert = "โปรดป้อนข้อมูลที่ถูกต้อง", errors = ModelState.Where(w => w.Value.Errors.Any()).Select(s => new { s.Key, s.Value.Errors }).ToList() }, JsonRequestBehavior.AllowGet);
         }
 
+        private void AddPicture(HttpPostedFileBase attachment, int ticket) {
+            var fileSize = TKSLibrary.NumberingHelper.ToFileSizeText(attachment.ContentLength);
+            var image = TKSLibrary.IOHelper.ReadToEnd(attachment.InputStream);
+
+
+            
+
+
+
+            Attachments attachments = new Attachments() {
+                AttachmentNo = 1,
+                TicketId = ticket,
+                CommentsId = null,
+                AttachmentFile = image,
+                AttachmentMimeType = attachment.ContentType,
+                AttachmentFileName = attachment.FileName,
+                AttachmentFileExtension = ,
+                AttachmentSize = fileSize
+
+
+            };
+
+
+            service.InsertAttachments(attachments);
+
+
+
+
+
+
+
+        }
 
 
         private void ReceiveMessage(Requests modelRequests) {
