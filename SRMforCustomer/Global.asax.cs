@@ -16,5 +16,9 @@ namespace SRMforCustomer {
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
+
+        protected void Application_Error() {
+            var exception = Server.GetLastError();
+        }
     }
 }
