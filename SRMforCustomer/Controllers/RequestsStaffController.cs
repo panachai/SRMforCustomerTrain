@@ -7,6 +7,7 @@ using SRMforCustomer.Helper;
 using SRMforCustomer.Models;
 
 using System.Configuration;
+using System.IO;
 using System.Net.Mail;
 
 namespace SRMforCustomer.Controllers {
@@ -65,7 +66,7 @@ namespace SRMforCustomer.Controllers {
         }
 
 
-        public JsonResult RequestProcess(Requests modelRequests)
+        public JsonResult RequestProcess(Requests modelRequests, HttpPostedFileBase attachment)
         {
 
             var staffmodel =(Staff)Session["staffModel"];
@@ -88,8 +89,12 @@ namespace SRMforCustomer.Controllers {
 
                 service.InsertRequests(modelRequests);
 
-                modelRequests = service.RequestsModelALL(modelRequests.TicketId);
+                //ยิงภาพ
+                if (attachment != null) {
+                    AddPicture(attachment, modelRequests.TicketId);
+                }
 
+                modelRequests = service.RequestsModelALL(modelRequests.TicketId);
 
                 ReceiveMessage(modelRequests);
                 return Json(new {
@@ -104,7 +109,26 @@ namespace SRMforCustomer.Controllers {
             return Json(new { success = false, messageAlert = "โปรดป้อนข้อมูลที่ถูกต้อง", errors = ModelState.Where(w => w.Value.Errors.Any()).Select(s => new { s.Key, s.Value.Errors }).ToList() }, JsonRequestBehavior.AllowGet);
         }
 
+        private void AddPicture(HttpPostedFileBase attachment, int ticket) {
+            var fileSize = TKSLibrary.NumberingHelper.ToFileSizeText(attachment.ContentLength);
+            var image = TKSLibrary.IOHelper.ReadToEnd(attachment.InputStream);
 
+            string fileName = Path.GetFileNameWithoutExtension(attachment.FileName);
+            string extensionName = Path.GetExtension(attachment.FileName);
+
+            Attachments attachments = new Attachments() {
+                AttachmentNo = 1,
+                TicketId = ticket,
+                CommentsId = null,
+                AttachmentFile = image,
+                AttachmentMimeType = attachment.ContentType,
+                AttachmentFileName = fileName,
+                AttachmentFileExtension = extensionName,
+                AttachmentSize = fileSize
+            };
+
+            service.InsertAttachments(attachments);
+        }
 
         private void ReceiveMessage(Requests modelRequests) {
             string BodyHTML =

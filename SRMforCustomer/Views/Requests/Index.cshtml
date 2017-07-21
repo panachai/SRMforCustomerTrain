@@ -43,7 +43,9 @@
                 @Html.ValidationMessageFor(m => m.Email)
             </div>
         </div>
-        <input type="file" name="attachment"/>
+
+        <div><input type="file" name="attachment" /></div>
+        
         <div class="row textbox_detail">
             <div class="valueinfo">รายละเอียด</div>
             @Html.TextAreaFor(m => m.Remark, new { @class = "form-control", style = "width: 100%; height: 100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })

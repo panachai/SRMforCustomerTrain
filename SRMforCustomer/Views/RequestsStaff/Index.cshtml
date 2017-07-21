@@ -51,6 +51,9 @@
                 @Html.ValidationMessageFor(m => m.Email)
             </div>
         </div>
+
+        <div><input type="file" name="attachment" /></div>
+
         <div class="row textbox_detail">
             <div class="valueinfo">รายละเอียด</div>
             @Html.TextAreaFor(m => m.Remark, new { @class = "form-control", style = "width: 100%; height: 100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
@@ -115,10 +118,13 @@
             console.log($('#frmRequest').valid());
             if ($('#frmRequest').valid()) {
                 $('#sendEmail').button('loading');
-                var model = $('#frmRequest').serialize();
-                jQuery.ajax({
+                //var model = $('#frmRequest').serialize();
+                var model = new FormData($('#frmRequest')[0]);
+                //model.append('Test', 'pojfpwoefpowepfohwepofhpowehpfowhepo'); //สามารถส่งข้อมูลเพิ่มได้ Syntax นี้ (กรณีใช้ FormData)
+                $.ajax({
                     type: "POST",
-                    url: "@Url.Action("RequestProcess", "RequestsStaff")",
+                    url: "@Url.Action("RequestProcess", "Requests")",
+                    contentType: false,
                     processData: false,
                     dataType: false,
                     data: model,

@@ -86,8 +86,8 @@ namespace SRMforCustomer.Controllers {
             var fileSize = TKSLibrary.NumberingHelper.ToFileSizeText(attachment.ContentLength);
             var image = TKSLibrary.IOHelper.ReadToEnd(attachment.InputStream);
 
-
-            
+            string fileName = Path.GetFileNameWithoutExtension(attachment.FileName);
+            string extensionName = Path.GetExtension(attachment.FileName);
 
 
 
@@ -97,22 +97,12 @@ namespace SRMforCustomer.Controllers {
                 CommentsId = null,
                 AttachmentFile = image,
                 AttachmentMimeType = attachment.ContentType,
-                AttachmentFileName = attachment.FileName,
-                AttachmentFileExtension = ,
+                AttachmentFileName = fileName,
+                AttachmentFileExtension = extensionName,
                 AttachmentSize = fileSize
-
-
             };
 
-
             service.InsertAttachments(attachments);
-
-
-
-
-
-
-
         }
 
 
