@@ -7,7 +7,7 @@
     /*div {
     border:solid;
     }*/
-    </style>
+</style>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -37,7 +37,7 @@
                 </tr>
                 <tr>
                     <td class="" width="50%">Status : @Model.Statuses.StatusName</td>
-                    <td >TicketID : @Model.TicketId</td>
+                    <td>TicketID : @Model.TicketId</td>
                 </tr>
                 <tr>
                     <td class="">Title Name : </td>
@@ -55,76 +55,69 @@
                 //int i = 1;
                 for (int i = 0; i < listComment.Count; i++) {
 
-                    if (@listComment[i].StaffId != null) { //staff เช็ค seesion ด้วย
-                        <div class="row">
-                        <div class="col-xs6">
+                    <div class="row">
+                        @if (@listComment[i].StaffId != null) { //staff เช็ค seesion ด้วย
+                            <div class="col-xs-6" style=""></div>
+                                <div class="col-xs-6" style="">
+                                    <div style="text-align:right">@listComment[i].DateCreate</div>
+                                    <div class="chat pull-right" style="word-break:break-word;">
+                                        @listComment[i].TextComment
+                                    </div>
+                                </div>
+                                } else { //customer
+                                <div class="col-xs-12">
+                                    <div style="text-align: left">@listComment[i].DateCreate</div>
+                                    <div class="chat " style="word-break:break-word;">
+                                        @listComment[i].TextComment
+                                    </div>
+                                </div>
+                                <div class="col-xs-6" style=""></div>
+                        }
+                            </div>
+                        }
+            }
 
-                            Test text  staff
-                        </div>
+
+            @*@{
+                    List<Comments> listComment = ViewBag.listComment;
+                    for (int i = 0; i < listComment.Count; i++) {
+                        if (@listComment[i].StaffId != null) {
+                            <div>
                                 <div class="col-xs6">
                                     <div style="text-align:right">@listComment[i].DateCreate</div>
-                                    <div class="chat" style="word-break:break-word">
+                                    <div class="chat" style="word-wrap: break-word; display: inline-block;width:430px">
+                                        @listComment[i].TextComment
+                                    </div>
+                                </div>
+                                <div class="col-xs6">
+                                </div>
+                            </div>
+                        } else {
+                            <div>
+                                <div class="col-xs6">
+                                </div>
+                                <div class="col-xs6">
+                                    <div style="text-align: left">@listComment[i].DateCreate</div>
+                                    <div class="chat" style="word-wrap: break-word; display: inline-block;width:430px">
                                         @listComment[i].TextComment
                                     </div>
                                 </div>
                             </div>
-                    } else { //customer
-                        <div class="row">
-                            <div class="col-xs6">
-                                <div style="text-align: left">@listComment[i].DateCreate</div>
-                                <div class="chat" style="word-break:break-word">
-                                    @listComment[i].TextComment
-                                </div>
-                            </div>
-                            <div class="col-xs6">
-                                Test text  customer
-                            </div>
-                        </div>
+                        }
                     }
-                }
-            }
-
-
-                            @*@{
-                                    List<Comments> listComment = ViewBag.listComment;
-                                    for (int i = 0; i < listComment.Count; i++) {
-                                        if (@listComment[i].StaffId != null) {
-                                            <div>
-                                                <div class="col-xs6">
-                                                    <div style="text-align:right">@listComment[i].DateCreate</div>
-                                                    <div class="chat" style="word-wrap: break-word; display: inline-block;width:430px">
-                                                        @listComment[i].TextComment
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs6">
-                                                </div>
-                                            </div>
-                                        } else {
-                                            <div>
-                                                <div class="col-xs6">
-                                                </div>
-                                                <div class="col-xs6">
-                                                    <div style="text-align: left">@listComment[i].DateCreate</div>
-                                                    <div class="chat" style="word-wrap: break-word; display: inline-block;width:430px">
-                                                        @listComment[i].TextComment
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }
-                                    }
-                                }*@
+                }*@
 
 
 
-                            @*@using (Html.BeginForm("SendComment", "TicketDetail", new { modelRequest = Model }, FormMethod.Post)) {*@
-                            @using (Html.BeginForm("SendComment", "TicketDetail", new { ticket = Model.TicketId }, FormMethod.Post)) {
-                                <div style="padding-top:25px;">
-                                    <table style="width:100%;">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    @*@"this.value = this.value.replace(/[^0-9]/g, '');"*@
-                                                    @Html.TextArea("textComment", new {
+            @*@using (Html.BeginForm("SendComment", "TicketDetail", new { modelRequest = Model }, FormMethod.Post)) {*@
+            @using (Html.BeginForm("SendComment", "TicketDetail", new { ticket = Model.TicketId }, FormMethod.Post)) {
+                <div style="padding-top:25px;">
+                    <table style="width:100%;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @*@"this.value = this.value.replace(/[^0-9]/g, '');"*@
+                                    @Html.TextArea("textComment", new {
                                    @class = "form-control",
                                    style = "height:100px;",
                                    oninput = @"this.value = this.value.replace(/^\s+/, '');",
@@ -132,21 +125,21 @@
                                    minlength = "3",
                                    required = "required"
                                })
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding-top: 20px;">
-                                                    <button class="btn-danger" type="submit" style="outline:none">Send</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            }
-                        </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top: 20px;">
+                                    <button class="btn-danger" type="submit" style="outline:none">Send</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            }
         </div>
-                    }
-                
+        </div>
+                }
+
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
