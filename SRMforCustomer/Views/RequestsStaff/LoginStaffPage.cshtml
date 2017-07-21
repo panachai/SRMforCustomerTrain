@@ -12,8 +12,19 @@
     <div>
 <input class="form-control" type="text">
         </div>
-        <div>
-<input class="form-control" type="password" style="margin-top:25px;">
-   </div>
-    ​
+    <div>
+        <input class="form-control" type="password" style="margin-top:25px;">
     </div>
+    
+    @*---------------- test ----------------*@
+
+    <div>
+        
+        @*@Html.Action(,"LoginStaff", "RequestsStaff")"*@
+        @*@Html.Action("LoginStaff", new { keyword = "" })*@
+        @Html.ActionLink("TEST_LOGIN", "LoginStaff", "RequestsStaff")
+    </div>
+    
+    @*---------------- test ----------------*@
+
+</div>

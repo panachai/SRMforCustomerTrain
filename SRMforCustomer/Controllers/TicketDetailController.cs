@@ -19,7 +19,7 @@ namespace SRMforCustomer.Controllers {
         // GET: TicketDetail
         [Route("{ticket?}")]
         public ActionResult Index(string ticket = null) {
-            Session["staffId"] = service.GetStaffModel(1); //testStaff
+            //Session["staffModel"] = service.GetStaffModel(1); //testStaff
 
             int ticketSearch;
 
@@ -51,7 +51,7 @@ namespace SRMforCustomer.Controllers {
 
             Requests modelRequest = service.RequestsModelALL(Int32.Parse(ticket));
 
-            if (Session["staffId"] == null) {//User
+            if (Session["staffModel"] == null) {//User
                 commentModel = new Comments() {
                     //CommentsId = modelRequest.
                     TicketId = modelRequest.TicketId
@@ -61,13 +61,13 @@ namespace SRMforCustomer.Controllers {
                     , TextComment = textComment
                 };
             } else { //Staff
-                Staff staffModel = (Staff)Session["staffId"];
+                Staff staffModel = (Staff)Session["staffModel"];
 
                 commentModel = new Comments() {
                     //CommentsId = modelRequest.
                     TicketId = modelRequest.TicketId
                     , StaffId = staffModel.StaffId
-                    , Name = staffModel.StaffName
+                    , Name = "-"
                     , DateCreate = DateTime.Now
                     , CreatedBy = staffModel.StaffName
                     , TextComment = textComment
