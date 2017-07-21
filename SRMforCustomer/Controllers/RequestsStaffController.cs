@@ -8,7 +8,7 @@ namespace SRMforCustomer.Controllers {
     public class RequestsStaffController : Controller {
         // GET: RequestsStaff
         public ActionResult Index() {
-            if (Session["username"] == null) {
+            if (Session["staffId"] == null) {
                 //return RedirectToAction("LoginStaffPage", "RequestsStaff");
                 return View();
 
@@ -20,7 +20,7 @@ namespace SRMforCustomer.Controllers {
         public ActionResult LoginStaffPage() {
 
 
-            if (Session["username"] != null) {
+            if (Session["staffId"] != null) {
                 //return RedirectToAction("Index", "RequestsStaff", new { username = Session["username"].ToString() });
                 return View();
 
@@ -37,7 +37,7 @@ namespace SRMforCustomer.Controllers {
             //ยิงเซอวิส where user pass ใน db เพื่อเอา record มา
             List<int> recordStaff = new List<int> { };
             if (recordStaff.Count > 0) {
-                Session["userStaff"] = "asdasd";
+                Session["staffId"] = "asdasd";
 
             }
 
