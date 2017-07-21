@@ -43,11 +43,16 @@ namespace SRMforCustomer.Helper {
 
                 return true;
             }
-
             //true false รอเงื่อนไขว่า check database ยังไงถ้าทำงานไม่ผิดพลาด
-
             return false;
         }
+
+      //  public Staff CommentsModelformTicket(int ticket) {
+      //      using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+       //         var req = db.Comments.Where(s => s.TicketId == ticket).ToList();
+       //         return req;
+       //     }
+       // }
 
     }
 }

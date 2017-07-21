@@ -19,7 +19,7 @@ namespace SRMforCustomer.Controllers {
         // GET: TicketDetail
         [Route("{ticket?}")]
         public ActionResult Index(string ticket = null) {
-
+            Session["staffId"] = 1; //testStaff
 
             int ticketSearch;
 
@@ -56,13 +56,12 @@ namespace SRMforCustomer.Controllers {
                 commentModel = new Comments() {
                     //CommentsId = modelRequest.
                     TicketId = modelRequest.TicketId
-                    ,Name = "-"
-                    ,DateCreate = DateTime.Now
-                    ,CreatedBy = modelRequest.CustomerName
-                    ,TextComment = textComment
+                    , Name = "-"
+                    , DateCreate = DateTime.Now
+                    , CreatedBy = modelRequest.CustomerName
+                    , TextComment = textComment
                 };
-            }
-            else { //Staff
+            } else { //Staff
                 commentModel = new Comments() {
                     //CommentsId = modelRequest.
                     TicketId = modelRequest.TicketId
@@ -74,7 +73,7 @@ namespace SRMforCustomer.Controllers {
                 };
             }
             var check = service.InsertComment(commentModel);
-            return RedirectToAction("Index", new {ticket = modelRequest.TicketId});
+            return RedirectToAction("Index", new { ticket = modelRequest.TicketId });
         }
 
     }
