@@ -23,7 +23,7 @@
     <div class="row" style="padding-top:35px;">
         <div id="custom-search-input">
             <div class="input-group">
-                @Html.TextBox("keyword", "", new { onKeyUp = "validate()", @class = "form-control", placeholder = "Search", oninput = @"this.value = this.value.replace(/^\s+/, '');", style = "border-radius: 4px;" })
+                @Html.TextBox("keyword", "", new { onKeyUp = "validate()", @class = "form-control", placeholder = "Search", oninput = @"this.value = this.value.replace(/^\s+/, '');", style = "border-radius: 4px;", maxlength = "7" , minlength = "7" })
                 <div class="input-group-btn">
                     <button class="btn-danger" type="submit" style="outline:none">
                         <span class=" glyphicon glyphicon-search"></span>

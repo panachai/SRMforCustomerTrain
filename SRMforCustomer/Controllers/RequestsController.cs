@@ -109,20 +109,6 @@ namespace SRMforCustomer.Controllers {
             int checksumDigit = Helper.Util.CalculateCheckDigi(random.ToString());
             int randomValue = Int32.Parse(random + "" + checksumDigit);
 
-            //var requestsModel = new RequestsModel() {
-            //    ReTicketID = Int32.Parse(randomString),
-            //    TypeRequestsID = 1,
-            //    StaffID = 0,
-            //    StatusID = 0,
-            //    ReTopicName = "testSRMtopic : key : " + keyword + " : endKey ",
-            //    ReCustomerName = "CustomerName Test",
-            //    ReCustomerTel = "0900000000",
-            //    ReEmail = "panachai.ny@gmail.com",
-            //    ReDetail = "adasdasd Detail it here",
-            //    ReDateIn = DateTime.Now,
-            //    ReDateOut = DateTime.Now,
-            //};
-
             return randomValue;
             //}
         }

@@ -47,12 +47,12 @@ namespace SRMforCustomer.Helper {
             return false;
         }
 
-      //  public Staff CommentsModelformTicket(int ticket) {
-      //      using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-       //         var req = db.Comments.Where(s => s.TicketId == ticket).ToList();
-       //         return req;
-       //     }
-       // }
+        public Staff GetStaffModel(int staffId) {
+            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+                var req = db.Staff.SingleOrDefault(s => s.StaffId == staffId);
+                return req;
+            }
+        }
 
     }
 }

@@ -19,7 +19,7 @@ namespace SRMforCustomer.Controllers {
         // GET: TicketDetail
         [Route("{ticket?}")]
         public ActionResult Index(string ticket = null) {
-            Session["staffId"] = 1; //testStaff
+            //Session["staffModel"] = service.GetStaffModel(1); //testStaff
 
             int ticketSearch;
 
@@ -33,8 +33,7 @@ namespace SRMforCustomer.Controllers {
                     List<Comments> listComments = service.CommentsModelformTicket(ticketSearch);
 
                     ViewBag.listComment = listComments;
-                    //ทำ comment ต่อด้วย
-
+                    
                     return View(modelRequests);
                 }
                 ViewBag.Message = "URL ของท่านผิดพลาดกรุณากลับไปค้นหาที่หน้า Search";
@@ -52,7 +51,7 @@ namespace SRMforCustomer.Controllers {
 
             Requests modelRequest = service.RequestsModelALL(Int32.Parse(ticket));
 
-            if (staffId == null) {//User
+            if (Session["staffModel"] == null) {//User
                 commentModel = new Comments() {
                     //CommentsId = modelRequest.
                     TicketId = modelRequest.TicketId
@@ -62,14 +61,16 @@ namespace SRMforCustomer.Controllers {
                     , TextComment = textComment
                 };
             } else { //Staff
+                Staff staffModel = (Staff)Session["staffModel"];
+
                 commentModel = new Comments() {
                     //CommentsId = modelRequest.
                     TicketId = modelRequest.TicketId
-                    , StaffId = staffId
-                    //, Name
-                    //,DateCreate
-                    //,CreatedBy
-                    //,TextComment
+                    , StaffId = staffModel.StaffId
+                    , Name = "-"
+                    , DateCreate = DateTime.Now
+                    , CreatedBy = staffModel.StaffName
+                    , TextComment = textComment
                 };
             }
             var check = service.InsertComment(commentModel);
