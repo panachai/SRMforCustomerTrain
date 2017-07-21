@@ -8,7 +8,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var requestType = (SelectList)ViewBag.RequestTypeId;
-    var staffModel = (Staff) ViewBag.staffModelSession;
+    var staffModel = (Staff)ViewBag.staffModelSession;
 
 }
 <link href="~/Content/Site.css" rel="stylesheet" />
@@ -18,11 +18,11 @@
 </div>
 
 @*<div id="staffinfo">
-    <div>@staffModel.StaffId</div>
-    <div>@staffModel.StaffName</div>
-    <div>@staffModel.StaffPosition</div>
-    <div>LogOut : @Html.ActionLink("click","LogOutStaff","RequestsStaff")</div>
-</div>*@
+        <div>@staffModel.StaffId</div>
+        <div>@staffModel.StaffName</div>
+        <div>@staffModel.StaffPosition</div>
+        <div>LogOut : @Html.ActionLink("click","LogOutStaff","RequestsStaff")</div>
+    </div>*@
 
 <div class="row input_content" style="padding-top:35px;">
     <form id="frmRequest">
@@ -115,7 +115,7 @@
         });
 
         function setfeedback() {
-            console.log($('#frmRequest').valid());
+            //console.log($('#frmRequest').valid());
             if ($('#frmRequest').valid()) {
                 $('#sendEmail').button('loading');
                 //var model = $('#frmRequest').serialize();
@@ -153,12 +153,13 @@
                     },
                     complete: function() {
                         $('#sendEmail').button('reset');
-                        $('#TelephoneNumber').val('');
-                        $('#CustomerName').val('');
-                        $('#Email').val('');
-                        $('#Remark').val('');
-                        $('#RequestTypeId').val('');
-
+                        //$('#TelephoneNumber').val('');
+                        //$('#CustomerName').val('');
+                        //$('#Email').val('');
+                        //$('#Remark').val('');
+                        //$('#RequestTypeId').val('');
+                        //$('#attachment').val('');
+                        $('#frmRequest')[0].reset();
                     }
                 });
             }

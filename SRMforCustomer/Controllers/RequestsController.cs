@@ -65,9 +65,7 @@ namespace SRMforCustomer.Controllers {
                 //modelRequests = db.Requests.Include(i => i.RequestType).Include(i => i.Statuses).Single(s => s.TicketId == modelRequests.TicketId);
                 //}
 
-
                 model = service.RequestsModelALL(model.TicketId);
-
 
                 ReceiveMessage(model);
                 return Json(new {
@@ -76,9 +74,7 @@ namespace SRMforCustomer.Controllers {
                         model.Email
                     }
                 }, JsonRequestBehavior.AllowGet);
-
             }
-
             return Json(new { success = false, messageAlert = "โปรดป้อนข้อมูลที่ถูกต้อง", errors = ModelState.Where(w => w.Value.Errors.Any()).Select(s => new { s.Key, s.Value.Errors }).ToList() }, JsonRequestBehavior.AllowGet);
         }
 
@@ -88,8 +84,6 @@ namespace SRMforCustomer.Controllers {
 
             string fileName = Path.GetFileNameWithoutExtension(attachment.FileName);
             string extensionName = Path.GetExtension(attachment.FileName);
-
-
 
             Attachments attachments = new Attachments() {
                 AttachmentNo = 1,
