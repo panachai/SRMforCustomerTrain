@@ -67,8 +67,39 @@
         string ticketId = "";
     }
     <script>
-        $("#sendEmail").click(function() {
-            setfeedback();
+        $("#sendEmail").click(function () {
+            swal({
+                title: 'Send',
+                text: "Are you sure to send",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, send',
+                cancelButtonText: 'Wait',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false
+            }).then(function () {
+                setfeedback();
+
+                //swal(
+                //    'Deleted!',
+                //    'Your file has been deleted.',
+                //    'success'
+                //)
+
+            }, function (dismiss) {
+                // dismiss can be 'cancel', 'overlay',
+                // 'close', and 'timer'
+                if (dismiss === 'cancel') {
+                    swal(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
+                }
+            })
         });
 
         function setfeedback() {

@@ -29,7 +29,12 @@ namespace SRMforCustomer.Controllers {
                         //check ในกรณีที่ search ไม่เจอด้วย
                         Requests modelRequests = service.RequestsModelALL(ticketSearch); //check ยิงเซอวิสว่าผ่านไหม mockdata ไว้ (3852671)
 
-                        return PartialView(modelRequests);
+                        if (modelRequests!=null) {
+                            return PartialView(modelRequests);
+                        }
+                        
+                        ViewBag.ErrorChecksum = "Ticket ของท่านไม่ถูกต้อง";
+                        return PartialView();
                     } else {
                         ViewBag.ErrorChecksum = "Ticket ของท่านไม่ถูกต้อง";
                         return PartialView();
