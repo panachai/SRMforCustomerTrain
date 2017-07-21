@@ -1,6 +1,5 @@
-﻿
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{ 
+    Layout = null;
 }
 <link href="~/Content/Requests.css" rel="stylesheet" />
 <div style="text-align:center" class="head_title">
@@ -14,16 +13,9 @@
     <div>
         <input class="form-control" type="password" style="margin-top:25px;">
     </div>
-
-    <div>
-        <button class="button" style="margin-top:25px;">Login</button>
-    </div>
-
-    @*---------------- test ----------------*@
-
-    <div>
-        @Html.ActionLink("TEST_LOGIN", "LoginStaff", "RequestsStaff")
-    </div>
-    
-    @*---------------- test ----------------*@
+    @using (Html.BeginForm("LoginStaff", "RequestsStaff", FormMethod.Post)) {
+        <div class="card">
+            <button class="button" style="margin-top:25px;">Login</button>
+        </div>
+    }
 </div>
