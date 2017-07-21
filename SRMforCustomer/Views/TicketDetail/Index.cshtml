@@ -11,25 +11,29 @@
 
 <link href="~/Content/Site.css" rel="stylesheet" />
 
-<h2>Ticket Detail Index</h2>
+@*<h2>Ticket Detail Index</h2>*@
 
 @if (@ViewBag.Message != null && Model == null) { //เดี๋ยวเอา Viewbag ออก
     string message = ViewBag.Message;
     <h3>@Html.ActionLink(message, "", "Search")</h3>
 
 } else {
-    <h3>TicketID : @Model.TicketId</h3>
+    @*<h3>TicketID : @Model.TicketId</h3>*@
 
 
     <div class="head_title">
-        Chat
+        Ticket Detail
     </div>
     <div style="padding:0 10%;">
         <table class="main_table" style="text-align:left">
             <tbody>
                 <tr>
-                    <td class="" width="50%">Status  : @Model.Statuses.StatusName</td>
+                    <td class=""></td>
                     <td style="text-align:right">@Model.DateCreate</td>
+                </tr>
+                <tr>
+                    <td class="" width="50%">Status : @Model.Statuses.StatusName</td>
+                    <td >TicketID : @Model.TicketId</td>
                 </tr>
                 <tr>
                     <td class="">Title Name : </td>
