@@ -12,7 +12,13 @@ using SRMforCustomer.Helper;
 
 namespace SRMforCustomer.Controllers {
     public class RequestsController : Controller {
-        // GET: Requests
+        ServiceConnectDB service;
+
+        public RequestsController() {
+            this.service = new ServiceConnectDB();
+        }
+
+
         public ActionResult Index() {
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
                 ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
@@ -28,7 +34,7 @@ namespace SRMforCustomer.Controllers {
             ModelState.Remove("ReTopicName");
             ModelState.Remove("ReDateIn");
             ModelState.Remove("ReDateOut");
-            if(modelRequests.RequestTypeId == 0) ModelState.AddModelError("RequestTypeId", " โปรดเลือก");
+            if (modelRequests.RequestTypeId == 0) ModelState.AddModelError("RequestTypeId", " โปรดเลือก");
             if (ModelState.IsValid) {
 
                 modelRequests.TicketId = GenRandomNumber();
@@ -36,32 +42,33 @@ namespace SRMforCustomer.Controllers {
                 modelRequests.DateCreate = DateTime.Now;
                 modelRequests.TopicName = "-";
 
-                InsertRequests(modelRequests);
-                using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-                    //var reqType = db.RequestType.SingleOrDefault(s => s.RequestTypeId == modelRequests.RequestTypeId);
-                    //modelRequests.RequestType = reqType;
-                    db.Configuration.ProxyCreationEnabled = false;
-                    modelRequests = db.Requests.Include(i => i.RequestType).Include(i => i.Statuses).Single(s => s.TicketId == modelRequests.TicketId);
-                }
+                service.InsertRequests(modelRequests);
+
+                //using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+
+                //db.Configuration.ProxyCreationEnabled = false;
+                //modelRequests = db.Requests.Include(i => i.RequestType).Include(i => i.Statuses).Single(s => s.TicketId == modelRequests.TicketId);
+                //}
+
+
+                modelRequests = service.RequestsModelALL(modelRequests.TicketId);
+
 
                 ReceiveMessage(modelRequests);
-                return Json(new { success = true, modelRequest = new {
-                    modelRequests.TicketId,
-                    modelRequests.Email
-                } }, JsonRequestBehavior.AllowGet);
+                return Json(new {
+                    success = true, modelRequest = new {
+                        modelRequests.TicketId,
+                        modelRequests.Email
+                    }
+                }, JsonRequestBehavior.AllowGet);
 
             }
 
             return Json(new { success = false, messageAlert = "โปรดป้อนข้อมูลที่ถูกต้อง", errors = ModelState.Where(w => w.Value.Errors.Any()).Select(s => new { s.Key, s.Value.Errors }).ToList() }, JsonRequestBehavior.AllowGet);
         }
 
-        public void InsertRequests(Requests model) {
-            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-                db.Requests.Add(model);
-                db.SaveChanges();
-            }
-        }
-        
+       
+
         private void ReceiveMessage(Requests modelRequests) {
             string BodyHTML =
                     System.IO.File.ReadAllText(Request.PhysicalApplicationPath +

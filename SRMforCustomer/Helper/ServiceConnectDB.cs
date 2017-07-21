@@ -10,10 +10,18 @@ using SRMforCustomer.Models;
 namespace SRMforCustomer.Helper {
     public class ServiceConnectDB {
 
+        public void InsertRequests(Requests model) {
+            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+                db.Requests.Add(model);
+                db.SaveChanges();
+            }
+        }
+
         public Requests RequestsModelALL(int ticket) {
             //var req = db.Requests.SingleOrDefault(s => s.TicketId == ticket);
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-                var req = db.Requests.Include(i => i.Statuses).Include(i => i.RequestType).Single(s => s.TicketId == ticket);
+                var req = db.Requests.Include(i => i.Statuses).Include(i => i.RequestType).SingleOrDefault(s => s.TicketId == ticket);
+
                 return req;
             }
         }
