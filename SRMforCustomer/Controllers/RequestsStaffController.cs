@@ -38,9 +38,7 @@ namespace SRMforCustomer.Controllers {
 
 
             if (Session["staffModel"] != null) {
-                //return RedirectToAction("Index", "RequestsStaff", new { username = Session["username"].ToString() });
-                return RedirectToAction("Index", "RequestsStaff");
-                //return View();
+                return RedirectToAction("Index", "Requests");
 
             } else {
                 return View();
@@ -57,12 +55,12 @@ namespace SRMforCustomer.Controllers {
             //    Session["staffModel"] = "asdasd";
 
             //}
-            return RedirectToAction("LoginStaffPage", "RequestsStaff");
+            return RedirectToAction("LoginStaffPage", "Requests");
         }
 
         public ActionResult LogOutStaff() {
             Session.Clear();
-            return RedirectToAction("LoginStaffPage", "RequestsStaff");
+            return RedirectToAction("LoginStaffPage", "Requests");
         }
 
 
