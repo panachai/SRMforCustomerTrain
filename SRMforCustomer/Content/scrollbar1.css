@@ -1,0 +1,18 @@
+﻿            #style-1:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.30);
+        }
+             #style-1::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.00);
+        }
+
+        #style-1::-webkit-scrollbar {
+            border-radius: 10px;
+            width: 12px;
+            background-color: rgba(0, 0, 0, 0.00);
+        }
+
+        #style-1::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.10);
+        }
