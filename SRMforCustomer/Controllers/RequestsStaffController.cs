@@ -19,18 +19,9 @@ namespace SRMforCustomer.Controllers {
         }
 
         public ActionResult Index() {
-
-            //if (Session["staffModel"] == null) {
+            
                 return RedirectToAction("LoginStaffPage", "RequestsStaff");
-                //return View();
-            //} else {
-            //    ViewBag.staffModelSession = (Staff)Session["staffModel"];
-
-            //    using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-            //        ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
-            //    }
-            //    return View();
-            //}
+       
         }
 
         public ActionResult LoginStaffPage() {
