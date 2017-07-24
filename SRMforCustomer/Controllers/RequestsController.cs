@@ -24,19 +24,31 @@ namespace SRMforCustomer.Controllers {
 
         public ActionResult Index() {
 
-            if (Session["staffModel"] == null) {
 
-                using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-                    ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
+
+            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+                ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
+                if (Session["staffModel"] == null) {
+                    ViewBag.TitleMessage = "Requests";
+                } else {
+                    //ViewBag.staffModelSession = (Staff)Session["staffModel"];
+                    ViewBag.TitleMessage = "Requests by Staff";
                 }
-                return View();
 
-            } else {
-                return RedirectToAction("Index", "RequestsStaff");
+
+
             }
+            return View();
+
+
         }
 
         public JsonResult RequestProcess(Requests model) { //รับตรง Parameter (กรณีใช้ Formdata) //HttpPostedFileBase attachment
+
+            if (Session["staffModel"] != null) {
+                var staffmodel = (Staff)Session["staffModel"];
+                model.StaffId = staffmodel.StaffId;
+            }
 
             ModelState.Remove("ReTicketId"); //remove ออกจากเงื่อนไขการเช็ค IsValid
             ModelState.Remove("StaffId");
@@ -65,13 +77,6 @@ namespace SRMforCustomer.Controllers {
                     service.InsertRequests(model);
                 }
 
-
-                //using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-
-                //db.Configuration.ProxyCreationEnabled = false;
-                //modelRequests = db.Requests.Include(i => i.RequestType).Include(i => i.Statuses).Single(s => s.TicketId == modelRequests.TicketId);
-                //}
-
                 model = service.RequestsModelALL(model.TicketId);
 
                 ReceiveMessage(model);
@@ -92,7 +97,6 @@ namespace SRMforCustomer.Controllers {
             string fileName = Path.GetFileNameWithoutExtension(attachment.FileName);
             string extensionName = Path.GetExtension(attachment.FileName);
 
-            //if (validFileUpload(extensionName)) {
             Attachments attachments = new Attachments() {
                 AttachmentNo = 1,
                 TicketId = ticket,
@@ -103,14 +107,8 @@ namespace SRMforCustomer.Controllers {
                 AttachmentFileExtension = extensionName,
                 AttachmentSize = fileSize
             };
-
             service.InsertAttachments(attachments);
-            //    return true;
-            //}
-            //return false;
-
         }
-
 
         private void ReceiveMessage(Requests modelRequests) {
             string BodyHTML =

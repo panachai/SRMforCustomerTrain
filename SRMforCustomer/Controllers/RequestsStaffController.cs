@@ -20,26 +20,23 @@ namespace SRMforCustomer.Controllers {
 
         public ActionResult Index() {
 
-
-            if (Session["staffModel"] == null) {
+            //if (Session["staffModel"] == null) {
                 return RedirectToAction("LoginStaffPage", "RequestsStaff");
                 //return View();
-            } else {
-                ViewBag.staffModelSession = (Staff)Session["staffModel"];
+            //} else {
+            //    ViewBag.staffModelSession = (Staff)Session["staffModel"];
 
-                using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-                    ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
-                }
-                return View();
-            }
+            //    using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+            //        ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
+            //    }
+            //    return View();
+            //}
         }
 
         public ActionResult LoginStaffPage() {
 
-
             if (Session["staffModel"] != null) {
                 return RedirectToAction("Index", "Requests");
-
             } else {
                 return View();
             }
@@ -55,122 +52,120 @@ namespace SRMforCustomer.Controllers {
             //    Session["staffModel"] = "asdasd";
 
             //}
-            return RedirectToAction("LoginStaffPage", "Requests");
+            return RedirectToAction("Index", "Requests");
         }
 
         public ActionResult LogOutStaff() {
             Session.Clear();
-            return RedirectToAction("LoginStaffPage", "Requests");
+            return RedirectToAction("LoginStaffPage", "RequestsStaff");
         }
 
 
-        public JsonResult RequestProcess(Requests modelRequests, HttpPostedFileBase attachment)
-        {
+        //public JsonResult RequestProcess(Requests modelRequests, HttpPostedFileBase attachment) {
 
-            var staffmodel =(Staff)Session["staffModel"];
+        //    var staffmodel = (Staff)Session["staffModel"];
 
+        //    ModelState.Remove("ReTicketId"); //remove ออกจากเงื่อนไขการเช็ค IsValid
+        //    ModelState.Remove("StaffId");
+        //    ModelState.Remove("StatusId");
+        //    ModelState.Remove("ReTopicName");
+        //    ModelState.Remove("ReDateIn");
+        //    ModelState.Remove("ReDateOut");
+        //    if (modelRequests.RequestTypeId == 0) ModelState.AddModelError("RequestTypeId", " โปรดเลือก");
+        //    if (ModelState.IsValid) {
 
-            ModelState.Remove("ReTicketId"); //remove ออกจากเงื่อนไขการเช็ค IsValid
-            ModelState.Remove("StaffId");
-            ModelState.Remove("StatusId");
-            ModelState.Remove("ReTopicName");
-            ModelState.Remove("ReDateIn");
-            ModelState.Remove("ReDateOut");
-            if (modelRequests.RequestTypeId == 0) ModelState.AddModelError("RequestTypeId", " โปรดเลือก");
-            if (ModelState.IsValid) {
+        //        modelRequests.TicketId = GenRandomNumber();
+        //        modelRequests.StatusId = 0;
+        //        modelRequests.DateCreate = DateTime.Now;
+        //        modelRequests.TopicName = "-";
+        //        modelRequests.StaffId = staffmodel.StaffId;
 
-                modelRequests.TicketId = GenRandomNumber();
-                modelRequests.StatusId = 0;
-                modelRequests.DateCreate = DateTime.Now;
-                modelRequests.TopicName = "-";
-                modelRequests.StaffId = staffmodel.StaffId;
+        //        service.InsertRequests(modelRequests);
 
-                service.InsertRequests(modelRequests);
+        //        //ยิงภาพ
+        //        if (attachment != null) {
+        //            AddPicture(attachment, modelRequests.TicketId);
+        //        }
 
-                //ยิงภาพ
-                if (attachment != null) {
-                    AddPicture(attachment, modelRequests.TicketId);
-                }
+        //        modelRequests = service.RequestsModelALL(modelRequests.TicketId);
 
-                modelRequests = service.RequestsModelALL(modelRequests.TicketId);
+        //        ReceiveMessage(modelRequests);
+        //        return Json(new {
+        //            success = true, modelRequest = new {
+        //                modelRequests.TicketId,
+        //                modelRequests.Email
+        //            }
+        //        }, JsonRequestBehavior.AllowGet);
 
-                ReceiveMessage(modelRequests);
-                return Json(new {
-                    success = true, modelRequest = new {
-                        modelRequests.TicketId,
-                        modelRequests.Email
-                    }
-                }, JsonRequestBehavior.AllowGet);
+        //    }
 
-            }
+        //    return Json(new { success = false, messageAlert = "โปรดป้อนข้อมูลที่ถูกต้อง", errors = ModelState.Where(w => w.Value.Errors.Any()).Select(s => new { s.Key, s.Value.Errors }).ToList() }, JsonRequestBehavior.AllowGet);
+        //}
 
-            return Json(new { success = false, messageAlert = "โปรดป้อนข้อมูลที่ถูกต้อง", errors = ModelState.Where(w => w.Value.Errors.Any()).Select(s => new { s.Key, s.Value.Errors }).ToList() }, JsonRequestBehavior.AllowGet);
-        }
+        //private void AddPicture(HttpPostedFileBase attachment, int ticket) {
+        //    var fileSize = TKSLibrary.NumberingHelper.ToFileSizeText(attachment.ContentLength);
+        //    var image = TKSLibrary.IOHelper.ReadToEnd(attachment.InputStream);
 
-        private void AddPicture(HttpPostedFileBase attachment, int ticket) {
-            var fileSize = TKSLibrary.NumberingHelper.ToFileSizeText(attachment.ContentLength);
-            var image = TKSLibrary.IOHelper.ReadToEnd(attachment.InputStream);
+        //    string fileName = Path.GetFileNameWithoutExtension(attachment.FileName);
+        //    string extensionName = Path.GetExtension(attachment.FileName);
 
-            string fileName = Path.GetFileNameWithoutExtension(attachment.FileName);
-            string extensionName = Path.GetExtension(attachment.FileName);
+        //    Attachments attachments = new Attachments() {
+        //        AttachmentNo = 1,
+        //        TicketId = ticket,
+        //        CommentsId = null,
+        //        AttachmentFile = image,
+        //        AttachmentMimeType = attachment.ContentType,
+        //        AttachmentFileName = fileName,
+        //        AttachmentFileExtension = extensionName,
+        //        AttachmentSize = fileSize
+        //    };
 
-            Attachments attachments = new Attachments() {
-                AttachmentNo = 1,
-                TicketId = ticket,
-                CommentsId = null,
-                AttachmentFile = image,
-                AttachmentMimeType = attachment.ContentType,
-                AttachmentFileName = fileName,
-                AttachmentFileExtension = extensionName,
-                AttachmentSize = fileSize
-            };
+        //    service.InsertAttachments(attachments);
+        //}
 
-            service.InsertAttachments(attachments);
-        }
-
-        private void ReceiveMessage(Requests modelRequests) {
-            string BodyHTML =
-                System.IO.File.ReadAllText(Request.PhysicalApplicationPath +
-                                           "Templates\\TemplateLetterFeedback.html");
-            BodyHTML = BodyHTML.Replace("@reticketId", modelRequests.TicketId.ToString());
-            BodyHTML = BodyHTML.Replace("@typeRequestsId", modelRequests.RequestType.Name);//เดี๋ยวเขียนเพิ่มใน DB แล้วเขียน viewmodel ดึงค่ามา
-            BodyHTML = BodyHTML.Replace("@reCustomerName", modelRequests.CustomerName);
-            BodyHTML = BodyHTML.Replace("@reCustomerTel", modelRequests.TelephoneNumber);
-            BodyHTML = BodyHTML.Replace("@reEmail", modelRequests.Email);
-            BodyHTML = BodyHTML.Replace("@reDetail", modelRequests.Remark);
-            BodyHTML = BodyHTML.Replace("@timeNow", DateTimeUtils.DateFormat(modelRequests.DateCreate));
+        //private void ReceiveMessage(Requests modelRequests) {
+        //    string BodyHTML =
+        //        System.IO.File.ReadAllText(Request.PhysicalApplicationPath +
+        //                                   "Templates\\TemplateLetterFeedback.html");
+        //    BodyHTML = BodyHTML.Replace("@reticketId", modelRequests.TicketId.ToString());
+        //    BodyHTML = BodyHTML.Replace("@typeRequestsId", modelRequests.RequestType.Name);//เดี๋ยวเขียนเพิ่มใน DB แล้วเขียน viewmodel ดึงค่ามา
+        //    BodyHTML = BodyHTML.Replace("@reCustomerName", modelRequests.CustomerName);
+        //    BodyHTML = BodyHTML.Replace("@reCustomerTel", modelRequests.TelephoneNumber);
+        //    BodyHTML = BodyHTML.Replace("@reEmail", modelRequests.Email);
+        //    BodyHTML = BodyHTML.Replace("@reDetail", modelRequests.Remark);
+        //    BodyHTML = BodyHTML.Replace("@timeNow", DateTimeUtils.DateFormat(modelRequests.DateCreate));
 
 
-            MailMessage NotifyMail = new MailMessage();
-            NotifyMail.From = new MailAddress(ConfigurationManager.AppSettings["MailFrom"]);
-            NotifyMail.To.Add(modelRequests.Email);//thanaphan.w@prism.co.th
-            NotifyMail.Subject = "SRMforCustomer : " + modelRequests.RequestType.Name + " จากคุณ " + modelRequests.CustomerName; //+ modelRequests.TopicName +
-            NotifyMail.IsBodyHtml = true;
-            NotifyMail.Body = BodyHTML;
-            SmtpClient SMTPClient = new SmtpClient();
-            SMTPClient.Host = Config.SMTPHost;
-            SMTPClient.Send(NotifyMail);
-        }
+        //    MailMessage NotifyMail = new MailMessage();
+        //    NotifyMail.From = new MailAddress(ConfigurationManager.AppSettings["MailFrom"]);
+        //    NotifyMail.To.Add(modelRequests.Email);//thanaphan.w@prism.co.th
+        //    NotifyMail.Subject = "SRMforCustomer : " + modelRequests.RequestType.Name + " จากคุณ " + modelRequests.CustomerName; //+ modelRequests.TopicName +
+        //    NotifyMail.IsBodyHtml = true;
+        //    NotifyMail.Body = BodyHTML;
+        //    SmtpClient SMTPClient = new SmtpClient();
+        //    SMTPClient.Host = Config.SMTPHost;
+        //    SMTPClient.Send(NotifyMail);
+        //}
 
 
-        public int GenRandomNumber() {
-            //if (string.IsNullOrEmpty(keyword)) {
-            //    return PartialView();
-            //}
-            //else {
-            Random generator = new Random();
-            int random;
-            do {
-                random = generator.Next(0, 1000000);
-            } while (random < 100000);
+        //public int GenRandomNumber() {
+        //    //if (string.IsNullOrEmpty(keyword)) {
+        //    //    return PartialView();
+        //    //}
+        //    //else {
+        //    Random generator = new Random();
+        //    int random;
+        //    do {
+        //        random = generator.Next(0, 1000000);
+        //    } while (random < 100000);
 
-            //checksum
-            int checksumDigit = Helper.Util.CalculateCheckDigi(random.ToString());
-            int randomValue = Int32.Parse(random + "" + checksumDigit);
+        //    //checksum
+        //    int checksumDigit = Helper.Util.CalculateCheckDigi(random.ToString());
+        //    int randomValue = Int32.Parse(random + "" + checksumDigit);
 
-            return randomValue;
-            //}
-        }
+        //    return randomValue;
+        //    //}
+        //}
 
 
 

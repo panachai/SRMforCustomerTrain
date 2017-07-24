@@ -1,19 +1,19 @@
 ﻿@using SRMforCustomer.Models
 @model SRMforCustomer.Models.Requests
 
-@*@model SRMforCustomer.modelRequestss.RequestsmodelRequests*@
-
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var requestType = (SelectList)ViewBag.RequestTypeId;
+    //if (ViewBag.staffModelSession != null) {
+    //    var staffModel = (Staff)ViewBag.staffModelSession;
+    //}
 
 }
 <link href="~/Content/Site.css" rel="stylesheet" />
 <link href="~/Content/Requests.css" rel="stylesheet" />
 <div class="head_title">
-    Requsets
+    @ViewBag.TitleMessage
 </div>
 
 <div class="row input_content" style="padding-top:35px;">

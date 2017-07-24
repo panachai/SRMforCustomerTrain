@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="SRMForCustomerModel.Attachments" Width="1.5" PointX="7.5" PointY="3.75" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Comments" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Requests" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
