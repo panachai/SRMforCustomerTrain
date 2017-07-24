@@ -36,7 +36,7 @@ namespace SRMforCustomer.Controllers {
             }
         }
 
-        public JsonResult RequestProcess(Requests model, HttpPostedFileBase attachment) { //รับตรง Parameter (กรณีใช้ Formdata)
+        public JsonResult RequestProcess(Requests model) { //รับตรง Parameter (กรณีใช้ Formdata) //HttpPostedFileBase attachment
 
             ModelState.Remove("ReTicketId"); //remove ออกจากเงื่อนไขการเช็ค IsValid
             ModelState.Remove("StaffId");
@@ -51,13 +51,20 @@ namespace SRMforCustomer.Controllers {
                 model.StatusId = 0;
                 model.DateCreate = DateTime.Now;
                 model.TopicName = "-";
-
-                service.InsertRequests(model);
-
                 //ยิงภาพ
-                if (attachment != null) {
-                    AddPicture(attachment, model.TicketId);
+                if (model.AttachmentFile != null) {
+                    if (validFileUpload(Path.GetExtension(model.AttachmentFile.FileName))) {
+                        service.InsertRequests(model);
+
+                        AddPicture(model.AttachmentFile, model.TicketId);
+
+                    } else {
+                        return Json(new { success = false, messageAlert = "โปรดอัพโหลดเฉพาะไฟล์รูปภาพ", JsonRequestBehavior.AllowGet });
+                    }
+                } else {
+                    service.InsertRequests(model);
                 }
+
 
                 //using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
 
@@ -85,6 +92,7 @@ namespace SRMforCustomer.Controllers {
             string fileName = Path.GetFileNameWithoutExtension(attachment.FileName);
             string extensionName = Path.GetExtension(attachment.FileName);
 
+            //if (validFileUpload(extensionName)) {
             Attachments attachments = new Attachments() {
                 AttachmentNo = 1,
                 TicketId = ticket,
@@ -97,6 +105,10 @@ namespace SRMforCustomer.Controllers {
             };
 
             service.InsertAttachments(attachments);
+            //    return true;
+            //}
+            //return false;
+
         }
 
 
@@ -142,6 +154,18 @@ namespace SRMforCustomer.Controllers {
 
             return randomValue;
             //}
+        }
+
+
+        private Boolean validFileUpload(string ctrlFile) {
+            string[] _validFileExtensions = new string[] { ".jpg", ".jpeg", ".bmp", ".gif", ".png", ".pdf" };
+
+            foreach (string value in _validFileExtensions) {
+                if (ctrlFile.Equals(value)) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
