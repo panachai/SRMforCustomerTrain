@@ -32,6 +32,13 @@ namespace SRMforCustomer.Controllers {
                     //ยิงเรียก Comment
                     List<Comments> listComments = service.CommentsModelformTicket(ticketSearch);
 
+                    List<Attachments> listAttachments = service.GetAttachments(ticketSearch);
+
+                    if (listAttachments.Count > 0) {
+                        ViewBag.listImage = listAttachments;
+                    }
+
+
                     ViewBag.listComment = listComments;
                     
                     return View(modelRequests);

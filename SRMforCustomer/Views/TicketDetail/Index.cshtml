@@ -7,6 +7,15 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string imgSrc = string.Empty;
+
+    if (ViewBag.listImage != null) {
+        List<Attachments> listimage = ViewBag.listImage;
+
+        var base64 = Convert.ToBase64String(listimage[0].AttachmentFile);
+        imgSrc = String.Format("data:{0};base64,{1}", listimage[0].AttachmentMimeType, base64);
+    }
 }
 <link href="~/Content/scrollbar1.css" rel="stylesheet" />
 <link href="~/Content/Site.css" rel="stylesheet" />
@@ -72,48 +81,15 @@
                         </div>
                     }
                 }
-                </div>
+            </div>
 
-                @*@{
-                List<Comments> listComment = ViewBag.listComment;
-                for (int i = 0; i < listComment.Count; i++) {
-                    if (@listComment[i].StaffId != null) {
-                        <div>
-                            <div class="col-xs6">
-                                <div style="text-align:right">@listComment[i].DateCreate</div>
-                                <div class="chat" style="word-wrap: break-word; display: inline-block;width:430px">
-                                    @listComment[i].TextComment
-                                </div>
-                            </div>
-                            <div class="col-xs6">
-                            </div>
-                        </div>
-                    } else {
-                        <div>
-                            <div class="col-xs6">
-                            </div>
-                            <div class="col-xs6">
-                                <div style="text-align: left">@listComment[i].DateCreate</div>
-                                <div class="chat" style="word-wrap: break-word; display: inline-block;width:430px">
-                                    @listComment[i].TextComment
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-            }*@
-
-
-
-                @*@using (Html.BeginForm("SendComment", "TicketDetail", new { modelRequest = Model }, FormMethod.Post)) {*@
-                @using (Html.BeginForm("SendComment", "TicketDetail", new { ticket = Model.TicketId }, FormMethod.Post)) {
-                    <div style="padding-top:25px;">
-                        <table style="width:100%;">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        @*@"this.value = this.value.replace(/[^0-9]/g, '');"*@
-                                        @Html.TextArea("textComment", new {
+            @using (Html.BeginForm("SendComment", "TicketDetail", new { ticket = Model.TicketId }, FormMethod.Post)) {
+                <div style="padding-top:25px;">
+                    <table style="width:100%;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Html.TextArea("textComment", new {
                                    @class = "form-control",
                                    style = "height:100px;",
                                    oninput = @"this.value = this.value.replace(/^\s+/, '');",
@@ -121,22 +97,54 @@
                                    minlength = "3",
                                    required = "required"
                                })
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="padding-top: 20px;">
-                                        <button class="btn-danger" type="submit" style="outline:none">Send</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                }
-            </div>
-        </div>
-                }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-top: 20px;">
+                                    <button class="btn-danger" type="submit" style="outline:none">Send</button>
+                                </td>
+                            </tr>
 
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+
+        @if (!string.IsNullOrEmpty(imgSrc)) {
+
+            @*<img src="@imgSrc" style="width: 150px; height: 150px;" />*@
+            <div class="">
+                <img src="@imgSrc" style="width : 150px; height:150; cursor: pointer;" class="img-thumbnail" data-toggle="modal" data-target="#myModal" />
+            </div>
+
+
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <img src="@imgSrc" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+                    }
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
+
+    @*<script type="text/javascript">
+            function openImage(imageUrl) {
+                window.open(theURL);
+            }
+        </script>*@
+
+
+
+
 }

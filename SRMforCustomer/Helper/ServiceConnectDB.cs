@@ -54,7 +54,6 @@ namespace SRMforCustomer.Helper {
             }
         }
 
-
         public Boolean InsertAttachments(Attachments attachmentsModel) {
 
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
@@ -66,9 +65,14 @@ namespace SRMforCustomer.Helper {
 
                 return true;
             }
-
             return false;
+        }
 
+        public List<Attachments> GetAttachments(int ticket) {
+            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+                var attach = db.Attachments.Where(s => s.TicketId == ticket).ToList();
+                return attach;
+            }
         }
 
     }
