@@ -156,7 +156,7 @@ namespace SRMforCustomer.Controllers {
 
 
         private Boolean validFileUpload(string ctrlFile) {
-            string[] _validFileExtensions = new string[] { ".jpg", ".jpeg", ".bmp", ".gif", ".png", ".pdf" };
+            string[] _validFileExtensions = new string[] { ".jpg", ".jpeg", ".bmp", ".gif", ".png"};
 
             foreach (string value in _validFileExtensions) {
                 if (ctrlFile.Equals(value)) {
