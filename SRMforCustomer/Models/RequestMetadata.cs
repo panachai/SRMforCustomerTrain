@@ -42,15 +42,11 @@ namespace SRMforCustomer.Models {
         [Required]
         public System.DateTime DateCreate { get; set; }
 
-
-    
-
 }
 
     [MetadataType(typeof(RequestMetadata))]
     public partial class Requests {
         //สามารถ เพิ่ม method และ เพิ่ม properties ได้
-        //.jpg", ".jpeg", ".bmp", ".gif", ".png", ".pdf"
 
         //[FileExtensions(Extensions = "jpg,jpeg,bmp,gif,png", ErrorMessage = "Please upload picture format (Support jpg bmp gif png")]
         public HttpPostedFileBase AttachmentFile { get; set; }

@@ -1,6 +1,4 @@
-﻿@*using SRMforCustomer.Models*@
-
-@using System.Web.UI.HtmlControls
+﻿@using System.Web.UI.HtmlControls
 @using SRMforCustomer.Models
 @model SRMforCustomer.Models.Requests
 
@@ -20,15 +18,11 @@
 <link href="~/Content/scrollbar1.css" rel="stylesheet" />
 <link href="~/Content/Site.css" rel="stylesheet" />
 
-@*<h2>Ticket Detail Index</h2>*@
-
 @if (@ViewBag.Message != null && Model == null) { //เดี๋ยวเอา Viewbag ออก
     string message = ViewBag.Message;
     <h3>@Html.ActionLink(message, "", "Search")</h3>
 
 } else {
-    @*<h3>TicketID : @Model.TicketId</h3>*@
-
 
     <div class="head_title">
         Ticket Detail
@@ -113,7 +107,6 @@
 
         @if (!string.IsNullOrEmpty(imgSrc)) {
 
-            @*<img src="@imgSrc" style="width: 150px; height: 150px;" />*@
             <div class="">
                 <img src="@imgSrc" style="width : 150px; height:150; cursor: pointer;" class="img-thumbnail" data-toggle="modal" data-target="#myModal" />
             </div>
@@ -137,14 +130,5 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
-
-    @*<script type="text/javascript">
-            function openImage(imageUrl) {
-                window.open(theURL);
-            }
-        </script>*@
-
-
-
 
 }
