@@ -34,7 +34,6 @@ namespace SRMforCustomer.Helper {
         }
 
         public Boolean InsertComment(Comments model) {
-
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
                 var comment = new Comments();
                 comment = model;
@@ -47,12 +46,12 @@ namespace SRMforCustomer.Helper {
             return false;
         }
 
-        public Staff GetStaffModel(int staffId) {
-            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-                var req = db.Staff.SingleOrDefault(s => s.StaffId == staffId);
-                return req;
-            }
-        }
+        //public Staff GetStaffModel(int staffId) {
+        //    using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+        //        var req = db.Staff.SingleOrDefault(s => s.StaffId == staffId);
+        //        return req;
+        //    }
+        //}
 
         public Boolean InsertAttachments(Attachments attachmentsModel) {
 

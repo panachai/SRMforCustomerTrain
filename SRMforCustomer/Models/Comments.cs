@@ -22,15 +22,14 @@ namespace SRMforCustomer.Models
     
         public int CommentsId { get; set; }
         public int TicketId { get; set; }
-        public Nullable<int> StaffId { get; set; }
+        public Nullable<System.Guid> StaffId { get; set; }
         public string Name { get; set; }
         public System.DateTime DateCreate { get; set; }
         public string CreatedBy { get; set; }
         public string TextComment { get; set; }
     
-        public virtual Requests Requests { get; set; }
-        public virtual Staff Staff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attachments> Attachments { get; set; }
+        public virtual Requests Requests { get; set; }
     }
 }

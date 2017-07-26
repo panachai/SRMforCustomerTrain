@@ -18,12 +18,11 @@ namespace SRMforCustomer.Models
         public Requests()
         {
             this.Comments = new HashSet<Comments>();
-            this.Attachments = new HashSet<Attachments>();
         }
     
         public int TicketId { get; set; }
         public int RequestTypeId { get; set; }
-        public Nullable<int> StaffId { get; set; }
+        public Nullable<System.Guid> StaffId { get; set; }
         public int StatusId { get; set; }
         public string TopicName { get; set; }
         public string CustomerName { get; set; }
@@ -34,12 +33,9 @@ namespace SRMforCustomer.Models
         public System.DateTime DateCreate { get; set; }
         public Nullable<System.DateTime> DateFinish { get; set; }
     
-        public virtual Staff Staff { get; set; }
-        public virtual Statuses Statuses { get; set; }
-        public virtual RequestType RequestType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comments> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Attachments> Attachments { get; set; }
+        public virtual RequestType RequestType { get; set; }
+        public virtual Statuses Statuses { get; set; }
     }
 }

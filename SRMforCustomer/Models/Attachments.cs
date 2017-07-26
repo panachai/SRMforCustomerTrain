@@ -25,6 +25,5 @@ namespace SRMforCustomer.Models
         public string AttachmentSize { get; set; }
     
         public virtual Comments Comments { get; set; }
-        public virtual Requests Requests { get; set; }
     }
 }
