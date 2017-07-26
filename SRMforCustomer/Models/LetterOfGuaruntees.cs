@@ -12,19 +12,27 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class LetterOfGuaruntees
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
+        public LetterOfGuaruntees()
         {
-            this.UserInfo = new HashSet<UserInfo>();
+            this.LetterOfGuarunteeDetails = new HashSet<LetterOfGuarunteeDetails>();
         }
     
-        public byte StatusCode { get; set; }
-        public string StatusName { get; set; }
-        public string StatusName_EN { get; set; }
+        public string Username { get; set; }
+        public int TypeId { get; set; }
+        public Nullable<int> CutMoneyType { get; set; }
+        public string BondsMan { get; set; }
+        public string Remark { get; set; }
+        public double MoneyGuaruntee { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public string CreatedBy { get; set; }
+        public string Belong { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<LetterOfGuarunteeDetails> LetterOfGuarunteeDetails { get; set; }
+        public virtual MasterTypes MasterTypes { get; set; }
+        public virtual MasterTypes MasterTypes1 { get; set; }
     }
 }

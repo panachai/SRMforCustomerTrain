@@ -12,22 +12,22 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Attachments
+    public partial class WelfareHistories
     {
+        public int WelfareHistoryId { get; set; }
+        public int WelfareTypeId { get; set; }
         public string Username { get; set; }
-        public int AttachmentTypeId { get; set; }
-        public int AttachmentNo { get; set; }
-        public byte[] AttachmentFile { get; set; }
-        public string AttachmentMimeType { get; set; }
-        public string AttachmentFilename { get; set; }
-        public string AttachmentSize { get; set; }
+        public Nullable<System.DateTime> DateTrans { get; set; }
+        public Nullable<int> Relationship { get; set; }
+        public string Person1 { get; set; }
+        public string Person2 { get; set; }
+        public Nullable<decimal> Money { get; set; }
+        public string Value { get; set; }
+        public string Remark { get; set; }
         public System.DateTime DateCreated { get; set; }
-        public string CreatedByUsername { get; set; }
+        public string CreatedBy { get; set; }
         public System.DateTime DateModified { get; set; }
-        public string ModifiedByUsername { get; set; }
-        public Nullable<int> RequestId { get; set; }
-    
-        public virtual MasterTypes MasterTypes { get; set; }
-        public virtual UserInfo UserInfo { get; set; }
+        public string ModifiedBy { get; set; }
+        public string WelfareTypeName { get; set; }
     }
 }

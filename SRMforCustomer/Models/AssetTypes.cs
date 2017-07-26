@@ -12,19 +12,22 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class AssetTypes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
+        public AssetTypes()
         {
-            this.UserInfo = new HashSet<UserInfo>();
+            this.Assets = new HashSet<Assets>();
         }
     
-        public byte StatusCode { get; set; }
-        public string StatusName { get; set; }
-        public string StatusName_EN { get; set; }
+        public int AssetTypeId { get; set; }
+        public string AssetTypeCode { get; set; }
+        public string AssetTypeName { get; set; }
+        public Nullable<int> ParentAssetTypeId { get; set; }
+        public Nullable<bool> IsPCSet { get; set; }
+        public Nullable<bool> ITAssets { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<Assets> Assets { get; set; }
     }
 }

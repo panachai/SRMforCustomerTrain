@@ -12,19 +12,29 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class Cards
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
+        public Cards()
         {
-            this.UserInfo = new HashSet<UserInfo>();
+            this.CardHistories = new HashSet<CardHistories>();
         }
     
-        public byte StatusCode { get; set; }
-        public string StatusName { get; set; }
-        public string StatusName_EN { get; set; }
+        public int CardID { get; set; }
+        public string CardCode { get; set; }
+        public string OwnerUser { get; set; }
+        public bool IsUsed { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsBreak { get; set; }
+        public string Remark { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> DateModified { get; set; }
+        public string ModifiedBy { get; set; }
+        public string FullName { get; set; }
+        public string CardType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<CardHistories> CardHistories { get; set; }
     }
 }

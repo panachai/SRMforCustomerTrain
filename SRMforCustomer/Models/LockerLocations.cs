@@ -12,19 +12,22 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class LockerLocations
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
+        public LockerLocations()
         {
-            this.UserInfo = new HashSet<UserInfo>();
+            this.Lockers = new HashSet<Lockers>();
         }
     
-        public byte StatusCode { get; set; }
-        public string StatusName { get; set; }
-        public string StatusName_EN { get; set; }
+        public int LockerLocationID { get; set; }
+        public string LockerLocation { get; set; }
+        public System.DateTime DateCreate { get; set; }
+        public string CreateBy { get; set; }
+        public Nullable<System.DateTime> DateModified { get; set; }
+        public string ModifiedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<Lockers> Lockers { get; set; }
     }
 }

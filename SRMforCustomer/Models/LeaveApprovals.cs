@@ -12,19 +12,22 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class LeaveApprovals
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
+        public LeaveApprovals()
         {
-            this.UserInfo = new HashSet<UserInfo>();
+            this.LeaveRequests = new HashSet<LeaveRequests>();
         }
     
-        public byte StatusCode { get; set; }
-        public string StatusName { get; set; }
-        public string StatusName_EN { get; set; }
+        public int LeaveRequestId { get; set; }
+        public string ApprovedByUsername { get; set; }
+        public string ApprovedBy { get; set; }
+        public string Comment { get; set; }
+        public Nullable<bool> IsApproved { get; set; }
+        public System.DateTime DateApproved { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<LeaveRequests> LeaveRequests { get; set; }
     }
 }

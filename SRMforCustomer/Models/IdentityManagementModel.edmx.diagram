@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="281f81d3884e40a9960e524d57185cfd" Name="Diagram1">
+        <EntityTypeShape EntityType="IdentityManagementModel.AccessLogs" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Addresses" Width="1.5" PointX="11.25" PointY="48.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Applications" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.AppsVersions" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.aspnet_Applications" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.aspnet_Membership" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.aspnet_Paths" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.aspnet_PersonalizationPerUser" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.aspnet_Profile" Width="1.5" PointX="10.5" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.aspnet_Roles" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.aspnet_SchemaVersions" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.aspnet_Users" Width="1.5" PointX="8.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.aspnet_WebEvent_Events" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.AssetBrands" Width="1.5" PointX="8.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.AssetDepreciations" Width="1.5" PointX="13.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Assets" Width="1.5" PointX="11" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.AssetStatuses" Width="1.5" PointX="8.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.AssetTransferDetails" Width="1.5" PointX="16.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.AssetTransfers" Width="1.5" PointX="14" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.AssetTypes" Width="1.5" PointX="8.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Attachments" Width="1.5" PointX="3" PointY="68.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.CardHistories" Width="1.5" PointX="8" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Cards" Width="1.5" PointX="5.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Childrens" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.CompanyDivisions" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Configs" Width="1.5" PointX="18.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Courses" Width="1.5" PointX="9" PointY="48.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.DateWages" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Departments" Width="1.5" PointX="6.75" PointY="49.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Divisions" Width="1.5" PointX="4.5" PointY="50.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.DocumentComments" Width="1.5" PointX="11.25" PointY="52.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Education" Width="1.5" PointX="18.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.EducationLevels" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Employment" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.EmploymentLogs" Width="1.5" PointX="2.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.ExtraWorkingDays" Width="1.5" PointX="11.25" PointY="55.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Facitilities" Width="1.5" PointX="3" PointY="56.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.FoodCoupons" Width="1.5" PointX="3" PointY="59.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Gender" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Grants" Width="1.5" PointX="10.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Holidays" Width="1.5" PointX="3" PointY="62.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Incentive" Width="1.5" PointX="6" PointY="69.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.JobDetails" Width="1.5" PointX="19.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.LeacePrivilegeConfig" Width="1.5" PointX="19.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.LeaveApprovals" Width="1.5" PointX="0.75" PointY="75.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.LeaveAttachments" Width="1.5" PointX="5.25" PointY="78.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.LeaveRequests" Width="1.5" PointX="3" PointY="73.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.LeaveSummary" Width="1.5" PointX="11.25" PointY="67.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.LetterOfGuarunteeDetails" Width="1.5" PointX="5.25" PointY="73.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.LetterOfGuaruntees" Width="1.5" PointX="3" PointY="80.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.LockerHistories" Width="1.5" PointX="17.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.LockerLocations" Width="1.5" PointX="12.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Lockers" Width="1.5" PointX="15" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Marriages" Width="1.5" PointX="3" PointY="84.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.MasterTypes" Width="1.5" PointX="0.75" PointY="67.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.MeetingDetails" Width="1.5" PointX="14.25" PointY="61.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.MeetingGroups" Width="1.5" PointX="12" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.MeetingRooms" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Meetings" Width="1.5" PointX="12" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.MovementLogs" Width="1.5" PointX="3" PointY="90.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.OTApprovals" Width="1.5" PointX="17.25" PointY="58.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.OTRequests" Width="1.5" PointX="6" PointY="63.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.ParentInfos" Width="1.5" PointX="8" PointY="72.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Partners" Width="1.5" PointX="20.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.PeriodDetails" Width="1.5" PointX="17.25" PointY="76.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Periods" Width="1.5" PointX="12" PointY="81.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Positions" Width="1.5" PointX="20.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.ProvidentFundPercentages" Width="1.5" PointX="3" PointY="109.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.ProvidentFundPlan" Width="1.5" PointX="20.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.ProvidentFundRates" Width="1.5" PointX="3" PointY="114.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.ProvidentFunds" Width="1.5" PointX="5.25" PointY="89.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.PRPOUserStats" Width="1.5" PointX="11.25" PointY="73.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Ranks" Width="1.5" PointX="16.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Shifts" Width="1.5" PointX="15" PointY="70.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.SsoHospitals" Width="1.5" PointX="12.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.SsoHospitals_BK" Width="1.5" PointX="14.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.SsoNationalitys" Width="1.5" PointX="16.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Statuses" Width="1.5" PointX="6.75" PointY="60.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.sysdiagrams" Width="1.5" PointX="18.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Templates" Width="1.5" PointX="20.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.TimeStamps" Width="1.5" PointX="11.25" PointY="78.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Titles" Width="1.5" PointX="4.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.Trainings" Width="1.5" PointX="11.25" PointY="59.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.UserInfo" Width="1.5" PointX="9" PointY="55.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.UserInGroupMeetings" Width="1.5" PointX="14.25" PointY="58.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.UserInManualShifts" Width="1.5" PointX="6.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.UserInPeriods" Width="1.5" PointX="14.25" PointY="65.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.UserInShifts" Width="1.5" PointX="17.25" PointY="61.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.UserLeaveDays" Width="1.5" PointX="11.25" PointY="62.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.UserPrivateInfo" Width="1.5" PointX="11.25" PointY="95" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.WelfareHistories" Width="1.5" PointX="21.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.PasswordRecoveryRequests" Width="1.5" PointX="21.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.UserInfoEditHistories" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Addresses_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK__aspnet_Me__Appli__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK__aspnet_Pa__Appli__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK__aspnet_Ro__Appli__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK__aspnet_Us__Appli__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK__aspnet_Me__UserI__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK__aspnet_Pe__PathI__6A30C649" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK__aspnet_Pe__PathI__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK__aspnet_Pe__UserI__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK__aspnet_Pr__UserI__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_aspnet_Users_aspnet_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Assets_AssetBrands" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_AssetDepreciations_Assets" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_AssetTransferDetails_Assets" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_FixAssets_FixAssets" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_FixAssets_FixAssetStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_TransferDetails_Transfers" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_AttachmentFiles_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_AttachmentFiles_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_CardHistories_Cards" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Trainings_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Departments_Divisions" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInfo_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInfo_Divisions" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_DocumentComment_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_ExtraWorkingDays_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Facitilities_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_FoodCoupons_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Holidays_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Incentive_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Incentive_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LeaveRequests_LeaveApprovals" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LeaveAttachments_LeaveRequests" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LeaveRequests_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LeaveRequests_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LeaveSummary_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LetterOfGuarunteeDetails_LetterOfGuaruntees" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LetterOfGuarunteeDetails_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LetterOfGuarunteeDetails_MasterTypes1" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LetterOfGuaruntees_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LetterOfGuaruntees_MasterTypes1" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_LockerHistories_Lockers" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Lockers_LockerLocations" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Marriages_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Marriages_MasterTypes1" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_MovementLogs_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_OTRequests_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_ParentInfos_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_PersonalDayOffs_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_ProvidentFund_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_ProvidentFundPercentage_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_ProvidentFundRate_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInfo_MasterType1" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInfo_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInfo_MasterTypes2" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInShifts_MasterTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_MeetingDetails_MeetingGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_MeetingDetails_Meetings" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_MeetingDetails_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInGroupMeetings_MeetingGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_OTApprovals_OTRequests" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_OTApprovals_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_OTRequests_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_ParentInfos_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_PeriodDetails_Periods" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_PeriodDetails_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInPeriods_Periods" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_ProvidentFund_ProvidentFundPercentage" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_ProvidentFund_ProvidentFundRate" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_ProvidentFund_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_tblPRPOUserStats_tblUserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInShifts_Shifts" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_tblUserInfo_tblStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_TimeStamps_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_Trainings_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_PersonalDayOffs_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInfo_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInGroupMeetings_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInPeriods_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserInShifts_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.FK_UserPrivateInfo_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="IdentityManagementModel.aspnet_UsersInRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vw_aspnet_Applications" Width="1.5" PointX="0.75" PointY="23.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vw_aspnet_MembershipUsers" Width="1.5" PointX="23.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vw_aspnet_Profiles" Width="1.5" PointX="13.75" PointY="23.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vw_aspnet_Roles" Width="1.5" PointX="15.75" PointY="23.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vw_aspnet_Users" Width="1.5" PointX="17.75" PointY="23.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vw_aspnet_UsersInRoles" Width="1.5" PointX="19.75" PointY="23.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vw_aspnet_WebPartState_Paths" Width="1.5" PointX="23.75" PointY="20.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vw_aspnet_WebPartState_Shared" Width="1.5" PointX="21.75" PointY="23.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vw_aspnet_WebPartState_User" Width="1.5" PointX="23.75" PointY="23.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAddresses" Width="1.5" PointX="2.75" PointY="24.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAssetChanges" Width="1.5" PointX="4.75" PointY="24.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAssetDepreciations" Width="1.5" PointX="6.75" PointY="24.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAssetItemDetails" Width="1.5" PointX="24.75" PointY="10.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAssetMaxTransaction" Width="1.5" PointX="24.75" PointY="14.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAssets" Width="1.5" PointX="25.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAssetTransaction" Width="1.5" PointX="8.75" PointY="25.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAssetTransferDetails" Width="1.5" PointX="10.75" PointY="25.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAssetTransfers" Width="1.5" PointX="25.75" PointY="19.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAssetTypes" Width="1.5" PointX="26.75" PointY="9.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwAssetUserInfo" Width="1.5" PointX="12.75" PointY="26.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwCardHistories" Width="1.5" PointX="26.75" PointY="13.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwCardHistoriesNameEmpOut" Width="1.5" PointX="14.75" PointY="26.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwCardLites" Width="1.5" PointX="19.75" PointY="26.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwCards" Width="1.5" PointX="21.75" PointY="26.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwCourses" Width="1.5" PointX="23.75" PointY="26.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwDataAdmins" Width="1.5" PointX="25.75" PointY="26.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwDatadict" Width="1.5" PointX="16.75" PointY="27.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwDepartment" Width="1.5" PointX="27.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwDepartmentManager" Width="1.5" PointX="27.75" PointY="3.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwDivisionTrees" Width="1.5" PointX="27.75" PointY="19.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwDocScanUserInRole" Width="1.5" PointX="27.75" PointY="22.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwEducations" Width="1.5" PointX="27.75" PointY="25.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwFFAccountingTeam" Width="1.5" PointX="0.75" PointY="28.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwFFProcessingTeam" Width="1.5" PointX="28.75" PointY="7.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwFoodCouponCompany" Width="1.5" PointX="28.75" PointY="10.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwLeacePrivilegeConfig" Width="1.5" PointX="28.75" PointY="14.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwLeaveRequests" Width="1.5" PointX="29.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwLockAndApproveUser" Width="1.5" PointX="2.75" PointY="29.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwLockerHistories" Width="1.5" PointX="4.75" PointY="29.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwLockerLites" Width="1.5" PointX="29.75" PointY="19.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwLockers" Width="1.5" PointX="29.75" PointY="23.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwMarketingPurchasingTeam" Width="1.5" PointX="25.75" PointY="29.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwOTRequests" Width="1.5" PointX="27.75" PointY="29.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwPRPOUserStats" Width="1.5" PointX="29.75" PointY="29.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwPurchasingTeam" Width="1.5" PointX="6.75" PointY="30.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwRoles" Width="1.5" PointX="30.75" PointY="7.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwTimeStamps" Width="1.5" PointX="8.75" PointY="30.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwUserBarcodes" Width="1.5" PointX="30.75" PointY="10.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwUserInfo" Width="1.5" PointX="18.75" PointY="30.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwUserInfo2" Width="1.5" PointX="31.75" PointY="14.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwUserInfoLite" Width="1.5" PointX="31.75" PointY="28.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwUserInfoLite2" Width="1.5" PointX="32.75" PointY="0.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwUserInfoWithMasterType" Width="1.5" PointX="33.75" PointY="13.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwUserInShift" Width="1.5" PointX="20.75" PointY="33.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwUserLeaveDays" Width="1.5" PointX="10.75" PointY="32.75" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwUsersInRoles" Width="1.5" PointX="12.75" PointY="32.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

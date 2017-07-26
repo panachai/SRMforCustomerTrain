@@ -12,18 +12,25 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class Divisions
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
+        public Divisions()
         {
+            this.Departments = new HashSet<Departments>();
             this.UserInfo = new HashSet<UserInfo>();
         }
     
-        public byte StatusCode { get; set; }
-        public string StatusName { get; set; }
-        public string StatusName_EN { get; set; }
+        public int CompanyCode { get; set; }
+        public string DivisionCode { get; set; }
+        public int DivisionId { get; set; }
+        public string DivisionName { get; set; }
+        public bool IsActive { get; set; }
+        public Nullable<int> CompaySiteCode { get; set; }
+        public Nullable<int> CompanyId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Departments> Departments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserInfo> UserInfo { get; set; }
     }

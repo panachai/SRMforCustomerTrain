@@ -12,19 +12,25 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class MeetingGroups
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
+        public MeetingGroups()
         {
-            this.UserInfo = new HashSet<UserInfo>();
+            this.MeetingDetails = new HashSet<MeetingDetails>();
+            this.UserInGroupMeetings = new HashSet<UserInGroupMeetings>();
         }
     
-        public byte StatusCode { get; set; }
-        public string StatusName { get; set; }
-        public string StatusName_EN { get; set; }
+        public int MeetingGroupId { get; set; }
+        public string MeetingGroupName_TH { get; set; }
+        public string MeetingGroupName_EN { get; set; }
+        public string CreatedBy { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<MeetingDetails> MeetingDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserInGroupMeetings> UserInGroupMeetings { get; set; }
     }
 }

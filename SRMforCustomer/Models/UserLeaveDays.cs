@@ -12,20 +12,18 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Attachments
+    public partial class UserLeaveDays
     {
         public string Username { get; set; }
-        public int AttachmentTypeId { get; set; }
-        public int AttachmentNo { get; set; }
-        public byte[] AttachmentFile { get; set; }
-        public string AttachmentMimeType { get; set; }
-        public string AttachmentFilename { get; set; }
-        public string AttachmentSize { get; set; }
+        public int TypeId { get; set; }
+        public int Year { get; set; }
+        public int Days { get; set; }
+        public int Hours { get; set; }
+        public int UsedDays { get; set; }
+        public double UsedHours { get; set; }
         public System.DateTime DateCreated { get; set; }
-        public string CreatedByUsername { get; set; }
-        public System.DateTime DateModified { get; set; }
+        public Nullable<System.DateTime> DateModified { get; set; }
         public string ModifiedByUsername { get; set; }
-        public Nullable<int> RequestId { get; set; }
     
         public virtual MasterTypes MasterTypes { get; set; }
         public virtual UserInfo UserInfo { get; set; }

@@ -12,19 +12,25 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class ProvidentFundRates
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
+        public ProvidentFundRates()
         {
-            this.UserInfo = new HashSet<UserInfo>();
+            this.ProvidentFunds = new HashSet<ProvidentFunds>();
         }
     
-        public byte StatusCode { get; set; }
-        public string StatusName { get; set; }
-        public string StatusName_EN { get; set; }
+        public int ProvidentFundRateId { get; set; }
+        public int ProvidentFundTypeId { get; set; }
+        public int LengthInMinMonth { get; set; }
+        public int LengthInMaxMonth { get; set; }
+        public double CompanyRatePercent { get; set; }
+        public string CreatedBy { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public bool IsActive { get; set; }
     
+        public virtual MasterTypes MasterTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<ProvidentFunds> ProvidentFunds { get; set; }
     }
 }

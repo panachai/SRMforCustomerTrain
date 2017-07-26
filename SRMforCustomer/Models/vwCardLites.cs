@@ -12,19 +12,16 @@ namespace SRMforCustomer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class vwCardLites
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
-        {
-            this.UserInfo = new HashSet<UserInfo>();
-        }
-    
+        public int UserID { get; set; }
+        public string Username { get; set; }
+        public string Fullname { get; set; }
+        public string DivisionCode { get; set; }
+        public string DepartmentCode { get; set; }
         public byte StatusCode { get; set; }
-        public string StatusName { get; set; }
-        public string StatusName_EN { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public string CardCode { get; set; }
+        public Nullable<bool> IsUsed { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
     }
 }
