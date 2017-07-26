@@ -25,7 +25,7 @@
                     </div>
                     <div class="fieldLogin" style="margin-top:0;">
                         <div class="input-group stylish-input-group">
-                            @Html.TextBoxFor(m => m.UserName, new { placeholder = "Username", data_clear_btn = true, autofocus = "autofocus", @class = "form-control key-input" })
+                            @Html.TextBoxFor(m => m.UserName, new { placeholder = "Username", maxlength = "50", minlength = "3", data_clear_btn = true, autofocus = "autofocus", @class = "form-control key-input" })
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-user" style="color:#aaa"></span>
                             </span>

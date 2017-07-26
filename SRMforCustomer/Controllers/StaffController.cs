@@ -76,44 +76,50 @@ namespace SRMforCustomer.Controllers {
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl) {
-            string username = model.UserName;
-            string password = model.Password;
-            if (Session["key1"] == null) {
-                return View();
+            if (ModelState.IsValid) {
+
+
+                string username = model.UserName;
+                string password = model.Password;
+                if (Session["key1"] == null) {
+                    return View();
+                }
+
+                //FormsAuthentication.SetAuthCookie(username, true);
+
+                LogInApplication(username);
+                IdentityManagementEntities1 imcEntities = new IdentityManagementEntities1();
+                //var tmpUserDetail = imcEntities.vwUserInfo.Select(s => s.Username == username);
+                var tmpUserDetail = (from q in imcEntities.vwUserInfo
+                                     where q.Username == username
+                                     select q);
+                if (tmpUserDetail.Count() > 0) {
+                    vwUserInfo userDetail = tmpUserDetail.FirstOrDefault();
+
+                    //UserAuthen userAuthen = new UserAuthen();
+                    StaffModel staffModel = new StaffModel();
+
+                    staffModel.UserName = userDetail.Username;
+                    staffModel.UserGUID = userDetail.UserGUID;
+                    staffModel.UserFullName = userDetail.Fullname;
+                    staffModel.UserRankNo = userDetail.RankTypeNo;
+                    staffModel.UserDepartmentCode = userDetail.DepartmentCode;
+                    staffModel.UserDivisionCode = userDetail.DivisionCode;
+                    //ViewBag.UserGUID = userDetail.UserGUID;
+
+                    Session["staffModel"] = staffModel;
+
+                    return RedirectToLocal(returnUrl);
+                } else {
+                    TempData["LoginError"] = "ไม่สามารถเข้าระบบได้ กรุณาตรวจสอบ ใหม่อีกครั้ง";
+                    return RedirectToAction("Login", "Staff");
+                }
+
+                ViewData["key1"] = Session["key1"];
+                return View(model);
             }
+            return View();
 
-            FormsAuthentication.SetAuthCookie(username, true);
-
-            LogInApplication(username);
-            IdentityManagementEntities1 imcEntities = new IdentityManagementEntities1();
-            //var tmpUserDetail = imcEntities.vwUserInfo.Select(s => s.Username == username);
-            var tmpUserDetail = (from q in imcEntities.vwUserInfo
-                                 where q.Username == username
-                                 select q);
-            if (tmpUserDetail.Count() > 0) {
-                vwUserInfo userDetail = tmpUserDetail.FirstOrDefault();
-
-                //UserAuthen userAuthen = new UserAuthen();
-                StaffModel staffModel = new StaffModel();
-
-                staffModel.UserName = userDetail.Username;
-                staffModel.UserGUID = userDetail.UserGUID;
-                staffModel.UserFullName = userDetail.Fullname;
-                staffModel.UserRankNo = userDetail.RankTypeNo;
-                staffModel.UserDepartmentCode = userDetail.DepartmentCode;
-                staffModel.UserDivisionCode = userDetail.DivisionCode;
-                //ViewBag.UserGUID = userDetail.UserGUID;
-
-                Session["staffModel"] = staffModel;
-
-                return RedirectToLocal(returnUrl);
-            } else {
-                TempData["LoginError"] = "ไม่สามารถเข้าระบบได้ กรุณาตรวจสอบ ใหม่อีกครั้ง";
-                return RedirectToAction("Login", "Staff");
-            }
-
-            ViewData["key1"] = Session["key1"];
-            return View(model);
         }
 
         //[HttpPost]
