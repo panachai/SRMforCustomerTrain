@@ -5,7 +5,7 @@
     };
     if (Request.Url.AbsolutePath.Contains("Search")) {
         active[1] = "active";
-    } else if (Request.Url.AbsolutePath.Contains("RequestsStaff")) {
+    } else if (Request.Url.AbsolutePath.Contains("Staff")) {
         active[3] = "active";
     } else if (Request.Url.AbsolutePath.Contains("Requests")) {
         active[2] = "active";
@@ -57,12 +57,12 @@
                 }
 
                 <li class="@active[3]">
-                    @Html.ActionLink("Staff", "Index", "RequestsStaff") @*/LoginStaffPage*@
+                    @Html.ActionLink("Staff", "Index", "Staff") @*/LoginStaffPage*@
                 </li>
                 @{
                     if (Session["staffModel"] != null) {
                         <li class="">
-                            @Html.ActionLink("LOGOUT", "LogOutStaff", "RequestsStaff")
+                            @Html.ActionLink("LOGOUT", "LogOutStaff", "Staff")
                         </li>
                     }
                 }
