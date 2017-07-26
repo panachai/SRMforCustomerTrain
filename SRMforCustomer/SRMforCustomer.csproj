@@ -174,20 +174,261 @@
     </Compile>
     <Compile Include="Helper\DateTimeUtils.cs" />
     <Compile Include="Helper\ServiceConnectDB.cs" />
+    <Compile Include="Helper\UserAuthen.cs" />
+    <Compile Include="Models\AccessLogs.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Addresses.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Applications.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppsVersions.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Applications.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Membership.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Paths.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_PersonalizationAllUsers.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_PersonalizationPerUser.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Profile.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Roles.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_SchemaVersions.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Users.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_WebEvent_Events.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AssetBrands.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AssetDepreciations.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Assets.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AssetStatuses.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AssetTransferDetails.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AssetTransfers.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AssetTypes.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Attachments.cs">
-      <DependentUpon>SRMForCustomer.tt</DependentUpon>
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CardHistories.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cards.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Childrens.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Comments.cs">
       <DependentUpon>SRMForCustomer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompanyDivisions.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Config.cs" />
     <Compile Include="Helper\Util.cs" />
+    <Compile Include="Models\Configs.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Courses.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DateWages.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Departments.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Divisions.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentComments.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Education.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EducationLevels.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employment.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmploymentLogs.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ExtraWorkingDays.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Facitilities.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FoodCoupons.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gender.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Grants.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Holidays.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityManagementModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IdentityManagementModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityManagementModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityManagementModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IdentityManagementModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Incentive.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobDetails.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeacePrivilegeConfig.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeaveApprovals.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeaveAttachments.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeaveRequests.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LeaveSummary.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LetterOfGuarunteeDetails.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LetterOfGuaruntees.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LockerHistories.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LockerLocations.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Lockers.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Marriages.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MasterTypes.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MeetingDetails.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MeetingGroups.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MeetingRooms.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Meetings.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MovementLogs.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OTApprovals.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OTRequests.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ParentInfos.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Partners.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PasswordRecoveryRequests.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PeriodDetails.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Periods.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Positions.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProvidentFundPercentages.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProvidentFundPlan.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProvidentFundRates.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProvidentFunds.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRPOUserStats.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ranks.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RequestMetadata.cs" />
     <Compile Include="Models\Requests.cs">
       <DependentUpon>SRMForCustomer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RequestType.cs">
       <DependentUpon>SRMForCustomer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Shifts.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SRMForCustomer.Context.cs">
       <AutoGen>True</AutoGen>
@@ -204,13 +445,233 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SRMForCustomer.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SsoHospitals.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SsoHospitals_BK.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SsoNationalitys.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Staff.cs">
       <DependentUpon>SRMForCustomer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Statuses.cs">
-      <DependentUpon>SRMForCustomer.tt</DependentUpon>
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Templates.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TimeStamps.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Titles.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Trainings.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserInfo.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserInfoEditHistories.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserInGroupMeetings.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserInManualShifts.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserInPeriods.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserInShifts.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserLeaveDays.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserPrivateInfo.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAddresses.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAssetChanges.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAssetDepreciations.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAssetItemDetails.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAssetMaxTransaction.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAssets.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAssetTransaction.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAssetTransferDetails.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAssetTransfers.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAssetTypes.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAssetUserInfo.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwCardHistories.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwCardHistoriesNameEmpOut.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwCardLites.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwCards.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwCourses.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwDataAdmins.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwDatadict.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwDepartment.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwDepartmentManager.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwDivisionTrees.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwDocScanUserInRole.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwEducations.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwFFAccountingTeam.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwFFProcessingTeam.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwFoodCouponCompany.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwLeacePrivilegeConfig.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwLeaveRequests.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwLockAndApproveUser.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwLockerHistories.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwLockerLites.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwLockers.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwMarketingPurchasingTeam.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwOTRequests.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwPRPOUserStats.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwPurchasingTeam.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwRoles.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwTimeStamps.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUserBarcodes.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUserInfo.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUserInfo2.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUserInfoLite.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUserInfoLite2.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUserInfoWithMasterType.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUserInShift.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUserLeaveDays.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUsersInRoles.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_aspnet_Applications.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_aspnet_MembershipUsers.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_aspnet_Profiles.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_aspnet_Roles.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_aspnet_Users.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_aspnet_UsersInRoles.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_aspnet_WebPartState_Paths.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_aspnet_WebPartState_Shared.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_aspnet_WebPartState_User.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WelfareHistories.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RequestsViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +686,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\IdentityManagementModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IdentityManagementModel.edmx</DependentUpon>
+      <LastGenOutput>IdentityManagementModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\IdentityManagementModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IdentityManagementModel.edmx</DependentUpon>
+      <LastGenOutput>IdentityManagementModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\SRMForCustomer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SRMForCustomer.edmx</DependentUpon>
@@ -256,6 +727,13 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\IdentityManagementModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IdentityManagementModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\IdentityManagementModel.edmx.diagram">
+      <DependentUpon>IdentityManagementModel.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
