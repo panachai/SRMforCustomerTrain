@@ -127,7 +127,6 @@ namespace SRMforCustomer.Controllers {
         public ActionResult LogOff() {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            //Session.Clear(); //ใส่เอง
             //HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             //myCookie.Expires = DateTime.Now.AddYears(-1);
             //myCookie.Value = null;
