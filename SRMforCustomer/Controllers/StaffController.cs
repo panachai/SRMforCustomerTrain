@@ -9,8 +9,6 @@ using SRMforCustomer.Models;
 using System.Configuration;
 using System.IO;
 using System.Net.Mail;
-using SRMforCustomer.Helper;
-using SRMforCustomer.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,10 +17,11 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using SRMforCustomer.ViewModels;
 
 namespace SRMforCustomer.Controllers {
     //[Authorize]
-    [RoutePrefix("Staff")]
+    [RoutePrefix("Staff")] //[RoutePrefix("Staff")]
     public class StaffController : Controller {
         ServiceConnectDB service;
 
@@ -30,33 +29,35 @@ namespace SRMforCustomer.Controllers {
             this.service = new ServiceConnectDB();
         }
 
-        [Route("")]
-        public ActionResult LoginStaffPage() {
+        //[Route("")]
+        //public ActionResult LoginStaffPage() {
 
-            if (Session["staffModel"] != null) {
-                return RedirectToAction("Index", "Requests");
-            } else {
-                return View();
-            }
-        }
+        //    if (Session["staffModel"] != null) {
+        //        return RedirectToAction("Index", "Requests");
+        //    } else {
+        //        return View();
+        //    }
+        //}
 
-        public ActionResult LoginStaff() {
+        //public ActionResult LoginStaff() {
 
-            Session["staffModel"] = service.GetStaffModel(1); //testStaff
+        //    Session["staffModel"] = service.GetStaffModel(1); //testStaff
 
-            ////ยิงเซอวิส where user pass ใน db เพื่อเอา record มา
-            //List<int> recordStaff = new List<int> { };
-            //if (recordStaff.Count > 0) {
-            //    Session["staffModel"] = "asdasd";
+        //    ////ยิงเซอวิส where user pass ใน db เพื่อเอา record มา
+        //    //List<int> recordStaff = new List<int> { };
+        //    //if (recordStaff.Count > 0) {
+        //    //    Session["staffModel"] = "asdasd";
 
-            //}
-            return RedirectToAction("Index", "Requests");
-        }
+        //    //}
+        //    return RedirectToAction("Index", "Requests");
+        //}
 
-        public ActionResult LogOutStaff() {
-            Session.Clear();
-            return RedirectToAction("LoginStaffPage", "Staff");
-        }
+        //public ActionResult LogOutStaff() {
+        //    Session.Clear();
+        //    return RedirectToAction("LoginStaffPage", "Staff");
+        //}
+
+        //------------------------------------- NEW --------------------------------------
 
         // GET: /Account/Login
         [AllowAnonymous]
@@ -84,7 +85,7 @@ namespace SRMforCustomer.Controllers {
             FormsAuthentication.SetAuthCookie(username, true);
 
             LogInApplication(username);
-            IdentityManagementEntities imcEntities = new IdentityManagementEntities();
+            IdentityManagementEntities1 imcEntities = new IdentityManagementEntities1();
             //var tmpUserDetail = imcEntities.vwUserInfo.Select(s => s.Username == username);
             var tmpUserDetail = (from q in imcEntities.vwUserInfo
                                  where q.Username == username
@@ -98,10 +99,13 @@ namespace SRMforCustomer.Controllers {
                 UserAuthen.UserDepartmentCode = userDetail.DepartmentCode;
                 UserAuthen.UserDivisionCode = userDetail.DivisionCode;
                 ViewBag.UserGUID = userDetail.UserGUID;
+
+                //Session["staffModel"] = 
+
                 return RedirectToLocal(returnUrl);
             } else {
                 TempData["LoginError"] = "ไม่สามารถเข้าระบบได้ กรุณาตรวจสอบ ใหม่อีกครั้ง";
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Staff");
             }
 
             ViewData["key1"] = Session["key1"];
@@ -126,11 +130,11 @@ namespace SRMforCustomer.Controllers {
             UserAuthen.UserRankNo = 0;
             UserAuthen.UserDepartmentCode = "";
             UserAuthen.UserDivisionCode = "";
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Login", "Staff");
         }
 
         public static bool LogInApplication(string userName) {
-            using (IdentityManagementEntities imc = new IdentityManagementEntities()) {
+            using (IdentityManagementEntities1 imc = new IdentityManagementEntities1()) {
                 string IP = System.Web.HttpContext.Current.Request.UserHostAddress;
                 imc.UpdateAccessLogs(userName, ConfigurationManager.AppSettings["ApplicationName"].ToString(), IP);
                 return true;
@@ -141,7 +145,7 @@ namespace SRMforCustomer.Controllers {
             if (Url.IsLocalUrl(returnUrl)) {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Search", "Car");
+            return RedirectToAction("Index", "Search");
         }
 
     }

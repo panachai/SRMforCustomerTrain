@@ -1,0 +1,100 @@
+﻿
+
+@using SRMforCustomer.ViewModels
+@model LoginViewModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Login | CAR";
+
+}
+
+<section id="loginForm">
+    @using (Html.BeginForm("Login", "Staff", FormMethod.Post, new { data_ajax = "false" })) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div style="margin: 10% auto auto auto;">
+            <div class="loginLogo">
+                <img src="~/Content/Images/Logo-CAR_2.png" style="width:260px;margin-top:-120px">
+                @* พื้นที่ใส่ Logo App *@
+            </div>
+            <div class="loginArea" style="margin-top:20px">
+                <div class="loginPanel">
+                    <div>
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.UserName) &nbsp;</span>
+                    </div>
+                    <div class="fieldLogin" style="margin-top:0;">
+                        <div class="input-group stylish-input-group">
+                            @Html.TextBoxFor(m => m.UserName, new { placeholder = "Username", data_clear_btn = true, autofocus = "autofocus", @class = "form-control key-input" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user" style="color:#aaa"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div style="margin-top:10px">
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.Password) &nbsp;</span>
+                    </div>
+                    <div class="fieldLogin" style="margin-top:0;">
+                        <div class="input-group stylish-input-group">
+                            @Html.TextBoxFor(m => m.Password, new { placeholder = "Password", type = "password", @class = "form-control key-input" })
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock" style="color:#aaa"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="fieldLogin">
+                        <table style="width:100%;" border="0">
+                            <tr>
+                                <td align="left" style="height:30px">
+                                    @Html.CheckBoxFor(m => m.RememberMe) Remember Me<br />
+                                </td>
+                                <td align="right" rowspan="2">
+                                    <button type="submit" class="key-btn btn" data-ajax="false">Log In</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" style="height:30px">
+                                    <a href="/IMC/RecoverPassword.aspx" class="key-link">Forget your password?</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 350px; margin-left: auto; margin-right: auto;">
+            <p align="center"></p>
+        </div>
+    }
+</section>
+<script>
+        $('form').submit(function () {
+            if ($(this).valid()) {
+                // client validation passed successfully
+                var password = $('#Password').val();
+                var key = '@ViewData["key1"]';
+                $('#Password').val($.base64.encode(rc4(key, password)));
+            } else {
+                // alert('there was an error during client validation');
+                // cancel the submission of the form
+                return false;
+            }
+        });
+</script>
+
+
+@section header{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/RC4.min.js"></script>
+    <script src="~/Scripts/jquery.base64.min.js"></script>
+    <style>
+        body {
+            background-color: #fff !important;
+        }
+    </style>
+
+}
+
+@section scripts{
+
+}
