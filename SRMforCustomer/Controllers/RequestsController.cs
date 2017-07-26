@@ -21,11 +21,7 @@ namespace SRMforCustomer.Controllers {
             this.service = new ServiceConnectDB();
         }
 
-
         public ActionResult Index() {
-
-
-
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
                 ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
                 if (Session["staffModel"] == null) {
@@ -35,19 +31,16 @@ namespace SRMforCustomer.Controllers {
                     ViewBag.TitleMessage = "Requests by Staff";
                 }
 
-
-
             }
             return View();
-
 
         }
 
         public JsonResult RequestProcess(Requests model) { //รับตรง Parameter (กรณีใช้ Formdata) //HttpPostedFileBase attachment
 
             if (Session["staffModel"] != null) {
-                var staffmodel = (Staff)Session["staffModel"];
-                model.StaffId = staffmodel.StaffId;
+                var staffmodel = (StaffModel)Session["staffModel"];
+                model.StaffId = staffmodel.UserGUID;
             }
 
             ModelState.Remove("ReTicketId"); //remove ออกจากเงื่อนไขการเช็ค IsValid
@@ -156,7 +149,7 @@ namespace SRMforCustomer.Controllers {
 
 
         private Boolean validFileUpload(string ctrlFile) {
-            string[] _validFileExtensions = new string[] { ".jpg", ".jpeg", ".bmp", ".gif", ".png"};
+            string[] _validFileExtensions = new string[] { ".jpg", ".jpeg", ".bmp", ".gif", ".png" };
 
             foreach (string value in _validFileExtensions) {
                 if (ctrlFile.Equals(value)) {

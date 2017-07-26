@@ -220,6 +220,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SRMForCustomer.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\StaffModel.cs" />
     <Compile Include="Models\Statuses.cs">
       <DependentUpon>SRMForCustomer.tt</DependentUpon>
     </Compile>

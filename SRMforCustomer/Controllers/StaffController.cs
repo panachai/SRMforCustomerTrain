@@ -92,15 +92,19 @@ namespace SRMforCustomer.Controllers {
                                  select q);
             if (tmpUserDetail.Count() > 0) {
                 vwUserInfo userDetail = tmpUserDetail.FirstOrDefault();
-                UserAuthen.UserName = userDetail.Username;
-                UserAuthen.UserGUID = userDetail.UserGUID;
-                UserAuthen.UserFullName = userDetail.Fullname;
-                UserAuthen.UserRankNo = userDetail.RankTypeNo;
-                UserAuthen.UserDepartmentCode = userDetail.DepartmentCode;
-                UserAuthen.UserDivisionCode = userDetail.DivisionCode;
-                ViewBag.UserGUID = userDetail.UserGUID;
 
-                //Session["staffModel"] = 
+                //UserAuthen userAuthen = new UserAuthen();
+                StaffModel staffModel = new StaffModel();
+
+                staffModel.UserName = userDetail.Username;
+                staffModel.UserGUID = userDetail.UserGUID;
+                staffModel.UserFullName = userDetail.Fullname;
+                staffModel.UserRankNo = userDetail.RankTypeNo;
+                staffModel.UserDepartmentCode = userDetail.DepartmentCode;
+                staffModel.UserDivisionCode = userDetail.DivisionCode;
+                //ViewBag.UserGUID = userDetail.UserGUID;
+
+                Session["staffModel"] = staffModel;
 
                 return RedirectToLocal(returnUrl);
             } else {
@@ -112,24 +116,26 @@ namespace SRMforCustomer.Controllers {
             return View(model);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff() {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            myCookie.Expires = DateTime.Now.AddYears(-1);
-            myCookie.Value = null;
-            Response.Cookies.Add(myCookie);
-            HttpCookie cookie2 = new HttpCookie("ASP.NET_SessionId", "");
-            cookie2.Expires = DateTime.Now.AddYears(-1);
-            Response.Cookies.Add(cookie2);
-            UserAuthen.UserName = "";
-            UserAuthen.UserGUID = new Guid();
-            UserAuthen.UserFullName = "";
-            UserAuthen.UserRankNo = 0;
-            UserAuthen.UserDepartmentCode = "";
-            UserAuthen.UserDivisionCode = "";
+            //Session.Clear(); //ใส่เอง
+            //HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            //myCookie.Expires = DateTime.Now.AddYears(-1);
+            //myCookie.Value = null;
+            //Response.Cookies.Add(myCookie);
+            //HttpCookie cookie2 = new HttpCookie("ASP.NET_SessionId", "");
+            //cookie2.Expires = DateTime.Now.AddYears(-1);
+            //Response.Cookies.Add(cookie2);
+            //UserAuthen.UserName = "";
+            //UserAuthen.UserGUID = new Guid();
+            //UserAuthen.UserFullName = "";
+            //UserAuthen.UserRankNo = 0;
+            //UserAuthen.UserDepartmentCode = "";
+            //UserAuthen.UserDivisionCode = "";
+
             return RedirectToAction("Login", "Staff");
         }
 

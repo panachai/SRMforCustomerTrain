@@ -54,22 +54,22 @@ namespace SRMforCustomer.Controllers {
             //var selected = db.ReTopicName.Where(t => t..Contains(keyword));
             //เก็บไว้ใช้ตอนระบบ comment เพราะตอนเซิท where ตอนยิงเซอวิส เลย
 
-            if (keyword != "") {
-                var selected = new Requests() {
-                    TicketId = 1000000000,
-                    RequestTypeId = 1,
-                    StaffId = 2,
-                    TopicName = "testSRMtopic : key : " + keyword + " : endKey ",
-                    CustomerName = "CustomerName Test",
-                    TelephoneNumber = "0900000000",
-                    Email = "panachai.ny@gmail.com",
-                    Remark = "adasdasd Detail it here",
-                    DateCreate = DateTime.Now,
-                    DateFinish = DateTime.Now,
+            //if (keyword != "") {
+            //    var selected = new Requests() {
+            //        TicketId = 1000000000,
+            //        RequestTypeId = 1,
+            //        StaffId = 2,
+            //        TopicName = "testSRMtopic : key : " + keyword + " : endKey ",
+            //        CustomerName = "CustomerName Test",
+            //        TelephoneNumber = "0900000000",
+            //        Email = "panachai.ny@gmail.com",
+            //        Remark = "adasdasd Detail it here",
+            //        DateCreate = DateTime.Now,
+            //        DateFinish = DateTime.Now,
 
-                };
-                return PartialView(selected);
-            }
+            //    };
+                //return PartialView(selected);
+            //}
 
             return PartialView();
         }

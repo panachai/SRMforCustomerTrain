@@ -17,7 +17,7 @@ namespace SRMforCustomer.Models {
 
         public Nullable<int> StaffId { get; set; }
         [Required]
-        public int StatusId { get; set; }
+        public Guid StatusId { get; set; }
         //[Required]
         //[StringLength(250, MinimumLength = 3, ErrorMessage = "ป้อนไม่ถูกต้อง")]
         public string TopicName { get; set; }
@@ -38,7 +38,7 @@ namespace SRMforCustomer.Models {
         [StringLength(2000, MinimumLength = 10, ErrorMessage = "กรอกอย่างน้อย 10 ตัวอักษร แต่ไม่เกิน 2000ตัวอักษร")]
         public string Remark { get; set; }
         
-        public int CurrentStaffId { get; set; }
+        //public int CurrentStaffId { get; set; }
         [Required]
         public System.DateTime DateCreate { get; set; }
 

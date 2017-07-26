@@ -68,15 +68,15 @@ namespace SRMforCustomer.Controllers {
                     , TextComment = textComment
                 };
             } else { //Staff
-                Staff staffModel = (Staff)Session["staffModel"];
+                StaffModel staffModel = (StaffModel)Session["staffModel"];
 
                 commentModel = new Comments() {
                     //CommentsId = modelRequest.
                     TicketId = modelRequest.TicketId
-                    , StaffId = staffModel.StaffId
+                    , StaffId = staffModel.UserGUID
                     , Name = "-"
                     , DateCreate = DateTime.Now
-                    , CreatedBy = staffModel.StaffName
+                    , CreatedBy = staffModel.UserFullName
                     , TextComment = textComment
                 };
             }

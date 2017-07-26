@@ -12,7 +12,7 @@
     } else {
         active[0] = "active";
     }
-    var staff = (Staff)Session["staffModel"];
+    var staff = (StaffModel)Session["staffModel"];
 
 }
 <style>
@@ -38,7 +38,7 @@
                 @{
                     if (Session["staffModel"] != null) {
                         <li class="" style="">
-                            <a> @staff.StaffName</a>
+                            <a> @staff.UserFullName</a>
                         </li>
                     }
                 }
@@ -49,20 +49,18 @@
                     @Html.ActionLink("Search", "Index", "Search")
                 </li>
 
-                @{if (Session["staffModel"] == null) {
-                        <li class="@active[2]">
-                            @Html.ActionLink("Requests", "Index", "Requests")
-                        </li>
-                    }
-                }
-
-                <li class="@active[3]">
-                    @Html.ActionLink("Staff", "Login", "Staff") @*/LoginStaffPage*@
+                <li class="@active[2]">
+                    @Html.ActionLink("Requests", "Index", "Requests")
                 </li>
+
                 @{
                     if (Session["staffModel"] != null) {
                         <li class="">
-                            @Html.ActionLink("LOGOUT", "LogOutStaff", "Staff")
+                            @Html.ActionLink("LOGOUT", "LogOff", "Staff")
+                        </li>
+                    } else {
+                        <li class="@active[3]">
+                            @Html.ActionLink("Staff", "Login", "Staff") @*/LoginStaffPage*@
                         </li>
                     }
                 }
