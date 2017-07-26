@@ -46,7 +46,7 @@ namespace SRMforCustomer.Controllers {
             ModelState.Remove("ReTicketId"); //remove ออกจากเงื่อนไขการเช็ค IsValid
             ModelState.Remove("StaffId");
             ModelState.Remove("StatusId");
-            ModelState.Remove("ReTopicName");
+            //ModelState.Remove("ReTopicName");
             ModelState.Remove("ReDateIn");
             ModelState.Remove("ReDateOut");
             if (model.RequestTypeId == 0) ModelState.AddModelError("RequestTypeId", " โปรดเลือก");
@@ -55,7 +55,6 @@ namespace SRMforCustomer.Controllers {
                 model.TicketId = GenRandomNumber();
                 model.StatusId = 0;
                 model.DateCreate = DateTime.Now;
-                model.TopicName = "-";
                 //ยิงภาพ
                 if (model.AttachmentFile != null) {
                     if (validFileUpload(Path.GetExtension(model.AttachmentFile.FileName))) {

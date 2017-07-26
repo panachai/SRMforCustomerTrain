@@ -20,8 +20,14 @@
     <form id="frmRequest" enctype="multipart/form-data">
         <div class="row">
             <div class="col-sm-6">
+                <div class="valueinfo">ชื่อหัวข้อ</div>
+                @Html.TextBoxFor(f => f.TopicName, new { @class = "form-control", placeholder = "ต้องการขยายเซิฟเวอร์", maxlength = "250", minlength = "3", oninput = @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');" })
+                @Html.ValidationMessageFor(m => m.TopicName)
+            </div>
+
+            <div class="col-sm-6">
                 <div class="valueinfo">ชื่อ-นามสกุล</div>
-                @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", placeholder = "ปณชัย นิยมกชกร", oninput = @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');" })
+                @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", placeholder = "ปณชัย นิยมกชกร", maxlength = "100", minlength = "3", oninput = @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');" })
                 @Html.ValidationMessageFor(m => m.CustomerName)
 
             </div>
