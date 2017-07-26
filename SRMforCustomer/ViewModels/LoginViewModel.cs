@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SRMforCustomer.ViewModels {
     public class LoginViewModel {
-        [Required]
+        [Required (ErrorMessage ="ป้อน Username ของท่าน")]
         [Display(Name = "UserName")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "ป้อน Password ของท่าน")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

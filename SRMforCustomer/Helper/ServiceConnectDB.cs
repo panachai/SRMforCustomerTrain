@@ -46,13 +46,6 @@ namespace SRMforCustomer.Helper {
             return false;
         }
 
-        //public Staff GetStaffModel(int staffId) {
-        //    using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-        //        var req = db.Staff.SingleOrDefault(s => s.StaffId == staffId);
-        //        return req;
-        //    }
-        //}
-
         public Boolean InsertAttachments(Attachments attachmentsModel) {
 
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
