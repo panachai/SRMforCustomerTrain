@@ -17,14 +17,15 @@ namespace SRMforCustomer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Statuses()
         {
-            this.UserInfo = new HashSet<UserInfo>();
+            this.Requests = new HashSet<Requests>();
         }
     
-        public byte StatusCode { get; set; }
+        public int StatusId { get; set; }
+        public string StatusType { get; set; }
         public string StatusName { get; set; }
-        public string StatusName_EN { get; set; }
+        public string AfterStatusName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfo> UserInfo { get; set; }
+        public virtual ICollection<Requests> Requests { get; set; }
     }
 }
