@@ -36,7 +36,7 @@
             <ul class="nav navbar-nav navbar-right">
 
                 @{
-                    if (Session["staffModel"] != null) {
+                    if (Request.IsAuthenticated) {
                         <li class="" style="">
                             <a> @staff.UserFullName</a>
                         </li>
@@ -56,7 +56,10 @@
                 @{
                     if (Session["staffModel"] != null) {
                         <li class="">
-                            @Html.ActionLink("LOGOUT", "LogOff", "Staff")
+                            <a href="javascript:void(0);" onclick = "javascript:$('#frmLogOff').submit();">LOGOUT</a>
+                            @using (Html.BeginForm("LogOff", "Staff", FormMethod.Post, new { id = "frmLogOff" })) {
+                                @Html.AntiForgeryToken()
+                            }
                         </li>
                     } else {
                         <li class="@active[3]">
