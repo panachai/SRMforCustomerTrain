@@ -12,6 +12,9 @@ using System.IO;
 using SRMforCustomer.Helper;
 using SRMforCustomer.ViewModels;
 using TKSLibrary;
+using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SRMforCustomer.Controllers {
     public class RequestsController : Controller {
@@ -24,19 +27,54 @@ namespace SRMforCustomer.Controllers {
         public ActionResult Index() {
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
                 ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
-                if (Session["staffModel"] == null) {
+                if (Request.IsAuthenticated) {
                     ViewBag.TitleMessage = "Requests";
                 } else {
-                    //ViewBag.staffModelSession = (Staff)Session["staffModel"];
                     ViewBag.TitleMessage = "Requests by Staff";
                 }
+                //if (Session["staffModel"] == null) {
+                //} else {
+                //    //ViewBag.staffModelSession = (Staff)Session["staffModel"];
+                //    ViewBag.TitleMessage = "Requests by Staff";
+                //}
 
             }
             return View();
 
         }
 
+        [HttpPost]
+        private Boolean ValidateRecapcha(string response) {
+            //Valdiate google recapcha
+            //var response = Request["g-recaptcha-response"];
+
+
+
+
+            string secretKey = "6LcylSkUAAAAAOgze8rQW0kw_xwnU4AGDQYn6cLe";
+            var client = new WebClient();
+            var result = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, response));
+            var obj = JObject.Parse(result);
+            var status = (bool)obj.SelectToken("success");
+            ViewBag.reCapcha = status ? "Google validate success" : "Google validate failed";
+
+            //if (ModelState.IsValid && status) {
+
+            //}
+
+            return status;
+        }
+
+
+
+
+
+
+
+
         public JsonResult RequestProcess(Requests model) { //รับตรง Parameter (กรณีใช้ Formdata) //HttpPostedFileBase attachment
+
+          Boolean statusCapcha =  ValidateRecapcha(Request["g-recaptcha-response"]);
 
             if (Session["staffModel"] != null) {
                 var staffmodel = (StaffModel)Session["staffModel"];
@@ -50,8 +88,12 @@ namespace SRMforCustomer.Controllers {
             ModelState.Remove("ReDateIn");
             ModelState.Remove("ReDateOut");
             if (model.RequestTypeId == 0) ModelState.AddModelError("RequestTypeId", " โปรดเลือก");
-            if (ModelState.IsValid) {
 
+#if DEBUG
+            if (ModelState.IsValid) { //added recapcha validate
+#else
+                if (ModelState.IsValid && statusCapcha) { //added recapcha validate
+#endif
                 model.TicketId = GenRandomNumber();
                 model.StatusId = 0;
                 model.DateCreate = DateTime.Now;
