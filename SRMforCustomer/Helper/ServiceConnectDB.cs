@@ -67,5 +67,11 @@ namespace SRMforCustomer.Helper {
             }
         }
 
+        //public void UpdateCurrentStaffInRequests(Requests model) {
+        //    using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+        //        var attach = db.Attachments.Where(s => s.TicketId == ticket).ToList();
+        //    }
+        //} //ทำต่อด้วย
+
     }
 }
