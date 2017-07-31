@@ -66,12 +66,6 @@ namespace SRMforCustomer.Controllers {
         }
 
 
-
-
-
-
-
-
         public JsonResult RequestProcess(Requests model) { //รับตรง Parameter (กรณีใช้ Formdata) //HttpPostedFileBase attachment
 
           Boolean statusCapcha =  ValidateRecapcha(Request["g-recaptcha-response"]);

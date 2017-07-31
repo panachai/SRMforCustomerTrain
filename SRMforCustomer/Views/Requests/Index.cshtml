@@ -52,7 +52,7 @@
 
         <div>
 
-            @Html.TextBoxFor(m => m.AttachmentFile, new { type = "file" })
+            @Html.TextBoxFor(m => m.AttachmentFile, new { type = "file", accept = "image/*" })
             @Html.ValidationMessageFor(m => m.AttachmentFile)
             @*<input type="file" name="attachment" onchange= "FileValidate(this.value,5)" />*@ @*javascipt:*@
             @*<label id="alertFile" name="alertFile"></label>*@
@@ -146,6 +146,11 @@
 
                             $('#frmRequest')[0].reset();
                             $('#sendEmail').button('reset');
+                            //Recaptcha.reload(); //for version1
+                            grecaptcha.reset(); //for version2
+                            //สั่งรีโหลดหน้าแทน
+
+                            //window.location.reload();
 
                         } else {
                             //console.log(response.errors);
@@ -169,7 +174,7 @@
                     complete: function () {
 
                         //$('#frmRequest')[0].reset();
-                        //$('#sendEmail').button('reset');
+                        $('#sendEmail').button('reset');
 
                         //แก้ส่วนนี้ด้วย ให้ reset เฉพาะ complete
 

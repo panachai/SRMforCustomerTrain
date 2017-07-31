@@ -7,7 +7,16 @@
 <body>
     <hgroup>
         <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
+        <h2>เกิดการผิดพลาดบางอย่าง หน้าเว็บกำลังจะพาท่านไปยังหน้าหลัก ใน 3วินาที</h2>
+        <h3>หาไม่มีอะไรเกิดขึ้นโปรด คลิก @Html.ActionLink("Home", "Index", "Home")</h3>
     </hgroup>
 </body>
 </html>
+
+<script>
+    window.setTimeout(function () {
+        //location.href = "https://forums.asp.net/t/1992407.aspx?LINQ+Update+Query";
+        @*@RedirectToAction("Index", "Home");*@
+        window.location.href = "@Url.Action("Index", "Home")";
+    }, 3000);
+</script>

@@ -18,24 +18,24 @@ namespace SRMforCustomer.Models {
         public Nullable<int> StaffId { get; set; }
         [Required]
         public Guid StatusId { get; set; }
-        //[Required]
-        //[StringLength(250, MinimumLength = 3, ErrorMessage = "ป้อนไม่ถูกต้อง")]
+        [Required(ErrorMessage = "กรุณากรอกชื่อหัวข้อของท่าน")]
+        [StringLength(250, MinimumLength = 3, ErrorMessage = "กรุณากรอกหัวข้อตั้งแต่ 3 ถึง 250 ตัวอักษร")]
         public string TopicName { get; set; }
         [Required(ErrorMessage = "กรุณากรอกชื่อของท่าน")]
-        [StringLength(100, MinimumLength = 5, ErrorMessage = "ป้อนชื่อตั้งแต่ 5 ถึง 100ตัวอักษร")]
+        [StringLength(100, MinimumLength = 5, ErrorMessage = "กรุณากรอกชื่อตั้งแต่ 5 ถึง 100ตัวอักษร")]
         public string CustomerName { get; set; }
         [Required(ErrorMessage = "กรุณากรอกเบอร์โทรศัพท์")]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "กรอกอย่างน้อย 10ตัวอักษร")]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "กรุณากรอกอย่างน้อย 10 ตัวอักษร")]
         //[Phone(ErrorMessage = "กรุณากรอกเบอร์โทรศัพท์")]
         //[DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"(^[0][0-9]{8,9})" , ErrorMessage =  "โปรดกรอกให้ถูกต้อง")]
+        [RegularExpression(@"(^[0][0-9]{8,9})" , ErrorMessage =  "กรุณากรอกให้ถูกต้อง")]
         public string TelephoneNumber { get; set; }
         [Required(ErrorMessage = "กรุณากรอก Email")]
         [EmailAddress(ErrorMessage = "Email ของท่านไม่ถูกต้อง")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "กรอก Email ตั้งแต่ 5 ถึง 50ตัวอักษร")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "กรุณากรอก Email ตั้งแต่ 5 ถึง 50ตัวอักษร")]
         public string Email { get; set; }
         [Required(ErrorMessage = "กรุณากรอกรายละเอียด")]
-        [StringLength(2000, MinimumLength = 10, ErrorMessage = "กรอกอย่างน้อย 10 ตัวอักษร แต่ไม่เกิน 2000ตัวอักษร")]
+        [StringLength(2000, MinimumLength = 10, ErrorMessage = "กรุณากรอกตั้งแต่ 10 ถึง 2000ตัวอักษร")]
         public string Remark { get; set; }
         
         //public int CurrentStaffId { get; set; }
