@@ -336,10 +336,7 @@
     <Content Include="Views\Search\ResultSearchPartial.cshtml" />
     <Content Include="Views\Requests\Index.cshtml" />
     <Content Include="Views\TicketDetail\Index.cshtml" />
-    <Content Include="Views\Requests\GenRandomNumber.cshtml" />
     <Content Include="Views\Staff\Index.cshtml" />
-    <Content Include="Views\Staff\LoginStaffPage.cshtml" />
-    <Content Include="Views\TicketDetail\CommentPartial.cshtml" />
     <Content Include="Views\Staff\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
