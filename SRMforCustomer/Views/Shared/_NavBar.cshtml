@@ -38,7 +38,10 @@
                 @{
                     if (Request.IsAuthenticated) {
                         <li class="" style="">
-                            <a> @staff.UserFullName</a>
+                            @if (staff != null) {
+                                <a> staff.UserFullName</a>
+                            }
+                           
                         </li>
                     }
                 }
