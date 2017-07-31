@@ -18,36 +18,50 @@
 
 <div class="row input_content" style="padding-top:35px;">
     <form id="frmRequest" enctype="multipart/form-data">
-        <div class="row">
+        <section>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="valueinfo">ชื่อ-นามสกุล</div>
+                    @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", placeholder = "ปณชัย นิยมกชกร", maxlength = "100", minlength = "3", oninput = @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');" })
+                    @Html.ValidationMessageFor(m => m.CustomerName)
+                </div>
+
+            </div>
+
+            <div class="row inputrow">
+                <div class="col-sm-6">
+                    <div class="valueinfo">อีเมล</div>
+                    @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="valueinfo">เบอร์โทร</div>
+                    @Html.TextBoxFor(f => f.TelephoneNumber, new { @class = "form-control", placeholder = "0901234567", oninput = @"this.value = this.value.replace(/[^0-9]/g, '');", maxlength = "10", minlength = "9" })
+                    @Html.ValidationMessageFor(m => m.TelephoneNumber)
+                </div>
+            </div>
+        </section>
+
+        <div class="row input_padding">
+
             <div class="col-sm-6">
                 <div class="valueinfo">ชื่อหัวข้อ</div>
                 @Html.TextBoxFor(f => f.TopicName, new { @class = "form-control", placeholder = "ต้องการขยายเซิฟเวอร์", maxlength = "250", minlength = "3", oninput = @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');" })
                 @Html.ValidationMessageFor(m => m.TopicName)
             </div>
 
-            <div class="col-sm-6">
-                <div class="valueinfo">ชื่อ-นามสกุล</div>
-                @Html.TextBoxFor(f => f.CustomerName, new { @class = "form-control", placeholder = "ปณชัย นิยมกชกร", maxlength = "100", minlength = "3", oninput = @"this.value = this.value.replace(/[0-9]/g, ''); this.value = this.value.replace(/^\s+/, '');" })
-                @Html.ValidationMessageFor(m => m.CustomerName)
 
-            </div>
+
             <div class="col-sm-6">
                 <div class="valueinfo">ประเภทการร้องขอ</div>
                 @Html.DropDownListFor(f => f.RequestTypeId, requestType, "กรุณาเลือกการร้องข้อมูล", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.RequestTypeId)
             </div>
-        </div>
-        <div class="row input_padding">
-            <div class="col-sm-6">
-                <div class="valueinfo">เบอร์โทร</div>
-                @Html.TextBoxFor(f => f.TelephoneNumber, new { @class = "form-control", placeholder = "0901234567", oninput = @"this.value = this.value.replace(/[^0-9]/g, '');", maxlength = "10", minlength = "9" })
-                @Html.ValidationMessageFor(m => m.TelephoneNumber)
-            </div>
-            <div class="col-sm-6">
-                <div class="valueinfo">อีเมล</div>
-                @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Email)
-            </div>
+
+
+
+
         </div>
 
         <div>
@@ -64,15 +78,19 @@
             @Html.TextAreaFor(m => m.Remark, new { @class = "form-control", style = "width: 100%; height: 100px;", oninput = @"this.value = this.value.replace(/^\s+/, '');" })
             @Html.ValidationMessageFor(m => m.Remark)
         </div>
-        
-        <div class="g-recaptcha" data-sitekey="6LcylSkUAAAAAJnF0kFLk59k2EBOxYGuMlmS9-Nk"></div>
-        @ViewBag.reCapcha
+        <div class="input_padding">
+
+
+            <div class="g-recaptcha" data-sitekey="6LcylSkUAAAAAJnF0kFLk59k2EBOxYGuMlmS9-Nk"></div>
+            @ViewBag.reCapcha
+        </div>
+
     </form>
 
 
 
-    <div style="padding-top:20px;margin: 0 15px;">
-        <button class="button" id="sendEmail"> ส่งข้อมูล </button>
+    <div class="pull-right" style="padding-top:20px;margin: 0 15px;">
+        <buttonbutton type="button" class="btn btn-success" id="sendEmail"> ส่งข้อมูล </button>
     </div>
 </div>
 

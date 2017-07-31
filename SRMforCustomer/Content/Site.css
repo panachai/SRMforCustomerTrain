@@ -99,3 +99,7 @@ body .field-validation-error {
 textarea {
 resize:none
 }
+
+.inputrow {
+   margin-top:50px;
+}
