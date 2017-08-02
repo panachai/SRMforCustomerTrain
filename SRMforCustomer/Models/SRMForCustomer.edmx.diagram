@@ -7,10 +7,10 @@
       <Diagram DiagramId="3d3aff8325744b7288acada7f5d7ea92" Name="Diagram1">
         <EntityTypeShape EntityType="SRMForCustomerModel.Attachments" Width="1.5" PointX="7.5" PointY="1.5" />
         <EntityTypeShape EntityType="SRMForCustomerModel.Comments" Width="1.5" PointX="5.25" PointY="1.625" />
-        <EntityTypeShape EntityType="SRMForCustomerModel.Requests" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="SRMForCustomerModel.RequestType" Width="1.5" PointX="0.75" PointY="2.125" />
         <EntityTypeShape EntityType="SRMForCustomerModel.Statuses" Width="1.5" PointX="0.75" PointY="6" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Attachments_Comments" />
+        <EntityTypeShape EntityType="SRMForCustomerModel.Requests" Width="1.5" PointX="3" PointY="3.125" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Comments_Requests" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Requests_RequestType" />
         <AssociationConnector Association="SRMForCustomerModel.FK_Requests_Statuses" />

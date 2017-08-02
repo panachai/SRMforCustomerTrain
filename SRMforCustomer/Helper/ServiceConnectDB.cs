@@ -67,11 +67,37 @@ namespace SRMforCustomer.Helper {
             }
         }
 
-        //public void UpdateCurrentStaffInRequests(Requests model) {
-        //    using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
-        //        var attach = db.Attachments.Where(s => s.TicketId == ticket).ToList();
-        //    }
-        //} //ทำต่อด้วย
+        public void UpdateCurrentStaff(Requests model) {
+            using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
+                //db.Users.Attach(updatedUser);
+                //var entry = db.Entry(updatedUser);
+                //entry.Property(e => e.Email).IsModified = true;
+                //// other changed properties
+                //db.SaveChanges();
 
+                db.Requests.Attach(model);
+                var entry = db.Entry(model);
+                entry.Property(e => e.CurrentStaffId).IsModified = true;
+                db.SaveChanges();
+
+            }
+        } //ทำต่อด้วย
+
+
+
+        public string GetEmailStaff(Guid? staffGuid) {
+            using (IdentityManagementEntities1 db = new IdentityManagementEntities1()) {
+                var req = db.vwUserInfo.SingleOrDefault(s => s.UserGUID == staffGuid);
+
+                if (req != null) {
+                    return req.Email;
+
+                } else {
+                    return null;
+                }
+
+            }
+
+        }
     }
 }

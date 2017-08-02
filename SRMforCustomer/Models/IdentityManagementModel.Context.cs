@@ -28,6 +28,7 @@ namespace SRMforCustomer.Models
         }
     
         public virtual DbSet<vwUserInfo> vwUserInfo { get; set; }
+        public virtual DbSet<vwUserInfoLite> vwUserInfoLite { get; set; }
     
         public virtual int UpdateAccessLogs(string userName, string applicationName, string iPAddress)
         {

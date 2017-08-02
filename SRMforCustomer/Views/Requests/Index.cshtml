@@ -10,17 +10,26 @@
     //}
 
 }
-<div class="head_title">
-    @ViewBag.TitleMessage
+@*<div class="head_title">
+        @ViewBag.TitleMessage
+    </div>*@
+
+<div class="row input_content" style=" margin-top: 35px;">
+    <div class="row">
+        <div class="col-md-4">
+            1
+        </div>
+        <div class="col-md-4">
+            2
+        </div>
+        <div class="col-md-4">
+            3
+        </div>
+    </div>
 </div>
 
-<div class="row input_content" style="padding-top:35px;">
+<div class="row input_content" style=" margin-top: 20px;">
     <form id="frmRequest" enctype="multipart/form-data">
-
-
-
-
-
 
         <div class="card card-outline-secondary mb-3 text-center">
             <div class="card-block">
@@ -109,7 +118,7 @@
                             </div>
                             @Html.ValidationMessageFor(m => m.AttachmentFile)
                         </div>
-                       
+
 
 
 

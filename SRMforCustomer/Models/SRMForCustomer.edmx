@@ -44,7 +44,7 @@
           <Property Name="TelephoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="2000" Nullable="false" />
-          <Property Name="CurrentStaffId" Type="int" />
+          <Property Name="CurrentStaffId" Type="uniqueidentifier" />
           <Property Name="DateCreate" Type="datetime" Nullable="false" />
           <Property Name="DateFinish" Type="datetime" />
         </EntityType>
@@ -142,13 +142,13 @@
         <EntityContainer Name="SRMForCustomerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Attachments" EntityType="SRMForCustomerModel.Attachments" />
           <EntitySet Name="Comments" EntityType="SRMForCustomerModel.Comments" />
-          <EntitySet Name="Requests" EntityType="SRMForCustomerModel.Requests" />
           <EntitySet Name="RequestType" EntityType="SRMForCustomerModel.RequestType" />
           <EntitySet Name="Statuses" EntityType="SRMForCustomerModel.Statuses" />
           <AssociationSet Name="FK_Attachments_Comments" Association="SRMForCustomerModel.FK_Attachments_Comments">
             <End Role="Comments" EntitySet="Comments" />
             <End Role="Attachments" EntitySet="Attachments" />
           </AssociationSet>
+          <EntitySet Name="Requests" EntityType="SRMForCustomerModel.Requests" />
           <AssociationSet Name="FK_Comments_Requests" Association="SRMForCustomerModel.FK_Comments_Requests">
             <End Role="Requests" EntitySet="Requests" />
             <End Role="Comments" EntitySet="Comments" />
@@ -161,7 +161,7 @@
             <End Role="Statuses" EntitySet="Statuses" />
             <End Role="Requests" EntitySet="Requests" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Attachments">
           <Key>
             <PropertyRef Name="AttachmentId" />
@@ -190,26 +190,6 @@
           <Property Name="TextComment" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Attachments" Relationship="SRMForCustomerModel.FK_Attachments_Comments" FromRole="Comments" ToRole="Attachments" />
           <NavigationProperty Name="Requests" Relationship="SRMForCustomerModel.FK_Comments_Requests" FromRole="Comments" ToRole="Requests" />
-        </EntityType>
-        <EntityType Name="Requests">
-          <Key>
-            <PropertyRef Name="TicketId" />
-          </Key>
-          <Property Name="TicketId" Type="Int32" Nullable="false" />
-          <Property Name="RequestTypeId" Type="Int32" Nullable="false" />
-          <Property Name="StaffId" Type="Guid" />
-          <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="TopicName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TelephoneNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Remark" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="CurrentStaffId" Type="Int32" />
-          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateFinish" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Comments_Requests" FromRole="Requests" ToRole="Comments" />
-          <NavigationProperty Name="RequestType" Relationship="SRMForCustomerModel.FK_Requests_RequestType" FromRole="Requests" ToRole="RequestType" />
-          <NavigationProperty Name="Statuses" Relationship="SRMForCustomerModel.FK_Requests_Statuses" FromRole="Requests" ToRole="Statuses" />
         </EntityType>
         <EntityType Name="RequestType">
           <Key>
@@ -241,6 +221,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="TicketId" />
+          </Key>
+          <Property Name="TicketId" Type="Int32" Nullable="false" />
+          <Property Name="RequestTypeId" Type="Int32" Nullable="false" />
+          <Property Name="StaffId" Type="Guid" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="TopicName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentStaffId" Type="Guid" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateFinish" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Comments" Relationship="SRMForCustomerModel.FK_Comments_Requests" FromRole="Requests" ToRole="Comments" />
+          <NavigationProperty Name="RequestType" Relationship="SRMForCustomerModel.FK_Requests_RequestType" FromRole="Requests" ToRole="RequestType" />
+          <NavigationProperty Name="Statuses" Relationship="SRMForCustomerModel.FK_Requests_Statuses" FromRole="Requests" ToRole="Statuses" />
+        </EntityType>
         <Association Name="FK_Comments_Requests">
           <End Type="SRMForCustomerModel.Requests" Role="Requests" Multiplicity="1" />
           <End Type="SRMForCustomerModel.Comments" Role="Comments" Multiplicity="*" />
@@ -311,24 +311,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Requests">
-            <EntityTypeMapping TypeName="SRMForCustomerModel.Requests">
-              <MappingFragment StoreEntitySet="Requests">
-                <ScalarProperty Name="DateFinish" ColumnName="DateFinish" />
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
-                <ScalarProperty Name="CurrentStaffId" ColumnName="CurrentStaffId" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
-                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
-                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="RequestType">
             <EntityTypeMapping TypeName="SRMForCustomerModel.RequestType">
               <MappingFragment StoreEntitySet="RequestType">
@@ -344,6 +326,24 @@
                 <ScalarProperty Name="StatusName" ColumnName="StatusName" />
                 <ScalarProperty Name="StatusType" ColumnName="StatusType" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="SRMForCustomerModel.Requests">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="DateFinish" ColumnName="DateFinish" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="CurrentStaffId" ColumnName="CurrentStaffId" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="RequestTypeId" ColumnName="RequestTypeId" />
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

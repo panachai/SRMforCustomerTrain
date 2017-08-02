@@ -20,6 +20,8 @@ namespace SRMforCustomer.Controllers {
     public class RequestsController : Controller {
         ServiceConnectDB service;
 
+        //enum Type { RequestsCustomer, RequestsStaff, CommentCustomer, CommentStaff };
+
         public RequestsController() {
             this.service = new ServiceConnectDB();
         }
@@ -28,9 +30,11 @@ namespace SRMforCustomer.Controllers {
             using (SRMForCustomerEntities db = new SRMForCustomerEntities()) {
                 ViewBag.RequestTypeId = new SelectList(db.RequestType.ToList(), "RequestTypeId", "Name");
                 if (Request.IsAuthenticated) {
-                    ViewBag.TitleMessage = "Requests";
+                    //ViewBag.TitleMessage = "Requests";
+
                 } else {
-                    ViewBag.TitleMessage = "Requests by Staff";
+                    //ViewBag.TitleMessage = "Requests by Staff";
+
                 }
                 //if (Session["staffModel"] == null) {
                 //} else {
@@ -47,9 +51,6 @@ namespace SRMforCustomer.Controllers {
         private Boolean ValidateRecapcha(string response) {
             //Valdiate google recapcha
             //var response = Request["g-recaptcha-response"];
-
-
-
 
             string secretKey = "6LcylSkUAAAAAOgze8rQW0kw_xwnU4AGDQYn6cLe";
             var client = new WebClient();
@@ -68,7 +69,6 @@ namespace SRMforCustomer.Controllers {
 
         public JsonResult RequestProcess(Requests model) { //รับตรง Parameter (กรณีใช้ Formdata) //HttpPostedFileBase attachment
 
-          Boolean statusCapcha =  ValidateRecapcha(Request["g-recaptcha-response"]);
 
             if (Session["staffModel"] != null) {
                 var staffmodel = (StaffModel)Session["staffModel"];
@@ -86,6 +86,7 @@ namespace SRMforCustomer.Controllers {
 #if DEBUG
             if (ModelState.IsValid) { //added recapcha validate
 #else
+          Boolean statusCapcha =  ValidateRecapcha(Request["g-recaptcha-response"]);
                 if (ModelState.IsValid && statusCapcha) { //added recapcha validate
 #endif
                 model.TicketId = GenRandomNumber();
@@ -107,7 +108,8 @@ namespace SRMforCustomer.Controllers {
 
                 model = service.RequestsModelALL(model.TicketId);
 
-                ReceiveMessage(model);
+                SendEmail.ReceiveMessage(model, Request.PhysicalApplicationPath,EmailType.Type.RequestsCustomer);
+
                 return Json(new {
                     success = true, modelRequest = new {
                         model.TicketId,
@@ -138,36 +140,8 @@ namespace SRMforCustomer.Controllers {
             service.InsertAttachments(attachments);
         }
 
-        private void ReceiveMessage(Requests modelRequests) {
-            string BodyHTML =
-                    System.IO.File.ReadAllText(Request.PhysicalApplicationPath +
-                                               "Templates\\TemplateLetterFeedback.html");
-            BodyHTML = BodyHTML.Replace("@reticketId", modelRequests.TicketId.ToString());
-            BodyHTML = BodyHTML.Replace("@typeRequestsId", modelRequests.RequestType.Name);//เดี๋ยวเขียนเพิ่มใน DB แล้วเขียน viewmodel ดึงค่ามา
-            BodyHTML = BodyHTML.Replace("@reCustomerName", modelRequests.CustomerName);
-            BodyHTML = BodyHTML.Replace("@reCustomerTel", modelRequests.TelephoneNumber);
-            BodyHTML = BodyHTML.Replace("@reEmail", modelRequests.Email);
-            BodyHTML = BodyHTML.Replace("@reDetail", modelRequests.Remark);
-            BodyHTML = BodyHTML.Replace("@timeNow", DateTimeUtils.DateFormat(modelRequests.DateCreate));
-
-
-            MailMessage NotifyMail = new MailMessage();
-            NotifyMail.From = new MailAddress(ConfigurationManager.AppSettings["MailFrom"]);
-            NotifyMail.To.Add(modelRequests.Email);//thanaphan.w@prism.co.th
-            NotifyMail.Subject = "SRMforCustomer : " + modelRequests.RequestType.Name + " จากคุณ " + modelRequests.CustomerName; //+ modelRequests.TopicName +
-            NotifyMail.IsBodyHtml = true;
-            NotifyMail.Body = BodyHTML;
-            SmtpClient SMTPClient = new SmtpClient();
-            SMTPClient.Host = Config.SMTPHost;
-            SMTPClient.Send(NotifyMail);
-        }
-
-
         public int GenRandomNumber() {
-            //if (string.IsNullOrEmpty(keyword)) {
-            //    return PartialView();
-            //}
-            //else {
+ 
             Random generator = new Random();
             int random;
             do {

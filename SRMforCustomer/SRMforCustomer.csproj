@@ -173,6 +173,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\DateTimeUtils.cs" />
+    <Compile Include="Helper\EmailType.cs" />
+    <Compile Include="Helper\SendEmail.cs" />
     <Compile Include="Helper\ServiceConnectDB.cs" />
     <Compile Include="Helper\UserAuthen.cs" />
     <Compile Include="Models\Attachments.cs">
@@ -225,6 +227,9 @@
       <DependentUpon>SRMForCustomer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vwUserInfo.cs">
+      <DependentUpon>IdentityManagementModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUserInfoLite.cs">
       <DependentUpon>IdentityManagementModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

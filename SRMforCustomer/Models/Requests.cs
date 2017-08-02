@@ -29,7 +29,7 @@ namespace SRMforCustomer.Models
         public string TelephoneNumber { get; set; }
         public string Email { get; set; }
         public string Remark { get; set; }
-        public Nullable<int> CurrentStaffId { get; set; }
+        public Nullable<System.Guid> CurrentStaffId { get; set; }
         public System.DateTime DateCreate { get; set; }
         public Nullable<System.DateTime> DateFinish { get; set; }
     

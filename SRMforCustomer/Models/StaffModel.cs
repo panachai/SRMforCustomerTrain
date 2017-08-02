@@ -13,5 +13,7 @@ namespace SRMforCustomer.Models {
         public int UserRankNo { get; set; }
         public string UserDepartmentCode { get; set; }
         public string UserDivisionCode { get; set; }
+
+        public string Email { get; set; }
     }
 }

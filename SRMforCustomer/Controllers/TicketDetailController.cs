@@ -40,7 +40,7 @@ namespace SRMforCustomer.Controllers {
 
 
                     ViewBag.listComment = listComments;
-                    
+
                     return View(modelRequests);
                 }
                 ViewBag.Message = "URL ของท่านผิดพลาดกรุณากลับไปค้นหาที่หน้า Search";
@@ -67,6 +67,9 @@ namespace SRMforCustomer.Controllers {
                     , CreatedBy = modelRequest.CustomerName
                     , TextComment = textComment
                 };
+
+               
+
             } else { //Staff
                 StaffModel staffModel = (StaffModel)Session["staffModel"];
 
@@ -79,10 +82,36 @@ namespace SRMforCustomer.Controllers {
                     , CreatedBy = staffModel.UserFullName
                     , TextComment = textComment
                 };
+
+
             }
+
             var check = service.InsertComment(commentModel);
+            
+            SendEmail.ReceiveComment(commentModel, modelRequest,
+                Request.PhysicalApplicationPath, EmailType.Type.CommentCustomer); //customer
+
+
+
+            StaffModel staffModelUpdate = (StaffModel)Session["staffModel"];
+
+            Requests requestsmodel = new Requests();
+            requestsmodel.Email = staffModelUpdate.Email;
+            service.UpdateCurrentStaff(requestsmodel);
+            //รอเทส
+
+            SendEmail.ReceiveComment(commentModel, modelRequest,
+                Request.PhysicalApplicationPath, EmailType.Type.CommentStaff); //staff
+
+
+
             return RedirectToAction("Index", new { ticket = modelRequest.TicketId });
         }
+
+
+
+
+
 
     }
 }

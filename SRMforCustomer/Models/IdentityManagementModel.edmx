@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IdentityManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IdentityManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6005: The data type 'hierarchyid' is currently not supported for the target Entity Framework version; the column 'OrgNode' in the table 'IdentityManagement.dbo.vwUserInfo' was excluded.
 warning 6005: The data type 'hierarchyid' is currently not supported for the target Entity Framework version; the column 'OrgNode2' in the table 'IdentityManagement.dbo.vwUserInfo' was excluded.
@@ -100,6 +100,103 @@ warning 6002: The table/view 'IdentityManagement.dbo.vwUserInfo' does not have a
           <Property Name="EmsContactTelNo" Type="nvarchar" MaxLength="10" />
           <Property Name="PositionName_EN" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IdentityManagement.dbo.vwUserInfoLite' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwUserInfoLite">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="StatusCode" />
+            <PropertyRef Name="StatusName" />
+            <PropertyRef Name="EmployeeTypeId" />
+            <PropertyRef Name="EmployeeTypeName" />
+            <PropertyRef Name="TitleCode" />
+            <PropertyRef Name="Firstname" />
+            <PropertyRef Name="Firstname_EN" />
+            <PropertyRef Name="Lastname" />
+            <PropertyRef Name="Lastname_EN" />
+            <PropertyRef Name="GenderCode" />
+            <PropertyRef Name="Fullname" />
+            <PropertyRef Name="Fullname_EN" />
+            <PropertyRef Name="RankTypeNo" />
+            <PropertyRef Name="RankName" />
+            <PropertyRef Name="PositionCode" />
+            <PropertyRef Name="PositionName" />
+            <PropertyRef Name="DepartmentCode" />
+            <PropertyRef Name="DepartmentName" />
+            <PropertyRef Name="DivisionCode" />
+            <PropertyRef Name="DivisionName" />
+            <PropertyRef Name="DateAdded" />
+            <PropertyRef Name="DateModified" />
+            <PropertyRef Name="UserGUID" />
+          </Key>
+          <Property Name="CardNo" Type="int" />
+          <Property Name="CompanyCode" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StatusCode" Type="tinyint" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="EmployeeTypeId" Type="int" Nullable="false" />
+          <Property Name="EmployeeTypeName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="TitleCode" Type="int" Nullable="false" />
+          <Property Name="TitleName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="35" Nullable="false" />
+          <Property Name="Firstname_EN" Type="nvarchar" MaxLength="35" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="35" Nullable="false" />
+          <Property Name="Lastname_EN" Type="nvarchar" MaxLength="35" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="256" />
+          <Property Name="GenderCode" Type="int" Nullable="false" />
+          <Property Name="MaritalStatusCode" Type="int" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="71" Nullable="false" />
+          <Property Name="Fullname_EN" Type="nvarchar" MaxLength="71" Nullable="false" />
+          <Property Name="Nickname" Type="nvarchar" MaxLength="10" />
+          <Property Name="Nickname_EN" Type="nvarchar" MaxLength="10" />
+          <Property Name="Birthdate" Type="datetime" />
+          <Property Name="ELCode" Type="int" />
+          <Property Name="DateEmployed" Type="datetime" />
+          <Property Name="DateResigned" Type="datetime" />
+          <Property Name="Privilege" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rank" Type="tinyint" />
+          <Property Name="RankTypeNo" Type="int" Nullable="false" />
+          <Property Name="RankName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HasPicture" Type="bit" />
+          <Property Name="Picture" Type="varbinary(max)" />
+          <Property Name="PositionCode" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DepartmentCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DivisionCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="DivisionName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ExtensionNo" Type="smallint" />
+          <Property Name="TelNo" Type="nvarchar" MaxLength="10" />
+          <Property Name="ManagerUsername" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManagerUsername2" Type="nvarchar" MaxLength="50" />
+          <Property Name="M2Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="M3Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="E1Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="E2Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="E3Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="Comment" Type="ntext" />
+          <Property Name="LastModifiedByUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="BarcodeNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TerminationTypeId" Type="int" />
+          <Property Name="TerminationType" Type="nvarchar" MaxLength="256" />
+          <Property Name="ResignTypeId" Type="int" />
+          <Property Name="ResignType" Type="nvarchar" MaxLength="256" />
+          <Property Name="Bank" Type="int" />
+          <Property Name="BloodGroup" Type="varchar" MaxLength="2" />
+          <Property Name="Height" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Weight" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="EmsContactName" Type="nvarchar" MaxLength="35" />
+          <Property Name="EmsContactLastName" Type="nvarchar" MaxLength="35" />
+          <Property Name="EmsContactTelNo" Type="nvarchar" MaxLength="10" />
+        </EntityType>
         <Function Name="UpdateAccessLogs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="nvarchar" Mode="In" />
           <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
@@ -172,9 +269,77 @@ warning 6002: The table/view 'IdentityManagement.dbo.vwUserInfo' does not have a
     [vwUserInfo].[PositionName_EN] AS [PositionName_EN]
     FROM [dbo].[vwUserInfo] AS [vwUserInfo]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vwUserInfoLite" EntityType="Self.vwUserInfoLite" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwUserInfoLite].[CardNo] AS [CardNo], 
+    [vwUserInfoLite].[CompanyCode] AS [CompanyCode], 
+    [vwUserInfoLite].[UserID] AS [UserID], 
+    [vwUserInfoLite].[Username] AS [Username], 
+    [vwUserInfoLite].[StatusCode] AS [StatusCode], 
+    [vwUserInfoLite].[StatusName] AS [StatusName], 
+    [vwUserInfoLite].[EmployeeTypeId] AS [EmployeeTypeId], 
+    [vwUserInfoLite].[EmployeeTypeName] AS [EmployeeTypeName], 
+    [vwUserInfoLite].[TitleCode] AS [TitleCode], 
+    [vwUserInfoLite].[TitleName] AS [TitleName], 
+    [vwUserInfoLite].[Firstname] AS [Firstname], 
+    [vwUserInfoLite].[Firstname_EN] AS [Firstname_EN], 
+    [vwUserInfoLite].[Lastname] AS [Lastname], 
+    [vwUserInfoLite].[Lastname_EN] AS [Lastname_EN], 
+    [vwUserInfoLite].[Gender] AS [Gender], 
+    [vwUserInfoLite].[GenderCode] AS [GenderCode], 
+    [vwUserInfoLite].[MaritalStatusCode] AS [MaritalStatusCode], 
+    [vwUserInfoLite].[Fullname] AS [Fullname], 
+    [vwUserInfoLite].[Fullname_EN] AS [Fullname_EN], 
+    [vwUserInfoLite].[Nickname] AS [Nickname], 
+    [vwUserInfoLite].[Nickname_EN] AS [Nickname_EN], 
+    [vwUserInfoLite].[Birthdate] AS [Birthdate], 
+    [vwUserInfoLite].[ELCode] AS [ELCode], 
+    [vwUserInfoLite].[DateEmployed] AS [DateEmployed], 
+    [vwUserInfoLite].[DateResigned] AS [DateResigned], 
+    [vwUserInfoLite].[Privilege] AS [Privilege], 
+    [vwUserInfoLite].[Rank] AS [Rank], 
+    [vwUserInfoLite].[RankTypeNo] AS [RankTypeNo], 
+    [vwUserInfoLite].[RankName] AS [RankName], 
+    [vwUserInfoLite].[HasPicture] AS [HasPicture], 
+    [vwUserInfoLite].[Picture] AS [Picture], 
+    [vwUserInfoLite].[PositionCode] AS [PositionCode], 
+    [vwUserInfoLite].[PositionName] AS [PositionName], 
+    [vwUserInfoLite].[DepartmentCode] AS [DepartmentCode], 
+    [vwUserInfoLite].[DepartmentName] AS [DepartmentName], 
+    [vwUserInfoLite].[DivisionCode] AS [DivisionCode], 
+    [vwUserInfoLite].[DivisionName] AS [DivisionName], 
+    [vwUserInfoLite].[ExtensionNo] AS [ExtensionNo], 
+    [vwUserInfoLite].[TelNo] AS [TelNo], 
+    [vwUserInfoLite].[ManagerUsername] AS [ManagerUsername], 
+    [vwUserInfoLite].[ManagerUsername2] AS [ManagerUsername2], 
+    [vwUserInfoLite].[M2Username] AS [M2Username], 
+    [vwUserInfoLite].[M3Username] AS [M3Username], 
+    [vwUserInfoLite].[E1Username] AS [E1Username], 
+    [vwUserInfoLite].[E2Username] AS [E2Username], 
+    [vwUserInfoLite].[E3Username] AS [E3Username], 
+    [vwUserInfoLite].[Comments] AS [Comments], 
+    [vwUserInfoLite].[DateAdded] AS [DateAdded], 
+    [vwUserInfoLite].[DateModified] AS [DateModified], 
+    [vwUserInfoLite].[Email] AS [Email], 
+    [vwUserInfoLite].[Comment] AS [Comment], 
+    [vwUserInfoLite].[LastModifiedByUser] AS [LastModifiedByUser], 
+    [vwUserInfoLite].[BarcodeNo] AS [BarcodeNo], 
+    [vwUserInfoLite].[UserGUID] AS [UserGUID], 
+    [vwUserInfoLite].[TerminationTypeId] AS [TerminationTypeId], 
+    [vwUserInfoLite].[TerminationType] AS [TerminationType], 
+    [vwUserInfoLite].[ResignTypeId] AS [ResignTypeId], 
+    [vwUserInfoLite].[ResignType] AS [ResignType], 
+    [vwUserInfoLite].[Bank] AS [Bank], 
+    [vwUserInfoLite].[BloodGroup] AS [BloodGroup], 
+    [vwUserInfoLite].[Height] AS [Height], 
+    [vwUserInfoLite].[Weight] AS [Weight], 
+    [vwUserInfoLite].[EmsContactName] AS [EmsContactName], 
+    [vwUserInfoLite].[EmsContactLastName] AS [EmsContactLastName], 
+    [vwUserInfoLite].[EmsContactTelNo] AS [EmsContactTelNo]
+    FROM [dbo].[vwUserInfoLite] AS [vwUserInfoLite]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IdentityManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -276,7 +441,103 @@ warning 6002: The table/view 'IdentityManagement.dbo.vwUserInfo' does not have a
             <Parameter Name="ApplicationName" Mode="In" Type="String" />
             <Parameter Name="IPAddress" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="vwUserInfoLite" EntityType="IdentityManagementModel.vwUserInfoLite" />
         </EntityContainer>
+        <EntityType Name="vwUserInfoLite">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="StatusCode" />
+            <PropertyRef Name="StatusName" />
+            <PropertyRef Name="EmployeeTypeId" />
+            <PropertyRef Name="EmployeeTypeName" />
+            <PropertyRef Name="TitleCode" />
+            <PropertyRef Name="Firstname" />
+            <PropertyRef Name="Firstname_EN" />
+            <PropertyRef Name="Lastname" />
+            <PropertyRef Name="Lastname_EN" />
+            <PropertyRef Name="GenderCode" />
+            <PropertyRef Name="Fullname" />
+            <PropertyRef Name="Fullname_EN" />
+            <PropertyRef Name="RankTypeNo" />
+            <PropertyRef Name="RankName" />
+            <PropertyRef Name="PositionCode" />
+            <PropertyRef Name="PositionName" />
+            <PropertyRef Name="DepartmentCode" />
+            <PropertyRef Name="DepartmentName" />
+            <PropertyRef Name="DivisionCode" />
+            <PropertyRef Name="DivisionName" />
+            <PropertyRef Name="DateAdded" />
+            <PropertyRef Name="DateModified" />
+            <PropertyRef Name="UserGUID" />
+          </Key>
+          <Property Name="CardNo" Type="Int32" />
+          <Property Name="CompanyCode" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StatusCode" Type="Byte" Nullable="false" />
+          <Property Name="StatusName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeTypeId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeTypeName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="TitleCode" Type="Int32" Nullable="false" />
+          <Property Name="TitleName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="Firstname_EN" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname_EN" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="GenderCode" Type="Int32" Nullable="false" />
+          <Property Name="MaritalStatusCode" Type="Int32" />
+          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="71" FixedLength="false" Unicode="true" />
+          <Property Name="Fullname_EN" Type="String" Nullable="false" MaxLength="71" FixedLength="false" Unicode="true" />
+          <Property Name="Nickname" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Nickname_EN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Birthdate" Type="DateTime" Precision="3" />
+          <Property Name="ELCode" Type="Int32" />
+          <Property Name="DateEmployed" Type="DateTime" Precision="3" />
+          <Property Name="DateResigned" Type="DateTime" Precision="3" />
+          <Property Name="Privilege" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rank" Type="Byte" />
+          <Property Name="RankTypeNo" Type="Int32" Nullable="false" />
+          <Property Name="RankName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HasPicture" Type="Boolean" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PositionCode" Type="Guid" Nullable="false" />
+          <Property Name="PositionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DivisionCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="DivisionName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExtensionNo" Type="Int16" />
+          <Property Name="TelNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerUsername" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerUsername2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="M2Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="M3Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="E1Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="E2Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="E3Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastModifiedByUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BarcodeNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserGUID" Type="Guid" Nullable="false" />
+          <Property Name="TerminationTypeId" Type="Int32" />
+          <Property Name="TerminationType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ResignTypeId" Type="Int32" />
+          <Property Name="ResignType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Bank" Type="Int32" />
+          <Property Name="BloodGroup" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Height" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Weight" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="EmsContactName" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="EmsContactLastName" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="EmsContactTelNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -352,6 +613,77 @@ warning 6002: The table/view 'IdentityManagement.dbo.vwUserInfo' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="UpdateAccessLogs" FunctionName="IdentityManagementModel.Store.UpdateAccessLogs" />
+          <EntitySetMapping Name="vwUserInfoLite">
+            <EntityTypeMapping TypeName="IdentityManagementModel.vwUserInfoLite">
+              <MappingFragment StoreEntitySet="vwUserInfoLite">
+                <ScalarProperty Name="EmsContactTelNo" ColumnName="EmsContactTelNo" />
+                <ScalarProperty Name="EmsContactLastName" ColumnName="EmsContactLastName" />
+                <ScalarProperty Name="EmsContactName" ColumnName="EmsContactName" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="ResignType" ColumnName="ResignType" />
+                <ScalarProperty Name="ResignTypeId" ColumnName="ResignTypeId" />
+                <ScalarProperty Name="TerminationType" ColumnName="TerminationType" />
+                <ScalarProperty Name="TerminationTypeId" ColumnName="TerminationTypeId" />
+                <ScalarProperty Name="UserGUID" ColumnName="UserGUID" />
+                <ScalarProperty Name="BarcodeNo" ColumnName="BarcodeNo" />
+                <ScalarProperty Name="LastModifiedByUser" ColumnName="LastModifiedByUser" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="E3Username" ColumnName="E3Username" />
+                <ScalarProperty Name="E2Username" ColumnName="E2Username" />
+                <ScalarProperty Name="E1Username" ColumnName="E1Username" />
+                <ScalarProperty Name="M3Username" ColumnName="M3Username" />
+                <ScalarProperty Name="M2Username" ColumnName="M2Username" />
+                <ScalarProperty Name="ManagerUsername2" ColumnName="ManagerUsername2" />
+                <ScalarProperty Name="ManagerUsername" ColumnName="ManagerUsername" />
+                <ScalarProperty Name="TelNo" ColumnName="TelNo" />
+                <ScalarProperty Name="ExtensionNo" ColumnName="ExtensionNo" />
+                <ScalarProperty Name="DivisionName" ColumnName="DivisionName" />
+                <ScalarProperty Name="DivisionCode" ColumnName="DivisionCode" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="PositionCode" ColumnName="PositionCode" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="HasPicture" ColumnName="HasPicture" />
+                <ScalarProperty Name="RankName" ColumnName="RankName" />
+                <ScalarProperty Name="RankTypeNo" ColumnName="RankTypeNo" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Privilege" ColumnName="Privilege" />
+                <ScalarProperty Name="DateResigned" ColumnName="DateResigned" />
+                <ScalarProperty Name="DateEmployed" ColumnName="DateEmployed" />
+                <ScalarProperty Name="ELCode" ColumnName="ELCode" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="Nickname_EN" ColumnName="Nickname_EN" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Fullname_EN" ColumnName="Fullname_EN" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="MaritalStatusCode" ColumnName="MaritalStatusCode" />
+                <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Lastname_EN" ColumnName="Lastname_EN" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname_EN" ColumnName="Firstname_EN" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="TitleName" ColumnName="TitleName" />
+                <ScalarProperty Name="TitleCode" ColumnName="TitleCode" />
+                <ScalarProperty Name="EmployeeTypeName" ColumnName="EmployeeTypeName" />
+                <ScalarProperty Name="EmployeeTypeId" ColumnName="EmployeeTypeId" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

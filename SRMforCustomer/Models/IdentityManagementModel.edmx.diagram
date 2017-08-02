@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9b2b4fbb0b954eb7b88bc54eab0427f4" Name="Diagram1" ZoomLevel="54">
         <EntityTypeShape EntityType="IdentityManagementModel.vwUserInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IdentityManagementModel.vwUserInfoLite" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
