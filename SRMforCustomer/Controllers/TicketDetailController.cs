@@ -68,7 +68,7 @@ namespace SRMforCustomer.Controllers {
                     , TextComment = textComment
                 };
 
-               
+
 
             } else { //Staff
                 StaffModel staffModel = (StaffModel)Session["staffModel"];
@@ -87,20 +87,21 @@ namespace SRMforCustomer.Controllers {
             }
 
             var check = service.InsertComment(commentModel);
-            
+
             SendEmail.ReceiveComment(commentModel, modelRequest,
                 Request.PhysicalApplicationPath, EmailType.Type.CommentCustomer); //customer
 
 
+            if (Session["staffModel"] != null) {
+                StaffModel staffModelUpdate = (StaffModel)Session["staffModel"];
 
-            StaffModel staffModelUpdate = (StaffModel)Session["staffModel"];
+                Requests requestsmodel = new Requests();
+                requestsmodel.Email = staffModelUpdate.Email;
+                service.UpdateCurrentStaff(requestsmodel);
+            }
 
-            Requests requestsmodel = new Requests();
-            requestsmodel.Email = staffModelUpdate.Email;
-            service.UpdateCurrentStaff(requestsmodel);
-            //รอเทส
 
-            SendEmail.ReceiveComment(commentModel, modelRequest,
+            var statusSendemailStaff = SendEmail.ReceiveComment(commentModel, modelRequest,
                 Request.PhysicalApplicationPath, EmailType.Type.CommentStaff); //staff
 
 

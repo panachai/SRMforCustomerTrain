@@ -12,12 +12,7 @@ using System.Net.Mail;
 
 namespace SRMforCustomer.Helper {
     public class SendEmail : Controller {
-
-
         public static void ReceiveMessage(Requests modelRequests, string Request, EmailType.Type type) {
-
-
-
             string BodyHTML =
                     System.IO.File.ReadAllText(Request
                     + "Templates\\TemplateLetterFeedback.html");
@@ -37,7 +32,6 @@ namespace SRMforCustomer.Helper {
                 BodyHTML = BodyHTML.Replace("@row5", "Email : " + modelRequests.Email);
 
             }
-
 
             BodyHTML = BodyHTML.Replace("@timeNow", DateTimeUtils.DateFormat(modelRequests.DateCreate));
 
@@ -59,13 +53,10 @@ namespace SRMforCustomer.Helper {
         }
 
 
-        public static void ReceiveComment(Comments comment, Requests requests, string Request, EmailType.Type type) {
-
-
-
+        public static bool ReceiveComment(Comments comment, Requests requests, string Request, EmailType.Type type) {
             string BodyHTML =
-                System.IO.File.ReadAllText(Request
-                + "Templates\\TemplateLetterFeedback.html");
+                    System.IO.File.ReadAllText(Request
+                    + "Templates\\TemplateLetterFeedback.html");
 
             BodyHTML = BodyHTML.Replace("@row1", "มีความคิดเห็นจาก คุณ " + comment.CreatedBy);
             BodyHTML = BodyHTML.Replace("@row2", "ความคิดเห็น : " + comment.TextComment);
@@ -86,20 +77,17 @@ namespace SRMforCustomer.Helper {
 
             } else if (type == EmailType.Type.CommentStaff) {
 
-                //เดี๋ยวเขียน updatecurrentStaff
-
-
-                //if (requests.CurrentStaffId != null) {
+                if (requests.CurrentStaffId != null) {
                     ServiceConnectDB service = new ServiceConnectDB();
                     var staffemail = service.GetEmailStaff(requests.CurrentStaffId);
-                //}
+                    NotifyMail.To.Add(staffemail);
 
-                NotifyMail.To.Add(staffemail);
-
+                } else {
+                    return false;
+                }
 
 
             }
-
 
             NotifyMail.Subject = "SRMC : " + "มีความคิดเห็นจาก คุณ " + comment.CreatedBy;
 
@@ -109,6 +97,7 @@ namespace SRMforCustomer.Helper {
             SMTPClient.Host = Config.SMTPHost;
             SMTPClient.Send(NotifyMail);
 
+            return true;
         }
     }
 }
